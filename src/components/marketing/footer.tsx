@@ -1,118 +1,18 @@
-import Link from "next/link";
-import Container from "../global/container";
-import Icons from "../global/icons";
+
+import BackToTopButton from "../ui/BackToTopButton";
+import SocialLinks from "../ui/SocialLinks";
 
 const Footer = () => {
     return (
-        <footer className="flex flex-col relative items-center justify-center border-t border-foreground/5 pt-16 pb-8 px-6 lg:px-8 w-full max-w-6xl mx-auto lg:pt-32">
-            <div className="grid gap-8 xl:grid-cols-3 xl:gap-8 w-full">
-                <Container>
-                    <div className="flex flex-col items-start justify-start md:max-w-[200px]">
-                        <div className="flex items-center gap-2">
-                        <Link href="/" className="flex items-center">
-                           <img src="/images/home/footerlogo.png" style={{width:"100%",height:"88px"}} />
-                        </Link>
-                        </div>
-                        <p className="text-muted-foreground mt-4 text-sm text-start">
-                        Itsi Bitsi Meme Coin blends the fun of meme culture with the power of blockchain, redefining digital currencies through community-driven innovation.
-                        </p>
-                    </div>
-                </Container>
-
-                <div className="grid-cols-2 gap-8 grid mt-16 xl:col-span-2 xl:mt-0">
-                    <div className="md:grid md:grid-cols-2 md:gap-8">
-                        <Container delay={0.1} className="h-auto">
-                            <h3 className="text-base font-medium text-foreground">
-                            Sitemap
-                            </h3>
-                            <ul className="mt-4 text-sm text-muted-foreground space-y-4">
-                                <li className="mt-2">
-                                    <Link href="#" className="link hover:text-foreground transition-all duration-300">
-                                        Features
-                                    </Link>
-                                </li>
-                                <li className="mt-2">
-                                    <Link href="#" className="link hover:text-foreground transition-all duration-300">
-                                        Pricing
-                                    </Link>
-                                </li>
-                                <li className="mt-2">
-                                    <Link href="#" className="link hover:text-foreground transition-all duration-300">
-                                        Testimonials
-                                    </Link>
-                                </li>
-                                <li className="mt-2">
-                                    <Link href="#" className="link hover:text-foreground transition-all duration-300">
-                                        Supported Languages
-                                    </Link>
-                                </li>
-                            </ul>
-                        </Container>
-                        <Container delay={0.2} className="h-auto">
-                            <div className="mt-10 md:mt-0 flex flex-col">
-                                <h3 className="text-base font-medium text-foreground">
-                                Legals
-                                </h3>
-                                <ul className="mt-4 text-sm text-muted-foreground space-y-4">
-                                    <li>
-                                        <Link href="#" className="link hover:text-foreground transition-all duration-300">
-                                            Content Creators
-                                        </Link>
-                                    </li>
-                                    <li className="mt-2">
-                                        <Link href="#" className="link hover:text-foreground transition-all duration-300">
-                                            Businesses
-                                        </Link>
-                                    </li>
-                                    <li className="mt-2">
-                                        <Link href="#" className="link hover:text-foreground transition-all duration-300">
-                                            Education
-                                        </Link>
-                                    </li>
-                                    <li className="mt-2">
-                                        <Link href="#" className="link hover:text-foreground transition-all duration-300">
-                                            Enterprise
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        </Container>
-                    </div>
-                    <div className="md:grid md:grid-cols-2 md:gap-8">
-                        <Container delay={0.3} className="h-auto">
-                            <h3 className="text-base font-medium text-foreground">
-                            Socials media
-                            </h3>
-                            <ul className="mt-4 text-sm text-muted-foreground space-y-4">
-                                <li className="mt-2">
-                                    <Link href="#" className="link hover:text-foreground transition-all duration-300">
-                                        Blog
-                                    </Link>
-                                </li>
-                                <li className="mt-2">
-                                    <Link href="#" className="link hover:text-foreground transition-all duration-300">
-                                        Translation Guides
-                                    </Link>
-                                </li>
-                                <li className="mt-2">
-                                    <Link href="#" className="link hover:text-foreground transition-all duration-300">
-                                        Support
-                                    </Link>
-                                </li>
-                            </ul>
-                        </Container>
-                       
-                    </div>
-                </div>
-            </div>
-
-            <Container delay={0.5} className="w-full relative mt-12 lg:mt-20">
-                <div className="mt-8 md:flex md:items-center justify-center footer w-full">
-                    <p className="text-sm text-muted-foreground mt-8 md:mt-0">
-                        &copy; {new Date().getFullYear()} Vetra. All rights reserved.
-                    </p>
-                </div>
-            </Container>
+        <footer className="flex flex-col relative items-center justify-center border-t border-foreground/5 pt-16 pb-8 px-6 lg:px-8 w-full max-w-6xl mx-auto lg:pt-20">
+            <section className="text-center mb-24">
+          <h2 className="text-[30px] font-[700] mb-8">Social Media</h2>
+          <SocialLinks />
+        </section>
+             <footer className="flex justify-between items-center text-gray-400 text-sm border-t border-gray-800 pt-8 w-full">
+          <p className="text-white text-[17px] font-[400]">Copyright © 2025 AizuCoin.com. All rights reserved.</p>
+          <BackToTopButton />
+        </footer>
         </footer>
     )
 };

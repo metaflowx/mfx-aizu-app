@@ -8,11 +8,12 @@ import Hero from "@/components/marketing/hero";
 
 
 import AboutSection from "@/components/marketing/aboutsection";
-import PartnersSection from "@/components/marketing/partnersection";
+
 import RoadmapSection from "@/components/marketing/roadmap";
 import TokenomicsPage from "@/components/marketing/tokenomics";
 import FAQContactSection from "@/components/marketing/accordian";
 import FeaturedIn from "@/components/marketing/Featured";
+import NewsLetter from "@/components/marketing/NewsLetter";
 // import Container from "../global/container";
 const HomePage = () => {
     return (
@@ -21,10 +22,12 @@ const HomePage = () => {
             <AboutSection />
             <FeaturedIn />
             <BuySection />
-            <PartnersSection />
-            <RoadmapSection />
+            
             <TokenomicsPage />
+            <RoadmapSection />
             <FAQContactSection />
+
+            <NewsLetter />
            
         </Wrapper>
     )
