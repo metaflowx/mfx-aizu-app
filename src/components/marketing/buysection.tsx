@@ -31,17 +31,17 @@ const HowToBuySection: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 max-w-7xl mx-auto mt-[50px]">
-      <div className="grid grid-cols-2 grid-rows-2 gap-10 p-4">
+    <section className="py-1 sm:py-16 max-w-7xl mx-auto mt-[0px] sm:mt-[50px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-10 p-4">
         <div
           style={{
             background: "url(/images/buy/token.png)",
             backgroundPosition: "center",
-            marginTop: "-160px",
+           
           }}
-          className="flex items-center justify-center  bg-transparent p-8 text-center text-black rounded-[40px] relative"
+          className="flex items-center justify-center  bg-transparent p-8 text-center text-black rounded-[40px] relative mt-[0] sm:mt-[-160px]"
         >
-          <div className="mt-[238px] flex justify-center items-center">
+          <div className="mt-[20px] md:mt-[238px] flex justify-center items-center">
             <div className="w-full flex flex-col justify-center items-center">
               <p className="text-[64px] font-[700] text-[#fff] leading-snug">
                 How to Buy

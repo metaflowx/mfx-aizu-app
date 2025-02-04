@@ -19,7 +19,7 @@ const HomePage = () => {
     return (
         <Wrapper >
             <Hero />
-            {/* <AboutSection />
+            <AboutSection />
             <FeaturedIn />
             <BuySection />
             
@@ -27,7 +27,7 @@ const HomePage = () => {
             <RoadmapSection />
             <FAQContactSection />
 
-            <NewsLetter /> */}
+            <NewsLetter />
            
         </Wrapper>
     )

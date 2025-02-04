@@ -12,10 +12,10 @@ const FAQContactSection = () => {
   };
 
   return (
-    <div className=" text-white py-16 px-6">
+    <div className=" text-white py-16 ">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <h1 className="text-4xl font-bold text-center mb-12">Aizu Coin FAQs</h1>
+        <h1 className="text-4xl font-bold text-left sm:text-center mb-12">Aizu Coin FAQs</h1>
 
         {/* FAQ Section */}
         <Accordion
@@ -36,10 +36,10 @@ const FAQContactSection = () => {
                     : "transparent",
               }}
             >
-              <AccordionTrigger className="text-[24px] font-[700] px-4 py-2 flex justify-between items-center">
+              <AccordionTrigger className="text-[18px] sm:text-[24px] font-[700] px-4 py-2 flex justify-between items-center">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="text-[20px] px-4 py-3 font-[400] rounded-b-lg">
+              <AccordionContent className="text-[16px] sm:text-[20px] px-4 py-3 font-[400] rounded-b-lg">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>

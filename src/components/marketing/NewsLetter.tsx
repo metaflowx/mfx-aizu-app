@@ -23,11 +23,11 @@ const NewsLetter: React.FC<NewsletterProps> = () => {
   };
 
   return (
-    <section className="text-center  mt-10">
-    <h1 className="text-[64px] font-[700] mb-4 leading-tight">
+    <section className="text-left sm:text-center  mt-10">
+    <h1 className="text-[40px] md:text-[64px] font-[700] mb-4 leading-tight">
       Subscribe to our Newsletter
     </h1>
-    <p className="text-[24px] font-[400] text-white max-w-[1100px] mx-auto mb-8">
+    <p className="text-[18px] md:text-[24px] font-[400] text-white max-w-[1100px] mx-auto mb-8">
       Stay updated with the latest AizuCoin insights, blockchain innovations, and exclusive
       crypto news—subscribe now!
     </p>

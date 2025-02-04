@@ -29,11 +29,11 @@ const FeaturedIn: React.FC = () => {
   return (
    <Container >
      <div className="bg-transparent text-white py-10 w-full  ">
-        <div className="text-center  flex justify-center items-center">
+        <div className="text-left sm:text-center  flex justify-center items-center">
            <div className="w-full">
-           <h1 className="text-white text-[30px] sm:text[40px] md:text-[60px] font-[700] " >Digital Currency for Aizu-Wakamatsu</h1>
+           <h1 className="text-white text-[25px] sm:text-[30px] sm:text[40px] md:text-[60px] font-[700] " >Digital Currency for Aizu-Wakamatsu</h1>
             <h3 className="text-[#2865FF] text-[20px] sm:text[30px] md:text-[40px] font-[700] ">Revolutionizing Transactions with Local Digital Innovation</h3>
-            <h3 className="text-[#fff] text-[24px] font-[500] max-w-6xl mx-auto pt-2">
+            <h3 className="text-[#fff] text-[18px] sm:text-[24px] font-[500] max-w-6xl mx-auto pt-2">
             AizuCoin is a regional digital currency launched in Aizu-Wakamatsu, Japan, by the AiCT Consortium. It promotes cashless transactions, enhances local commerce, and modernizes the region’s payment systems.
             </h3>
            </div>

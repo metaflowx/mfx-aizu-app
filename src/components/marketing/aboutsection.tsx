@@ -7,13 +7,13 @@ import CommonButton from "../ui/CommonButton";
 
 export default function AboutSection() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-black via-blue-950 to-black text-white relative overflow-hidden">
+    <main className="min-h-screen  text-white relative overflow-hidden">
       {/* Background dots pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,_#ffffff15_1px,_transparent_1px)] bg-[length:24px_24px]"></div>
       
       <div className="max-w-6xl mx-auto px-4 py-16 relative">
         {/* Header Section */}
-        <div className="text-center space-y-6 mb-20">
+        <div className="text-left sm:text-center space-y-6 mb-20">
           <h1 className="text-6xl font-bold tracking-wider bg-clip-text">
             JOIN AIZU
           </h1>

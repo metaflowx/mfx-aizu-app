@@ -25,7 +25,7 @@ const TokenomicsPage = () => {
   return (
     <div className="container mx-auto ">
       <div className="text-white  flex flex-col items-center justify-center space-y-6">
-        <div className="text-center">
+        <div className="text-left sm:text-center">
           <h2 className="text-white text-[64px] font-bold">Tokenomics</h2>
           <h3 className="text-[#2865FF] text-[40px] font-bold">
             Supply: {data.supply}
