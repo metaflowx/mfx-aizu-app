@@ -10,8 +10,9 @@ export default function BackToTopButton() {
     >
       Back to top
       <ArrowUp className="w-[50px] h-[50px] rounded-full" style={{
-        background: "#FFFFFF",
-        border: "1.5px solid #FFFFFF1A"
+        background: "transparent",
+        border: "1.5px solid #FFFFFF1A",
+       
 
       }} />
     </button>

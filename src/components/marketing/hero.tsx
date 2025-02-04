@@ -10,7 +10,7 @@ export default function Hero() {
 
 
   return (
-    <main className="min-h-screen  flex items-center justify-center p-4">
+    <main className="min-h-screen  flex items-center justify-center sm:mt-0 mt-10">
       <div className="w-full max-w-[1140px] bg-[#0D0D0D] p-6 rounded-xl border border-[#1E3A8A]/30">
         {/* Header Stats */}
         <div className="flex justify-between text-white mb-10">
@@ -32,7 +32,7 @@ export default function Hero() {
         <h1 className="text-4xl font-bold text-center text-white mb-10">BUY AIZU</h1>
 
         {/* Countdown Timer */}
-        <div className="flex justify-center gap-3 mb-8">
+        <div className="flex flex-wrap sm:flex justify-center gap-3 mb-8">
           {[
             { value: "60", label: "DAYS" },
             { value: "45", label: "HOUR" },
@@ -52,7 +52,7 @@ export default function Hero() {
         </div>
 
         {/* Token Info */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="block sm:flex items-center justify-between mb-8">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 bg-[#FFD700] rounded-full" />
             <span className="text-white">1 AIZU</span>
@@ -68,7 +68,7 @@ export default function Hero() {
         {/* Step 1 */}
         <div className="mb-8">
           <h2 className="text-white text-lg mb-4">Step 1 - Select the Payment Method (BEP20)</h2>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               { id: "tether", name: "USDT", color: "#26A17B" },
               { id: "binance", name: "USDT", color: "#F3BA2F" },
@@ -78,7 +78,7 @@ export default function Hero() {
               <button
                 key={token.id}
                 onClick={() => setSelectedToken(token.id)}
-                className={`flex items-center justify-center gap-2 py-3 rounded-lg ${
+                className={`flex flex-wrap sm:flex items-center justify-center gap-2 py-3 rounded-lg ${
                   selectedToken === token.id
                     ? "bg-[#1E3A8A]"
                     : "bg-[#1A1A1A] hover:bg-[#252525]"

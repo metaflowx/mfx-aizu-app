@@ -80,6 +80,7 @@ body{
   background: url("/images/home/bg.png");
   background-position: top;
   background-size: cover;
+  background-color: #000;
  
  
 }
@@ -124,29 +125,9 @@ img {
   width: 100%;
 }
 
-.companies::before {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 0;
-  height: 1px;
-  width: 100%;
-  color: rgb(48, 48, 48);
-  background: radial-gradient(50% 56400% at 50% 100%, rgb(34, 41, 57) 0%, rgba(169, 163, 194, 0) 100%);
-}
 
-.companies::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 20px;
-  width: 70%;
-  border-radius: 100%;
-  filter: blur(6rem);
-  background: rgb(85, 145, 243);
-}
+
+
 
 .footer::before {
   background: radial-gradient(50% 56400% at 50% 100%, rgb(34, 44, 57) 0%, rgba(169, 163, 194, 0) 100%);
