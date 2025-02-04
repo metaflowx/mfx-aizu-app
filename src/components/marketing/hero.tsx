@@ -122,7 +122,7 @@ export default function Hero() {
         {/* Step 2 */}
         <div className="mb-8">
           <h2 className="text-white text-lg mb-4 sm:text-center text-left">Step 2 - Enter the Amount of Token You Would Like to Purchase</h2>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex bg-[#1A1A1A] rounded-lg p-4">
               <input
                 type="number"
@@ -132,7 +132,7 @@ export default function Hero() {
                 placeholder="0"
               />
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 bg-[#26A17B] rounded-full" />
+                <img src="/images/coin-icon/usdt.png" className="w-5 h-5 bg-[#26A17B] rounded-full" />
                 <span className="text-white">USDT</span>
               </div>
             </div>
@@ -145,7 +145,7 @@ export default function Hero() {
                 placeholder="0"
               />
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 bg-[#FFD700] rounded-full" />
+                <img src="/images/coin-icon/aizu.png" className="w-5 h-5 bg-[#FFD700] rounded-full" />
                 <span className="text-white">AIZU</span>
               </div>
             </div>
