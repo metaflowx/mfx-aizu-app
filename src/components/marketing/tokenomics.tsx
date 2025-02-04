@@ -54,7 +54,7 @@ const TokenomicsPage = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 mt-20">
         <div className="flex  items-center">
-          <img src="/images/tokenomics/chart.png" />
+          <img src="/images/tokenomics/chart.png" className="rotate-image" />
         </div>
         <div >
           {data?.chartData.map((item)=>{
