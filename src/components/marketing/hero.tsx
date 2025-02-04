@@ -6,7 +6,9 @@ import CommonButton from "../ui/CommonButton";
 export default function Hero() {
   const [amount, setAmount] = useState<string>("");
   const [selectedToken, setSelectedToken] = useState("tether");
-
+  const [progress, setProgress] = useState(30);
+  const max=100
+  const progressWidth = (progress / max) * 100;
 
 
   return (
@@ -47,33 +49,59 @@ export default function Hero() {
         </div>
 
         {/* Progress Bar */}
-        <div className="w-full h-1 bg-[#FF4444]/20 rounded-full mb-6">
-          <div className="w-3/4 h-full bg-[#FF4444] rounded-full"></div>
-        </div>
+        {/* <div style={{background: "linear-gradient(90deg, #DD4242 0%, rgba(221, 66, 66, 0) 100%)",
+        border: "1px solid #DD4242"
+}} className="w-full h-[20px]  rounded-full mb-6">
+          <div
+
+          style={{
+            background: "linear-gradient(90deg, #DD4242 0%, rgba(221, 66, 66, 0) 100%)",
+            border: "1px solid #DD4242"
+          }}
+          
+          className="w-3/4 h-full  rounded-full"></div>
+        </div> */}
+
+<div
+      style={{
+        background: "linear-gradient(90deg, #DD4242 0%, rgba(221, 66, 66, 0) 100%)",
+        border: "1px solid #DD4242",
+      }}
+      className="w-full h-[20px] rounded-full mb-6"
+    >
+      <div
+        style={{
+          width: `${progressWidth}%`, // Dynamically set width
+          background: "linear-gradient(90deg, #DD4242 0%, rgba(221, 66, 66, 0) 100%)",
+          border: "1px solid #DD4242",
+        }}
+        className="h-full rounded-full transition-all duration-300 ease-in-out"
+      ></div>
+    </div>
 
         {/* Token Info */}
         <div className="block sm:flex items-center justify-between mb-8">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-[#FFD700] rounded-full" />
+            <img src="/images/coin-icon/aizu.png" className="w-6 h-6 bg-[#FFD700] rounded-full" />
             <span className="text-white">1 AIZU</span>
             <span className="text-white mx-1">+</span>
-            <div className="w-6 h-6 bg-[#26A17B] rounded-full" />
+            <img src="/images/coin-icon/usdt.png" className="w-6 h-6 bg-[#26A17B] rounded-full" />
             <span className="text-white">0.81 USDT</span>
           </div>
-          <div className="text-white text-sm">
+          <div className="text-white text-sm sm:mt-0 mt-[15px]">
             Final phase is LIVE. Listing price 2$
           </div>
         </div>
 
         {/* Step 1 */}
         <div className="mb-8">
-          <h2 className="text-white text-lg mb-4">Step 1 - Select the Payment Method (BEP20)</h2>
+          <h2 className="text-white text-lg mb-4 sm:text-center text-left">Step 1 - Select the Payment Method (BEP20)</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              { id: "tether", name: "USDT", color: "#26A17B" },
-              { id: "binance", name: "USDT", color: "#F3BA2F" },
-              { id: "solana", name: "USDT", color: "#DC1FFF" },
-              { id: "ethereum", name: "ETH", color: "#627EEA" }
+              { id: "tether", name: "USDT", color: "#26A17B",imgurl:"/images/coin-icon/usdt.png" },
+              { id: "binance", name: "USDT", color: "#F3BA2F",imgurl:"/images/coin-icon/usdc.svg" },
+              { id: "solana", name: "USDT", color: "#DC1FFF",imgurl:"/images/coin-icon/bnb.svg" },
+              { id: "ethereum", name: "ETH", color: "#627EEA",imgurl:"/images/coin-icon/eth.svg" }
             ].map((token) => (
               <button
                 key={token.id}
@@ -84,7 +112,7 @@ export default function Hero() {
                     : "bg-[#1A1A1A] hover:bg-[#252525]"
                 }`}
               >
-                <div className="w-5 h-5 rounded-full" style={{ backgroundColor: token.color }} />
+                <img src={token.imgurl} className="w-5 h-5 rounded-full" style={{ backgroundColor: token.color }} />
                 <span className="text-white">{token.name}</span>
               </button>
             ))}
@@ -93,7 +121,7 @@ export default function Hero() {
 
         {/* Step 2 */}
         <div className="mb-8">
-          <h2 className="text-white text-lg mb-4">Step 2 - Enter the Amount of Token You Would Like to Purchase</h2>
+          <h2 className="text-white text-lg mb-4 sm:text-center text-left">Step 2 - Enter the Amount of Token You Would Like to Purchase</h2>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex bg-[#1A1A1A] rounded-lg p-4">
               <input
