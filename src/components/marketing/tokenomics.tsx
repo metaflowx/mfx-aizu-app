@@ -26,8 +26,8 @@ const TokenomicsPage = () => {
     <div className="container mx-auto ">
       <div className="text-white  flex flex-col items-center justify-center space-y-6">
         <div className="text-left sm:text-center">
-          <h2 className="text-white text-[64px] font-bold">Tokenomics</h2>
-          <h3 className="text-[#2865FF] text-[40px] font-bold">
+          <h2 className="text-white text-[40px] md:text-[64px] font-bold">Tokenomics</h2>
+          <h3 className="text-[#2865FF] text-[30px] md:text-[40px] font-bold">
             Supply: {data.supply}
           </h3>
         </div>
@@ -53,7 +53,7 @@ const TokenomicsPage = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 mt-20">
-        <div className="flex  items-center">
+        <div className="flex  items-center overflow-hidden">
           <img src="/images/tokenomics/chart.png" className="rotate-image" />
         </div>
         <div >
