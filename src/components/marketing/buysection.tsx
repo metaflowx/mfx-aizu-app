@@ -39,14 +39,32 @@ const HowToBuySection: React.FC = () => {
             backgroundPosition: "center",
            
           }}
-          className="flex items-center justify-center  bg-transparent p-8 text-center text-black rounded-[40px] relative mt-[0] sm:mt-[-160px]"
+          className="hidden sm:flex items-center justify-center  bg-transparent p-8 text-center text-black rounded-[40px] relative mt-[0] sm:mt-[-160px]"
         >
           <div className="mt-[20px] md:mt-[238px] flex justify-center items-center">
             <div className="w-full flex flex-col justify-center items-center">
-              <p className="text-[64px] font-[700] text-[#fff] leading-snug">
+              <p className="text-[40px] md:text-[64px] font-[700] text-[#fff] leading-snug">
                 How to Buy
               </p>
-              <p className="text-[64px] font-[700] text-[#fff] leading-snug">
+              <p className="text-[40px] md:text-[64px] font-[700] text-[#fff] leading-snug">
+                AizuCoin
+              </p>
+              <CommonButton title="Buy" width="165px" />
+            </div>
+           
+          </div>
+        </div>
+        <div
+          
+          className="block sm:hidden items-center justify-center  bg-transparent  text-center text-black rounded-[40px] relative "
+        >
+          <img src="/images/buy/token.png"  />
+          <div className="flex justify-center items-center">
+            <div className="w-full flex flex-col justify-center items-center">
+              <p className="text-[40px] md:text-[64px] font-[700] text-[#fff] leading-snug">
+                How to Buy
+              </p>
+              <p className="text-[40px] md:text-[64px] font-[700] text-[#fff] leading-snug">
                 AizuCoin
               </p>
               <CommonButton title="Buy" width="165px" />
@@ -63,7 +81,7 @@ const HowToBuySection: React.FC = () => {
               >
                 <div>
                   <div className="flex items-center space-x-3">
-                    <img src={item.icon} alt="Step Icon" />
+                    <img src={item.icon} alt="Step Icon" className="sm:w-auto sm:h-auto w-[40px] h-[40px] object-contain" />
 
                     <div className="text-left pl-3">
                       <p
@@ -72,7 +90,7 @@ const HowToBuySection: React.FC = () => {
                             "linear-gradient(90deg, #2865FF 0%, #DD4242 100%)",
                           backgroundClip: "text",
                         }}
-                        className="text-[35px] font-[700] text-[#2865FF] leading-snug bg-clip-text text-transparent"
+                        className="text-[20px] sm:text-[35px] font-[700] text-[#2865FF] leading-snug bg-clip-text text-transparent"
                       >
                         {item.title}
                       </p>
@@ -82,13 +100,13 @@ const HowToBuySection: React.FC = () => {
                             "linear-gradient(90deg, #2865FF 0%, #DD4242 100%)",
                           backgroundClip: "text",
                         }}
-                        className="text-[35px] font-[700] text-[#2865FF] leading-snug bg-clip-text text-transparent"
+                        className="text-[20px] sm:text-[35px] font-[700] text-[#2865FF] leading-snug bg-clip-text text-transparent"
                       >
                         {item.title1}
                       </p>
                     </div>
                   </div>
-                  <p className="text-[20px] font-[500] text-white text-left leading-[31px]">
+                  <p className="text-[16px] sm:text-[20px] font-[500] text-white text-left leading-[31px]">
                     {item.description}
                   </p>
                 </div>

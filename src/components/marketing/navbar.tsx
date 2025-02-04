@@ -9,7 +9,7 @@ import CommonButton from "../ui/CommonButton";
 
 const Navbar = () => {
     return (
-        <header className="sticky top-5 w-full h-16 bg-transparent backdrop-blur-sm z-50">
+        <header className="sticky top-0 w-full  bg-transparent backdrop-blur-[10px] z-50">
             <Wrapper className="h-full">
                 <div className="flex items-center justify-between h-full">
                    
@@ -17,7 +17,7 @@ const Navbar = () => {
                     <div className="hidden lg:flex items-center gap-4">
                         <ul className="flex items-center gap-16">
                             {NAV_LINKS.map((link, index) => (
-                                <li style={{fontFamily:"Prompt"}} key={index} className="text-[16px]  -1 link">
+                                <li style={{fontFamily:"Prompt"}} key={index} className="text-[14px] xl:text-[16px] object-contain  -1 link">
                                     <Link href={link.href}>
                                         {link.name}
                                     </Link>
@@ -25,15 +25,15 @@ const Navbar = () => {
                             ))}
                         </ul>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center sm:mt-1 mt-0">
                         <Link href="/" className="flex items-center gap-2">
-                           <img src="/images/home/logo.png" style={{width:"114px",height:"88px"}} />
+                           <img src="/images/home/logo.png"  className="w-[90px] h-[50px] sm:w-[114px] sm:h-[88px]" />
                         </Link>
                     </div>
                     <div className="hidden lg:flex items-center gap-4">
                         <ul className="flex items-center gap-16">
                             {NAV_LINKS1.map((link, index) => (
-                                <li style={{fontFamily:"Prompt"}} key={index} className="text-[16px]  -1 link">
+                                <li style={{fontFamily:"Prompt"}} key={index} className="text-[14px] xl:text-[16px] -1 link">
                                     <Link href={link.href}>
                                         {link.name}
                                     </Link>
