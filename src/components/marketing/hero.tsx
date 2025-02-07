@@ -151,22 +151,34 @@ export default function Hero() {
                   imgurl: "/images/coin-icon/eth.svg",
                 },
               ].map((token) => (
-                <button
-                  key={token.id}
-                  onClick={() => setSelectedToken(token.id)}
-                  className={`flex flex-wrap sm:flex items-center justify-center gap-2 py-3 rounded-lg ${
-                    selectedToken === token.id
-                      ? "bg-[#1E3A8A]"
-                      : "bg-[#1A1A1A] hover:bg-[#252525]"
-                  }`}
+                <div
+                  style={{
+                    background:
+                      selectedToken === token.id
+                        ? "#2865FF"
+                        : "linear-gradient(180deg, rgba(166, 166, 166, 0) 0%, #A6A6A6 50%, rgba(166, 166, 166, 0) 100%)",
+                    backdropFilter: "blur(0.8748223781585693px)",
+                  }}
+                  className="rounded-[3px] w-full p-[1px]"
                 >
-                  <img
-                    src={token.imgurl}
-                    className="w-5 h-5 rounded-full"
-                    style={{ backgroundColor: token.color }}
-                  />
-                  <span className="text-white">{token.name}</span>
-                </button>
+                  <button
+                    key={token.id}
+                    onClick={() => setSelectedToken(token.id)}
+                    className={`flex flex-wrap sm:flex w-full items-center justify-center gap-2 py-3 rounded-[3px]
+                     ${
+                       selectedToken === token.id
+                         ? "bg-[#2865FF]"
+                         : "bg-[#15171C]"
+                     }`}
+                  >
+                    <img
+                      src={token.imgurl}
+                      className="w-5 h-5 rounded-full"
+                      style={{ backgroundColor: token.color }}
+                    />
+                    <span className="text-white">{token.name}</span>
+                  </button>
+                </div>
               ))}
             </div>
           </div>
@@ -177,7 +189,17 @@ export default function Hero() {
               Step 2 - Enter the Amount of Token You Would Like to Purchase
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex bg-[#1A1A1A] rounded-lg p-4">
+              <div
+               style={{
+                background:
+                  
+                     "linear-gradient(180deg, rgba(166, 166, 166, 0) 0%, #A6A6A6 50%, rgba(166, 166, 166, 0) 100%)",
+                backdropFilter: "blur(0.8748223781585693px)",
+              }}
+              className="rounded-[8px] w-full p-[1px]"
+              >
+
+              <div className="flex bg-[#15171C] rounded-[8px] p-4">
                 <input
                   type="number"
                   value={amount}
@@ -193,7 +215,18 @@ export default function Hero() {
                   <span className="text-white">USDT</span>
                 </div>
               </div>
-              <div className="flex bg-[#1A1A1A] rounded-lg p-4">
+              </div>
+              <div
+               style={{
+                background:
+                  
+                     "linear-gradient(180deg, rgba(166, 166, 166, 0) 0%, #A6A6A6 50%, rgba(166, 166, 166, 0) 100%)",
+                backdropFilter: "blur(0.8748223781585693px)",
+              }}
+              className="rounded-[8px] w-full p-[1px]"
+              >
+
+              <div className="flex bg-[#15171C] rounded-lg p-4">
                 <input
                   type="number"
                   value={amount ? (parseFloat(amount) / 0.81).toFixed(2) : ""}
@@ -208,6 +241,7 @@ export default function Hero() {
                   />
                   <span className="text-white">AIZU</span>
                 </div>
+              </div>
               </div>
             </div>
           </div>
