@@ -6,7 +6,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { subheading } from "@/constants/fonts";
 import { Prompt } from 'next/font/google';
 import 'animate.css';
-
+import { headers } from "next/headers";
+import ContextProvider from "./context";
 // Importing Prompt font
 const prompt = Prompt({
     subsets: ['latin'], // Optional
@@ -15,11 +16,13 @@ const prompt = Prompt({
 
 export const metadata = generateMetadata();
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const headersObj =  await headers();
+    const cookies = headersObj.get('cookie')
     return (
         <html lang="en" suppressHydrationWarning className={prompt.className}>
             <body
@@ -28,8 +31,11 @@ export default function RootLayout({
                     
                 )}
             >
+                 <ContextProvider cookies={cookies}>
+
                 <Toaster richColors theme="dark" position="top-right" />
                 {children}
+                 </ContextProvider>
             </body>
         </html>
     );

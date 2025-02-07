@@ -1,19 +1,31 @@
 import Footer from "@/components/marketing/footer";
 import Navbar from "@/components/marketing/navbar";
+import { headers } from "next/headers";
 import React from 'react';
+import ContextProvider from "../context";
 
 interface Props {
     children: React.ReactNode
 }
 
-const MarketingLayout = ({ children }: Props) => {
+const MarketingLayout = async({ children }: Props) => {
+
+    const headersObj =  await headers();
+    const cookies = headersObj.get('cookie')
+   
     return (
         <div className="heroBg">
-            <Navbar />
+             <ContextProvider cookies={cookies}>
+             <Navbar />
             <main className="mx-auto w-full z-40 relative">
                 {children}
             </main>
             <Footer />
+             </ContextProvider>
+           
+           
+           
+           
         </div>
     );
 };

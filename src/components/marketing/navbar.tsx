@@ -1,13 +1,15 @@
+"use client"
 import { NAV_LINKS } from "@/constants";
 import Link from "next/link";
-import Icons from "../global/icons";
 import Wrapper from "../global/wrapper";
-import { Button } from "../ui/button";
 import MobileMenu from "./mobile-menu";
 import { NAV_LINKS1 } from "@/constants/links";
 import CommonButton from "../ui/CommonButton";
+import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 
 const Navbar = () => {
+    const { open, close } = useAppKit();
+    const { address, isConnected, } = useAppKitAccount()
     return (
         <header className="sticky top-0 w-full  bg-transparent backdrop-blur-[10px] z-50">
             <Wrapper className="h-full">
@@ -39,7 +41,12 @@ const Navbar = () => {
                                     </Link>
                                 </li>
                             ))}
-                             <CommonButton title="Connect Wallet" width="214px" />
+                            {!address ? (
+
+                                <CommonButton   onClick={async () => open()}  title="Connect Wallet" width="214px" />
+                            ):(
+                                <appkit-account-button balance="hide"  />
+                            )}
                              
                         </ul>
                        

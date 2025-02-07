@@ -249,3 +249,13 @@ img {
 .rotate-image {
   animation: rotate360 5s linear infinite; /* Adjust the duration (5s) as needed */
 }
+
+#webgl-canvas {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 1;
+}
