@@ -14,6 +14,18 @@ export default function NewsletterForm() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-7xl mx-auto">
+      <div
+      style={{
+      
+
+background: "linear-gradient(270deg, rgba(40, 101, 255, 0.6) 0%, rgba(40, 101, 255, 0) 50%, rgba(40, 101, 255, 0.6) 100%)",
+padding:"1px"
+
+
+      }}
+      className="max-w-[643px] mx-auto rounded-[30px]"
+      >
+        
       <div style={{background:" #000000",
       border: "1px solid",
       borderImageSource: "linear-gradient(270deg, rgba(40, 101, 255, 0.6) 0%, rgba(40, 101, 255, 0) 50%, rgba(40, 101, 255, 0.6) 100%)"
@@ -29,6 +41,7 @@ export default function NewsletterForm() {
           required
         />
        <CommonButton title="Submit" width="141px" />
+      </div>
       </div>
     </form>
   );

@@ -1,0 +1,30 @@
+import React from "react";
+
+export default function HeaderStats() {
+  return (
+    <div
+      style={{
+        border: "1px solid #2D67FE80",
+        boxShadow: "0px 0px 8px 0px #2D67FE80",
+      }}
+      className="rounded-[12px] flex justify-center items-center w-full mb-10 
+      transition-all duration-300 ease-in-out transform hover:scale-105 
+      hover:shadow-[0px_0px_16px_4px_#2D67FE80]"
+    >
+      <div className="flex justify-between text-white rounded-[12px] w-full p-4">
+        <div>
+          <p className="text-[18px] font-[400]">USDT Raised</p>
+          <p className="text-[18px] font-[700]">$1,737,633</p>
+        </div>
+        <div className="text-center">
+          <p className="text-[18px] font-[400]">Listing date</p>
+          <p className="text-[18px] font-[700]">March 4, 2025</p>
+        </div>
+        <div className="text-right">
+          <p className="text-[18px] font-[400]">Holders</p>
+          <p className="text-[18px] font-[700]">2,561</p>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -14,13 +14,14 @@ import TokenomicsPage from "@/components/marketing/tokenomics";
 import FAQContactSection from "@/components/marketing/accordian";
 import FeaturedIn from "@/components/marketing/Featured";
 import NewsLetter from "@/components/marketing/NewsLetter";
-import SpheresBackground from "@/components/ui/SpahreAnimation";
+
 // import Container from "../global/container";
 const HomePage = () => {
     return (
         <Wrapper >
             <Hero />
-            {/* <SpheresBackground /> */}
+            
+           
             <AboutSection />
             <FeaturedIn />
             <BuySection />
