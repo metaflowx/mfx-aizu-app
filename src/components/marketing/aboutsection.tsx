@@ -10,7 +10,7 @@ export default function AboutSection() {
     <main className="min-h-screen  text-white relative overflow-hidden py-16">
       {/* Background dots pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,_#ffffff15_1px,_transparent_1px)] bg-[length:24px_24px]"></div>
-      
+
       <div className="max-w-6xl mx-auto px-4  relative">
         {/* Header Section */}
         <div className="text-left sm:text-center space-y-6 mb-20">
@@ -21,12 +21,13 @@ export default function AboutSection() {
             Be a Part of the Decentralized Revolution!
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Unlock a world of financial freedom where you own your assets, control your data, and trade with confidence.
+            Unlock a world of financial freedom where you own your assets,
+            control your data, and trade with confidence.
           </p>
-          
+
           {/* CTA Buttons */}
           <div className="flex justify-center gap-4 mt-8">
-           <CommonButton title="White Paper" width="176px" />
+            <CommonButton title="White Paper" width="176px" />
             <Button
               variant="outline"
               className="bg-transparent border-2 border-blue-600 text-blue-400 hover:bg-blue-900/20 px-8 py-6 text-lg rounded-full"
@@ -39,69 +40,70 @@ export default function AboutSection() {
 
       {/* Central Coin Section */}
       <div className="relative">
-  {/* Center AIZU coin */}
-  <div className="relative w-[full] flex justify-center items-center  ">
-    <img src="/images/join/aboutbg.png" className="w-full h-full object-contain" />
+        {/* Center AIZU coin */}
+        <div className="relative w-[full] flex justify-center items-center ">
+          <img
+            src="/images/join/aboutbg.png"
+            className="max-w-[88rem] mx-auto h-full object-contain"
+          />
+        </div>
 
-   
-  </div>
+        {/* Floating Crypto Icons */}
+        <div className="absolute inset-0 -z-10 animate-spin-slow">
+          <div className="relative w-full h-full">
+            {/* Bitcoin */}
+            <div className="absolute top-1/4 left-1/2 -translate-x-20 -translate-y-20 animate-spin-slow">
+              <div className=" p-4 rounded-full">
+                <Bitcoin className="w-8 h-8 text-white" />
+              </div>
+            </div>
 
-  {/* Floating Crypto Icons */}
-  <div className="absolute inset-0 -z-10 animate-spin-slow">
-    <div className="relative w-full h-full">
-      {/* Bitcoin */}
-      <div className="absolute top-0 left-1/2 -translate-x-40 -translate-y-20 animate-spin-slow">
-        <div className="bg-orange-500 p-4 rounded-full">
-          <Bitcoin className="w-8 h-8 text-white" />
+            {/* Ethereum */}
+            <div className="absolute top-1/4 right-0 translate-x-20 animate-spin-slow">
+              <div className=" p-4 rounded-full">
+                <img src="/icons/binance.png" />
+              </div>
+            </div>
+
+            {/* Polygon */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-20 translate-y-20 animate-spin-slow">
+              <div className="p-4 rounded-full">
+                <img src="/icons/ethereum.png" />
+              </div>
+            </div>
+
+            {/* Avalanche */}
+            <div className="absolute top-1/4 left-0 -translate-x-20 translate-y-20 animate-spin-slow">
+              <div className=" p-4 rounded-full">
+                <img src="/icons/avalanche.png" />
+              </div>
+            </div>
+
+            {/* Additional Coins */}
+            {/* Litecoin */}
+            <div className="absolute top-1/4 left-1/4 -translate-x-20 -translate-y-20 animate-spin-slow">
+              <div className=" p-4 rounded-full">
+                {/* Add your Litecoin icon here */}
+                <img src="/icons/optimism.png" />
+              </div>
+            </div>
+
+            {/* Cardano */}
+            <div className="absolute bottom-1/4 right-1/4 translate-x-20 translate-y-20 animate-spin-slow">
+              <div className=" p-4 rounded-full">
+                <img src="/icons/polygon.png" />
+              </div>
+            </div>
+
+            {/* Ripple */}
+            <div className="absolute top-1/3 right-1/3 translate-x-20 -translate-y-10 animate-spin-slow">
+              <div className="p-4 rounded-full">
+                <img src="/icons/Symbol_Blue.png" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Ethereum */}
-      <div className="absolute top-1/2 right-0 translate-x-20 animate-spin-slow">
-        <div className="bg-blue-600 p-4 rounded-full">
-          <Gem className="w-8 h-8 text-white" />
-        </div>
-      </div>
-
-      {/* Polygon */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-20 translate-y-20 animate-spin-slow">
-        <div className="bg-purple-600 p-4 rounded-full">
-          <Box className="w-8 h-8 text-white" />
-        </div>
-      </div>
-
-      {/* Avalanche */}
-      <div className="absolute top-1/2 left-0 -translate-x-20 animate-spin-slow">
-        <div className="bg-red-500 p-4 rounded-full">
-          <Triangle className="w-8 h-8 text-white" />
-        </div>
-      </div>
-
-      {/* Additional Coins */}
-      {/* Litecoin */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-20 -translate-y-20 animate-spin-slow">
-        <div className="bg-gray-500 p-4 rounded-full">
-          {/* Add your Litecoin icon here */}
-        </div>
-      </div>
-
-      {/* Cardano */}
-      <div className="absolute bottom-1/4 right-1/4 translate-x-20 translate-y-20 animate-spin-slow">
-        <div className="bg-blue-800 p-4 rounded-full">
-          {/* Add your Cardano icon here */}
-        </div>
-      </div>
-
-      {/* Ripple */}
-      <div className="absolute top-1/3 right-1/3 translate-x-20 -translate-y-10 animate-spin-slow">
-        <div className="bg-blue-500 p-4 rounded-full">
-          {/* Add your Ripple icon here */}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
     </main>
   );
 }
