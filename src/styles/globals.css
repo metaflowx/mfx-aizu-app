@@ -77,7 +77,7 @@
   }
 }
 body{
-  background: url("/images/home/bg.png");
+  /* background: url("/images/home/bg.png"); */
   background-position: top;
   background-size: cover;
   background-color: #000;
@@ -144,7 +144,7 @@ img {
   border: 1px solid #9A7144
 }
 .heroBg{
-  background: url("/images/home/bg.png");
+  /* background: url("/images/home/bg.png"); */
   background-position: top;
   background-size: cover;
   
