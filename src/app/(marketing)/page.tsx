@@ -14,12 +14,22 @@ import TokenomicsPage from "@/components/marketing/tokenomics";
 import FAQContactSection from "@/components/marketing/accordian";
 import FeaturedIn from "@/components/marketing/Featured";
 import NewsLetter from "@/components/marketing/NewsLetter";
+import SpherePacking from "@/components/marketing/banner/SpherePacking";
 
 // import Container from "../global/container";
 const HomePage = () => {
     return (
+        <>
+         <div className="relative overflow-x-hidden w-full pb-15 md:pb-10">
+    <SpherePacking />
+      <Hero />
+    </div>
         <Wrapper >
-            <Hero />
+            
+   
+          
+
+            
             
            
             <AboutSection />
@@ -33,6 +43,7 @@ const HomePage = () => {
             <NewsLetter />
            
         </Wrapper>
+        </>
     )
 };
 
