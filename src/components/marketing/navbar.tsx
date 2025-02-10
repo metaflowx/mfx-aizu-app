@@ -45,7 +45,10 @@ const Navbar = () => {
 
                                 <CommonButton   onClick={async () => open()}  title="Connect Wallet" width="214px" />
                             ):(
-                                <appkit-account-button balance="hide"  />
+                                <>
+                                {/* @ts-expect-error msg */}
+                                <appkit-account-button balance="hide" />
+                            </>
                             )}
                              
                         </ul>
