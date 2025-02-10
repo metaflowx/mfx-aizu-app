@@ -149,7 +149,7 @@ const SpherePacking: React.FC = () => {
     
       // Set fixed height of 1200px
       const canvasWidth = window.innerWidth;
-      const canvasHeight = 1300;
+      const canvasHeight = 1400;
     
       scene = new THREE.Scene();
       group = new THREE.Object3D();

@@ -16,10 +16,10 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-full">
                    
 
-                    <div className="hidden lg:flex items-center gap-4">
-                        <ul className="flex items-center gap-16">
+                    <div className="hidden lg:flex items-center gap-3">
+                        <ul className="flex items-center gap-14 2xl:gap-16">
                             {NAV_LINKS.map((link, index) => (
-                                <li style={{fontFamily:"Prompt"}} key={index} className="text-[14px] xl:text-[16px] object-contain  -1 link">
+                                <li style={{fontFamily:"Prompt"}} key={index} className="text-[14px] 2xl:text-[16px] object-contain uppercase  -1 link">
                                     <Link href={link.href}>
                                         {link.name}
                                     </Link>
@@ -32,10 +32,10 @@ const Navbar = () => {
                            <img src="/images/home/logo.png"  className="w-[90px] h-[50px] sm:w-[114px] sm:h-[88px]" />
                         </Link>
                     </div>
-                    <div className="hidden lg:flex items-center gap-4">
-                        <ul className="flex items-center gap-16">
+                    <div className="hidden lg:flex items-center gap-3">
+                        <ul className="flex items-center gap-14 2xl:gap-16">
                             {NAV_LINKS1.map((link, index) => (
-                                <li style={{fontFamily:"Prompt"}} key={index} className="text-[14px] xl:text-[16px] -1 link">
+                                <li style={{fontFamily:"Prompt"}} key={index} className="text-[14px] 2xl:text-[16px] uppercase -1 link">
                                     <Link href={link.href}>
                                         {link.name}
                                     </Link>

@@ -20,7 +20,7 @@ import SpherePacking from "@/components/marketing/banner/SpherePacking";
 const HomePage = () => {
     return (
         <>
-         <div className="relative overflow-x-hidden w-full">
+         <div className="relative overflow-x-hidden w-full pb-15 md:pb-10">
     <SpherePacking />
       <Hero />
     </div>
