@@ -14,16 +14,16 @@ export default function Hero() {
   const progressWidth = (progress / max) * 100;
 
   return (
-    <main className="min-h-screen  flex items-center justify-center sm:mt-10 2xl:mt:5 mt-10">
+    <main className="min-h-screen  max-w-[68rem] mx-auto  flex items-center justify-center sm:mt-10 2xl:mt:5 mt-10">
       <div
         style={{
           background:
             "linear-gradient(180deg, #2865FF 0%, rgba(40, 101, 255, 0) 100%)",
           padding: "1px",
         }}
-        className="rounded-[20px]"
+        className="rounded-[20px] w-full"
       >
-        <div className="w-full max-w-[1140px] bg-[#0D0D0D] p-6 rounded-[20px] ">
+        <div className="w-full bg-[#0D0D0D] p-6 rounded-[20px] ">
           {/* Header Stats */}
          <HeaderStats />
 

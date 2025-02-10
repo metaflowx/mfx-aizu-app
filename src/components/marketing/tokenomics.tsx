@@ -84,6 +84,7 @@ const TokenomicsPage = () => {
                   " linear-gradient(90deg, rgba(40, 101, 255, 0) 0%, #2865FF 50%, rgba(40, 101, 255, 0) 100%)",
                 padding: "1px",
               }}
+              className="transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
             >
               <div
                 key={index}
@@ -106,32 +107,32 @@ const TokenomicsPage = () => {
           <img src="/images/tokenomics/chart.png" className="rotate-image" />
         </div>
         <div>
-          {data?.chartData.map((item) => {
-            return (
-              <div
-                style={{ border: "1px solid #ffffff17" }}
-                className="rounded-[12px]  py-3 px-5 mt-[20px]"
-              >
-                <div className="flex items-center">
-                  <div
-                    style={{
-                      background: item.bg,
-
-                      borderTopLeftRadius: "20px",
-                      borderBottomLeftRadius: "20px",
-                      width: item.width,
-                    }}
-                    className=" h-[20px]"
-                  ></div>
-                  <p className={`${item?.color} text-[24px] font-[500]`}>
-                    {item?.value}%
-                  </p>
-                </div>
-                <p className="text-[30px] font-[500] text-white">{item.name}</p>
-              </div>
-            );
-          })}
+  {data?.chartData.map((item) => {
+    return (
+      <div
+        style={{ border: "1px solid #ffffff17" }}
+        className="rounded-[12px] py-3 px-5 mt-[20px] hover:bg-slate-800 transition-all duration-300"
+      >
+        <div className="flex items-center">
+          <div
+            style={{
+              background: item.bg,
+              borderTopLeftRadius: "20px",
+              borderBottomLeftRadius: "20px",
+              width: item.width,
+            }}
+            className="h-[20px]"
+          ></div>
+          <p className={`${item?.color} text-[24px] font-[500]`}>
+            {item?.value}%
+          </p>
         </div>
+        <p className="text-[30px] font-[500] text-white">{item.name}</p>
+      </div>
+    );
+  })}
+</div>
+
       </div>
     </div>
   );
