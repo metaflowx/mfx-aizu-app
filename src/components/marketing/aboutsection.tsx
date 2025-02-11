@@ -5,9 +5,17 @@ import { Bitcoin, Gem, Box, Triangle } from "lucide-react";
 import Image from "next/image";
 import CommonButton from "../ui/CommonButton";
 
-export default function AboutSection() {
+export default function AboutSection({id}:{id:string}) {
+  const floatingIcons = [
+    { src: "/icons/binance.png", style: "top-[10%] right-[5%]" }, // Binance
+    { src: "/icons/ethereum.png", style: "bottom-[10%] left-[50%] -translate-x-1/2" }, // Ethereum
+    { src: "/icons/avalanche.png", style: "top-[25%] left-[5%]" }, // Avalanche
+    { src: "/icons/optimism.png", style: "top-[15%] left-[25%]" }, // Optimism
+    { src: "/icons/polygon.png", style: "bottom-[20%] right-[20%]" }, // Polygon
+    { src: "/icons/Symbol_Blue.png", style: "top-[33%] right-[33%]" }, // Ripple
+  ];
   return (
-    <main className="min-h-screen  text-white relative overflow-hidden py-16">
+    <main id={id} className="min-h-screen  text-white relative overflow-hidden py-16">
       {/* Background dots pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,_#ffffff15_1px,_transparent_1px)] bg-[length:24px_24px]"></div>
 
@@ -49,7 +57,7 @@ export default function AboutSection() {
         </div>
 
         {/* Floating Crypto Icons */}
-        <div className="absolute inset-0 -z-10 animate-spin-slow">
+        <div className="absolute inset-0 -z-10 animate-spin-slow top-0 left-0 right-0 bottom-0">
           <div className="relative w-full h-full">
             {/* Bitcoin */}
             <div className="absolute top-1/4 left-1/2 -translate-x-20 -translate-y-20 animate-spin-slow">

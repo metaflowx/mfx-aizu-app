@@ -8,7 +8,7 @@ import HeaderStats from "./banner/HeaderStats";
 import AnimatedBorderTrail from "../borderanimation";
 import { MagicCard } from "../ui/magic-card";
 
-export default function Hero() {
+export default function Hero({id}:{id:string}) {
   const [amount, setAmount] = useState<string>("");
   const [selectedToken, setSelectedToken] = useState("tether");
   const [progress, setProgress] = useState(30);
@@ -17,7 +17,7 @@ export default function Hero() {
 
   return (
    
-    <main className="min-h-screen  max-w-[68rem] mx-auto  flex items-center justify-center sm:mt-10 2xl:mt:5 mt-10">
+    <main id={id} className="min-h-screen  max-w-[68rem] mx-auto  flex items-center justify-center sm:mt-10 2xl:mt:5 mt-10">
      
      <MagicCard>
       <div

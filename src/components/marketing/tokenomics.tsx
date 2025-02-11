@@ -64,9 +64,9 @@ const data = {
   ],
 };
 
-const TokenomicsPage = () => {
+const TokenomicsPage = ({id}:{id:string}) => {
   return (
-    <div className="container mx-auto ">
+    <div id={id} className="container mx-auto ">
       <div className="text-white  flex flex-col items-center justify-center space-y-6">
         <div className="text-left sm:text-center">
           <h2 className="text-white text-[40px] md:text-[64px] font-bold">

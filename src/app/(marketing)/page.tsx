@@ -1,11 +1,8 @@
 import Container from "@/components/global/container";
 import Wrapper from "@/components/global/wrapper";
 
-
 import BuySection from "@/components/marketing/buysection";
 import Hero from "@/components/marketing/hero";
-
-
 
 import AboutSection from "@/components/marketing/aboutsection";
 
@@ -15,36 +12,30 @@ import FAQContactSection from "@/components/marketing/accordian";
 import FeaturedIn from "@/components/marketing/Featured";
 import NewsLetter from "@/components/marketing/NewsLetter";
 import SpherePacking from "@/components/marketing/banner/SpherePacking";
+import PageBox from "@/components/PageBox";
 
 // import Container from "../global/container";
 const HomePage = () => {
-    return (
-        <>
-         <div className="relative overflow-x-hidden w-full pb-15 md:pb-10">
-    <SpherePacking />
-      <Hero />
-    </div>
-        <Wrapper >
-            
-   
-          
+  return (
+    <PageBox>
+    
+      <div className="relative overflow-x-hidden w-full pb-15 md:pb-10">
+        <SpherePacking />
+        <Hero id="home" />
+      </div>
+      <Wrapper>
+        <AboutSection id="about" />
+        <FeaturedIn id="features" />
+        <BuySection id="howtobuy" />
 
-            
-            
-           
-            <AboutSection />
-            <FeaturedIn />
-            <BuySection />
-            
-            <TokenomicsPage />
-            <RoadmapSection />
-            <FAQContactSection />
+        <TokenomicsPage  id="tokenomics"/>
+        <RoadmapSection id="roadmap" />
+        <FAQContactSection id="faqs" />
 
-            <NewsLetter />
-           
-        </Wrapper>
-        </>
-    )
+        <NewsLetter />
+      </Wrapper>
+    </PageBox>
+  );
 };
 
-export default HomePage
+export default HomePage;
