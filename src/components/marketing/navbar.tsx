@@ -6,6 +6,7 @@ import MobileMenu from "./mobile-menu";
 import { NAV_LINKS1 } from "@/constants/links";
 import CommonButton from "../ui/CommonButton";
 import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
+import AnimatedBorderTrail from "../borderanimation";
 
 const Navbar = () => {
     const { open, close } = useAppKit();
@@ -43,7 +44,11 @@ const Navbar = () => {
                             ))}
                             {!address ? (
 
-                                <CommonButton   onClick={async () => open()}  title="Connect Wallet" width="214px" />
+                                 <AnimatedBorderTrail trailSize="lg" className="w-full hover:scale-105" trailColor="white" >
+
+                                     <CommonButton   onClick={async () => open()}  title="Connect Wallet" width="214px" />
+                                 </AnimatedBorderTrail>
+
                             ):(
                                 <>
                                 {/* @ts-expect-error msg */}
