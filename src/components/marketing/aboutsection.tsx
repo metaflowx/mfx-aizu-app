@@ -21,20 +21,20 @@ export default function AboutSection({id}:{id:string}) {
 
       <div className="max-w-6xl mx-auto px-4  relative">
         {/* Header Section */}
-        <div className="text-left sm:text-center space-y-6 mb-20">
-          <h1 className="text-6xl font-bold tracking-wider bg-clip-text">
+        <div className="text-left sm:text-center  mb-20">
+          <h1 className="text-[30px] leading-[30px] md:leading-[60px] md:text-[60px] font-bold tracking-wider bg-clip-text">
             JOIN AIZU
           </h1>
-          <h2 className="text-3xl font-semibold text-blue-400">
+          <h2 className="text-[25px] md:text-[35px] font-semibold text-[#2865FF]">
             Be a Part of the Decentralized Revolution!
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-[18px] md:text-[24px] text-white max-w-[900px] mx-auto mb-[20px]">
             Unlock a world of financial freedom where you own your assets,
             control your data, and trade with confidence.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex justify-center gap-4 mt-8">
+          <div className="flex justify-center gap-4 ">
             <CommonButton title="White Paper" width="176px" />
             <Button
               variant="outline"
@@ -51,66 +51,65 @@ export default function AboutSection({id}:{id:string}) {
         {/* Center AIZU coin */}
         <div className="relative w-[full] flex justify-center items-center ">
           <img
-            src="/images/join/aboutbg.png"
-            className="max-w-[88rem] mx-auto h-full object-contain"
+            src="/images/home/image-rotation.png"
+            className="max-w-full md:max-w-[1350px] mx-auto h-full object-contain"
           />
         </div>
 
-        {/* Floating Crypto Icons */}
-        <div className="absolute inset-0 -z-10 animate-spin-slow top-0 left-0 right-0 bottom-0">
+       
+        {/* <div className="absolute inset-0 -z-10 animate-spin-slow top-0 left-0 right-0 bottom-0">
           <div className="relative w-full h-full">
-            {/* Bitcoin */}
+           
             <div className="absolute top-1/4 left-1/2 -translate-x-20 -translate-y-20 animate-spin-slow">
               <div className=" p-4 rounded-full">
                 <Bitcoin className="w-8 h-8 text-white" />
               </div>
             </div>
 
-            {/* Ethereum */}
+           
             <div className="absolute top-1/4 right-0 translate-x-20 animate-spin-slow">
               <div className=" p-4 rounded-full">
                 <img src="/icons/binance.png" />
               </div>
             </div>
 
-            {/* Polygon */}
+          
             <div className="absolute bottom-0 left-1/2 -translate-x-20 translate-y-20 animate-spin-slow">
               <div className="p-4 rounded-full">
                 <img src="/icons/ethereum.png" />
               </div>
             </div>
 
-            {/* Avalanche */}
+          
             <div className="absolute top-1/4 left-0 -translate-x-20 translate-y-20 animate-spin-slow">
               <div className=" p-4 rounded-full">
                 <img src="/icons/avalanche.png" />
               </div>
             </div>
 
-            {/* Additional Coins */}
-            {/* Litecoin */}
+          
             <div className="absolute top-1/4 left-1/4 -translate-x-20 -translate-y-20 animate-spin-slow">
               <div className=" p-4 rounded-full">
-                {/* Add your Litecoin icon here */}
+               
                 <img src="/icons/optimism.png" />
               </div>
             </div>
 
-            {/* Cardano */}
+           
             <div className="absolute bottom-1/4 right-1/4 translate-x-20 translate-y-20 animate-spin-slow">
               <div className=" p-4 rounded-full">
                 <img src="/icons/polygon.png" />
               </div>
             </div>
 
-            {/* Ripple */}
+          
             <div className="absolute top-1/3 right-1/3 translate-x-20 -translate-y-10 animate-spin-slow">
               <div className="p-4 rounded-full">
                 <img src="/icons/Symbol_Blue.png" />
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </main>
   );
