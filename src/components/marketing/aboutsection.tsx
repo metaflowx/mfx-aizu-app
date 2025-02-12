@@ -15,9 +15,9 @@ export default function AboutSection({id}:{id:string}) {
     { src: "/icons/Symbol_Blue.png", style: "top-[33%] right-[33%]" }, // Ripple
   ];
   return (
-    <main id={id} className="min-h-screen  text-white relative overflow-hidden py-16">
+    <main id={id} className=" text-white relative overflow-hidden pt-10 md:py-16">
       {/* Background dots pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle,_#ffffff15_1px,_transparent_1px)] bg-[length:24px_24px]"></div>
+      <div className="absolute hidden md:flex  inset-0 bg-[radial-gradient(circle,_#ffffff15_1px,_transparent_1px)] bg-[length:24px_24px]"></div>
 
       <div className="max-w-6xl mx-auto px-4  relative">
         {/* Header Section */}
@@ -52,7 +52,7 @@ export default function AboutSection({id}:{id:string}) {
         <div className="relative w-[full] flex justify-center items-center ">
           <img
             src="/images/home/image-rotation.png"
-            className="max-w-full md:max-w-[1350px] mx-auto h-full object-contain"
+            className="max-w-full xl:max-w-[1350px] mx-auto h-full object-contain"
           />
         </div>
 
