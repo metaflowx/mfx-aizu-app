@@ -1,37 +1,37 @@
 export const NAV_LINKS = [
     {
         name: "Home",
-        href: "#"
+        href: "/#home"
     },
     {
         name: "About Us",
-        href: "#"
+        href: "#about"
     },
     {
         name: "HOWTOBUY",
-        href: "#"
+        href: "/#howtobuy"
     },
     {
         name: "FEATURES",
-        href: "#"
+        href: "/#features"
     },
     {
         name: "TOKENOMICS",
-        href: "#"
+        href: "/#tokenomics"
     },
 ];
 export const NAV_LINKS1 = [
     {
         name: "ROADMAP",
-        href: "#"
+        href: "/#roadmap"
     },
     {
         name: "FAQS",
-        href: "#"
+        href: "#faqs"
     },
     {
         name: "GIVEWAY",
-        href: "#"
+        href: "/#giveway"
     },
    
 ];

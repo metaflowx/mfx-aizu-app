@@ -1,6 +1,6 @@
 import CommonButton from "../ui/CommonButton";
 
-const HowToBuySection: React.FC = () => {
+const HowToBuySection = ({id}:{id:string}) => {
   const steps = [
     {
       title: "Choose a Crypto ",
@@ -26,7 +26,7 @@ const HowToBuySection: React.FC = () => {
   ];
 
   return (
-    <section className="py-1 sm:py-16 max-w-7xl mx-auto mt-[0px] sm:mt-[50px]">
+    <section id={id} className="py-1 sm:py-16 max-w-7xl mx-auto mt-[0px] sm:mt-[50px]">
       <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-10 p-4">
       <div
   className="group flex items-center justify-center bg-transparent p-1 md:p-8 text-center text-black rounded-[40px] relative mt-[0]"

@@ -7,8 +7,8 @@ export default function HeaderStats() {
         border: "1px solid #2D67FE80",
         boxShadow: "0px 0px 8px 0px #2D67FE80",
       }}
-      className="rounded-[12px] flex justify-center items-center w-full mb-10 
-      transition-all duration-300 ease-in-out transform hover:scale-105 
+      className="rounded-[12px] flex justify-center items-center w-full  
+      transition-all duration-300 ease-in-out transform  
       hover:shadow-[0px_0px_16px_4px_#2D67FE80]"
     >
       <div className="flex justify-between text-white rounded-[12px] w-full p-4">

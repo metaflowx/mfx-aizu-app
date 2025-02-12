@@ -14,10 +14,10 @@ const roadmapData = [
   { quarter: "Q4-2025", milestone: "Milestone #06", description: "AIZU NFT", color: "radial-gradient(94.42% 94.42% at 85.44% 9%, #FF2897 0%, #CE133C 100%)", img: "/images/roadmap/roadlineleft.png", translate: "-translate-x-[96%]", textColor: "text-[#CE133C]" }
 ];
 
-const RoadmapSection = () => {
+const RoadmapSection = ({id}:{id:string}) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   return (
-    <div className="bg-transparent min-h-screen text-white flex flex-col items-start sm:items-center py-[50px] md:py-[150px]">
+    <div id={id} className="bg-transparent min-h-screen text-white flex flex-col items-start sm:items-center py-[50px] md:py-[150px]">
       <h2 className="text-[40px] sm:text-[64px] font-[700] mb-4">Roadmap</h2>
       <p className="text-left sm:text-center max-w-5xl mb-12 text-white text-[18px] sm:text-[24px] font-[500]">
         AizuCoin is committed to revolutionizing the crypto space with a structured and strategic development plan. 

@@ -6,6 +6,7 @@ import MobileMenu from "./mobile-menu";
 import { NAV_LINKS1 } from "@/constants/links";
 import CommonButton from "../ui/CommonButton";
 import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
+import AnimatedBorderTrail from "../borderanimation";
 
 const Navbar = () => {
     const { open, close } = useAppKit();
@@ -16,7 +17,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-full">
                    
 
-                    <div className="hidden lg:flex items-center gap-3">
+                    <div className="hidden xl:flex items-center gap-3">
                         <ul className="flex items-center gap-14 2xl:gap-16">
                             {NAV_LINKS.map((link, index) => (
                                 <li style={{fontFamily:"Prompt"}} key={index} className="text-[14px] 2xl:text-[16px] object-contain uppercase  -1 link">
@@ -32,7 +33,7 @@ const Navbar = () => {
                            <img src="/images/home/logo.png"  className="w-[90px] h-[50px] sm:w-[114px] sm:h-[88px]" />
                         </Link>
                     </div>
-                    <div className="hidden lg:flex items-center gap-3">
+                    <div className="hidden xl:flex items-center gap-3">
                         <ul className="flex items-center gap-14 2xl:gap-16">
                             {NAV_LINKS1.map((link, index) => (
                                 <li style={{fontFamily:"Prompt"}} key={index} className="text-[14px] 2xl:text-[16px] uppercase -1 link">
@@ -43,7 +44,11 @@ const Navbar = () => {
                             ))}
                             {!address ? (
 
-                                <CommonButton   onClick={async () => open()}  title="Connect Wallet" width="214px" />
+                                 <AnimatedBorderTrail trailSize="lg" className="w-full hover:scale-105" trailColor="white" >
+
+                                     <CommonButton   onClick={async () => open()}  title="Connect Wallet" width="214px" />
+                                 </AnimatedBorderTrail>
+
                             ):(
                                 <>
                                 {/* @ts-expect-error msg */}

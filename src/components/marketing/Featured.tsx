@@ -9,7 +9,7 @@ import Container from "../global/container";
 
 const SlickSlider = Slider as unknown as React.FC<any>; // Fix TypeScript issue
 
-const FeaturedIn: React.FC = () => {
+const FeaturedIn = ({id}:{id:string}) => {
   const settings = {
     infinite: true,
     slidesToShow: 5,
@@ -27,8 +27,8 @@ const FeaturedIn: React.FC = () => {
   };
 
   return (
-   <Container >
-     <div className="bg-transparent text-white py-10 w-full  ">
+   <Container  >
+     <div id={id} className="bg-transparent text-white py-10 w-full  ">
         <div className="text-left sm:text-center  flex justify-center items-center">
            <div className="w-full">
            <h1 className="text-white text-[25px] sm:text-[30px] sm:text[40px] md:text-[60px] font-[700] " >Digital Currency for Aizu-Wakamatsu</h1>

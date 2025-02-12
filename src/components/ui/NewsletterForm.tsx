@@ -3,6 +3,7 @@
 import { useState } from "react";
 import CommonButton from "./CommonButton";
 
+
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");
 
@@ -40,7 +41,10 @@ padding:"1px"
           className="w-full px-6  bg-transparent rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         />
+       
+
        <CommonButton title="Submit" width="141px" />
+       
       </div>
       </div>
     </form>

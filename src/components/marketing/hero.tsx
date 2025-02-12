@@ -5,16 +5,23 @@ import CommonButton from "../ui/CommonButton";
 import CoinSelector from "./banner/CoinSelector";
 import TimerCounter from "./banner/TimerCounter";
 import HeaderStats from "./banner/HeaderStats";
+import AnimatedBorderTrail from "../borderanimation";
+import { MagicCard } from "../ui/magic-card";
+import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 
-export default function Hero() {
+export default function Hero({id}:{id:string}) {
   const [amount, setAmount] = useState<string>("");
   const [selectedToken, setSelectedToken] = useState("tether");
   const [progress, setProgress] = useState(30);
   const max = 100;
   const progressWidth = (progress / max) * 100;
-
+  const { open, close } = useAppKit();
+    const { address, isConnected, } = useAppKitAccount()
   return (
-    <main className="min-h-screen  max-w-[68rem] mx-auto  flex items-center justify-center sm:mt-10 2xl:mt:5 mt-10">
+   
+    <main id={id} className="min-h-screen  max-w-[68rem] mx-auto  flex items-center justify-center sm:mt-10 2xl:mt:5 mt-10">
+     
+     <MagicCard>
       <div
         style={{
           background:
@@ -23,9 +30,13 @@ export default function Hero() {
         }}
         className="rounded-[20px] w-full"
       >
-        <div className="w-full bg-[#0D0D0D] p-6 rounded-[20px] ">
+        
+        <div className="w-full bg-[#0D0D0D] p-6 rounded-[20px] " >
           {/* Header Stats */}
+          <AnimatedBorderTrail trailSize="lg" className="w-full rounded-[12px] mb-10" contentClassName="rounded-[12px]" trailColor="blue" duration="8s">
+
          <HeaderStats />
+          </AnimatedBorderTrail>
 
           {/* Title */}
           <h1 className="text-4xl font-bold text-center text-white mb-10">
@@ -142,13 +153,29 @@ export default function Hero() {
 
           {/* Connect Wallet Button */}
 
-          <CommonButton title="Connect Wallet" width="100%" />
+          <AnimatedBorderTrail trailSize="lg" className="w-full">
+            {address ? (
+
+<CommonButton title="Buy Now" width="100%"  />
+
+            ):(
+              <CommonButton title="Connect Wallet" width="100%" onClick={async () => open()} />
+            )}
+
+         
+          </AnimatedBorderTrail>
+
 
           <p className="text-center text-gray-400 text-sm hover:text-gray-300 cursor-pointer pt-5">
             Don't have a wallet?
           </p>
         </div>
+      
       </div>
+
+      </MagicCard>
+      
     </main>
+   
   );
 }

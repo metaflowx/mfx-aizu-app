@@ -1,5 +1,6 @@
 import React from "react";
 import Chart from "./tokennomics/Chart";
+import { MagicCard } from "../ui/magic-card";
 
 const data = {
   supply: "10,000,000,000",
@@ -63,9 +64,9 @@ const data = {
   ],
 };
 
-const TokenomicsPage = () => {
+const TokenomicsPage = ({id}:{id:string}) => {
   return (
-    <div className="container mx-auto ">
+    <div id={id} className="container mx-auto ">
       <div className="text-white  flex flex-col items-center justify-center space-y-6">
         <div className="text-left sm:text-center">
           <h2 className="text-white text-[40px] md:text-[64px] font-bold">
@@ -109,10 +110,13 @@ const TokenomicsPage = () => {
         <div>
   {data?.chartData.map((item) => {
     return (
+       
+
       <div
-        style={{ border: "1px solid #ffffff17" }}
-        className="rounded-[12px] py-3 px-5 mt-[20px] hover:bg-slate-800 transition-all duration-300"
+        // style={{ border: "1px solid #ffffff17" }}
+        className="rounded-[12px]"
       >
+         <MagicCard className="w-full py-3 px-5 mt-[20px] rounded-[12px]" gradientSize={150}>
         <div className="flex items-center">
           <div
             style={{
@@ -128,7 +132,9 @@ const TokenomicsPage = () => {
           </p>
         </div>
         <p className="text-[30px] font-[500] text-white">{item.name}</p>
+        </MagicCard>
       </div>
+       
     );
   })}
 </div>

@@ -76,10 +76,19 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
 body{
   /* background: url("/images/home/bg.png"); */
-  background-position: top;
-  background-size: cover;
+ 
+ 
+  transition: all 0.5s ease-in-out;
+  scroll-behavior: smooth;
   background-color: #000;
  
  
@@ -258,4 +267,10 @@ img {
   left: 0;
   overflow: hidden;
   z-index: 1;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
