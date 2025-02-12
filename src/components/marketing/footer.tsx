@@ -1,10 +1,17 @@
 
+import Wrapper from "../global/wrapper";
 import BackToTopButton from "../ui/BackToTopButton";
 import SocialLinks from "../ui/SocialLinks";
+import NewsLetter from "./NewsLetter";
 
 const Footer = () => {
     return (
-        <footer className="flex flex-col relative items-center justify-center  pt-16 pb-8 px-6 lg:px-8 w-full max-w-6xl mx-auto lg:pt-20">
+      <div style={{background:"url(/images/bg/bg3.jpg)",backgroundRepeat:"no-repeat",backgroundPosition:"bottom",backgroundSize:"cover"}} className="w-full">
+        <Wrapper>
+
+  <NewsLetter />
+        </Wrapper>
+        <footer  className="flex flex-col relative items-center justify-center  pt-16 pb-8 px-6 lg:px-8 w-full max-w-6xl mx-auto lg:pt-20">
             <section className="text-center mb-24">
           <h2 className="text-[30px] font-[700] mb-8">Social Media</h2>
           <SocialLinks />
@@ -14,6 +21,7 @@ const Footer = () => {
           <BackToTopButton />
         </footer>
         </footer>
+      </div>
     )
 };
 

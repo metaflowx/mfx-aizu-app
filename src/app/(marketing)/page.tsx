@@ -23,17 +23,29 @@ const HomePage = () => {
         <SpherePacking />
         <Hero id="home" />
       </div>
+      <div className="w-full" style={{background:"url(/images/bg/bg1.jpg)",backgroundRepeat:"no-repeat",backgroundPosition:"top",backgroundSize:"100% 100%"}}>
+
       <Wrapper>
         <AboutSection id="about" />
         <FeaturedIn id="features" />
+        </Wrapper>
+      </div>
+      <div className="w-full" style={{background:"url(/images/bg/bg2.jpg)",backgroundRepeat:"no-repeat",backgroundPosition:"top",backgroundSize:"cover"}}>
+        <Wrapper>
         <BuySection id="howtobuy" />
 
         <TokenomicsPage  id="tokenomics"/>
         <RoadmapSection id="roadmap" />
+        </Wrapper>
+        </div>
+        <div className="w-full" style={{background:"url(/images/bg/bg3.jpg)",backgroundRepeat:"no-repeat",backgroundPosition:"top",backgroundSize:"cover"}}>
+        <Wrapper>
         <FAQContactSection id="faqs" />
 
-        <NewsLetter />
-      </Wrapper>
+      
+        </Wrapper>
+        </div>
+     
     </PageBox>
   );
 };

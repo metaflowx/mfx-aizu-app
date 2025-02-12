@@ -23,7 +23,7 @@ const NewsLetter: React.FC<NewsletterProps> = () => {
   };
 
   return (
-    <section className="text-left sm:text-center  mt-10">
+    <section className="text-left sm:text-center  pt-10">
     <h1 className="text-[30px] md:text-[64px] font-[700] mb-4 leading-tight">
       Subscribe to our Newsletter
     </h1>

@@ -7,6 +7,7 @@ import TimerCounter from "./banner/TimerCounter";
 import HeaderStats from "./banner/HeaderStats";
 import AnimatedBorderTrail from "../borderanimation";
 import { MagicCard } from "../ui/magic-card";
+import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 
 export default function Hero({id}:{id:string}) {
   const [amount, setAmount] = useState<string>("");
@@ -14,7 +15,8 @@ export default function Hero({id}:{id:string}) {
   const [progress, setProgress] = useState(30);
   const max = 100;
   const progressWidth = (progress / max) * 100;
-
+  const { open, close } = useAppKit();
+    const { address, isConnected, } = useAppKitAccount()
   return (
    
     <main id={id} className="min-h-screen  max-w-[68rem] mx-auto  flex items-center justify-center sm:mt-10 2xl:mt:5 mt-10">
@@ -152,8 +154,15 @@ export default function Hero({id}:{id:string}) {
           {/* Connect Wallet Button */}
 
           <AnimatedBorderTrail trailSize="lg" className="w-full">
+            {address ? (
 
-          <CommonButton title="Connect Wallet" width="100%" />
+<CommonButton title="Buy Now" width="100%"  />
+
+            ):(
+              <CommonButton title="Connect Wallet" width="100%" onClick={async () => open()} />
+            )}
+
+         
           </AnimatedBorderTrail>
 
 
