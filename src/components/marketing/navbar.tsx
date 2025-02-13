@@ -19,7 +19,7 @@ const Navbar = () => {
 
                     <div className="hidden xl:flex items-center gap-3">
                         <ul className="flex items-center gap-14 2xl:gap-16">
-                            {NAV_LINKS.map((link, index) => (
+                            {NAV_LINKS.slice(0,5).map((link, index) => (
                                 <li style={{fontFamily:"Prompt"}} key={index} className="text-[14px] 2xl:text-[16px] object-contain uppercase  -1 link">
                                     <Link href={link.href}>
                                         {link.name}

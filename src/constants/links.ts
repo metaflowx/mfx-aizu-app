@@ -19,6 +19,18 @@ export const NAV_LINKS = [
         name: "TOKENOMICS",
         href: "/#tokenomics"
     },
+    {
+        name: "ROADMAP",
+        href: "/#roadmap"
+    },
+    {
+        name: "FAQS",
+        href: "#faqs"
+    },
+    {
+        name: "GIVEWAY",
+        href: "/giveway"
+    },
 ];
 export const NAV_LINKS1 = [
     {
@@ -31,7 +43,7 @@ export const NAV_LINKS1 = [
     },
     {
         name: "GIVEWAY",
-        href: "/#giveway"
+        href: "/giveway"
     },
    
 ];
