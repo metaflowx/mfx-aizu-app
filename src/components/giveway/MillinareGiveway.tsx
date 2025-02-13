@@ -115,7 +115,7 @@ export default function MillinareGiveway() {
             className="p-[1px] rounded-[20px] overflow-hidden"
           >
             <div style={{ background: "#000000" }} className=" rounded-[20px]">
-              <img src="/images/giveway/giveway.jpg" className="w-full" />
+              <img src="/images/giveway/giveway.jpg" className="w-full rounded-[20px]" />
             </div>
           </div>
         </div>
