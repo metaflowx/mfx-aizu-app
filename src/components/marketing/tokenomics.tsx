@@ -69,10 +69,10 @@ const TokenomicsPage = ({id}:{id:string}) => {
     <div id={id} className="container mx-auto ">
       <div className="text-white  flex flex-col items-center justify-center space-y-6">
         <div className="text-left sm:text-center">
-          <h2 className="text-white text-[40px] md:text-[64px] font-bold">
+          <h2 data-aos="fade-right" className="text-white text-[40px] md:text-[64px] font-bold">
             Tokenomics
           </h2>
-          <h3 className="text-[#2865FF] text-[30px] md:text-[40px] font-bold">
+          <h3 data-aos="fade-left" className="text-[#2865FF] text-[30px] md:text-[40px] font-bold">
             Supply: {data.supply}
           </h3>
         </div>
@@ -80,6 +80,7 @@ const TokenomicsPage = ({id}:{id:string}) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 place-items-center">
           {data.prices.map((item, index) => (
             <div
+            data-aos="fade-right"
               style={{
                 background:
                   " linear-gradient(90deg, rgba(40, 101, 255, 0) 0%, #2865FF 50%, rgba(40, 101, 255, 0) 100%)",
@@ -115,6 +116,7 @@ const TokenomicsPage = ({id}:{id:string}) => {
       <div
         // style={{ border: "1px solid #ffffff17" }}
         className="rounded-[12px]"
+        data-aos="fade-down"
       >
          <MagicCard className="w-full py-3 px-5 mt-[20px] rounded-[12px]" gradientSize={150}>
         <div className="flex items-center">

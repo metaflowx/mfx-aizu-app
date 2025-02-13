@@ -38,6 +38,7 @@ export default function SocialLinks() {
     <div className="flex flex-wrap sm:flex justify-center gap-6">
       {socialLinks.map((social) => (
         <a
+        data-aos="fade-right"
           key={social.name}
           href={social.href}
           style={{border: "1.5px solid #FFFFFF1A"}}

@@ -22,19 +22,19 @@ export default function AboutSection({id}:{id:string}) {
       <div className="max-w-6xl mx-auto px-4  relative">
         {/* Header Section */}
         <div className="text-left sm:text-center  mb-20">
-          <h1 className="text-[30px] leading-[30px] md:leading-[60px] md:text-[60px] font-bold tracking-wider bg-clip-text">
+          <h1 data-aos="fade-right" className="text-[30px] leading-[30px] md:leading-[60px] md:text-[60px] font-bold tracking-wider bg-clip-text">
             JOIN AIZU
           </h1>
-          <h2 className="text-[25px] md:text-[35px] font-semibold text-[#2865FF]">
+          <h2 data-aos="fade-right" className="text-[25px] md:text-[35px] font-semibold text-[#2865FF]">
             Be a Part of the Decentralized Revolution!
           </h2>
-          <p className="text-[18px] md:text-[24px] text-white max-w-[900px] mx-auto mb-[20px]">
+          <p data-aos="fade-right" className="text-[18px] md:text-[24px] text-white max-w-[900px] mx-auto mb-[20px]">
             Unlock a world of financial freedom where you own your assets,
             control your data, and trade with confidence.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex justify-center gap-4 ">
+          <div data-aos="fade-right" className="flex justify-center gap-4 ">
             <CommonButton title="White Paper" width="176px" />
             <Button
               variant="outline"

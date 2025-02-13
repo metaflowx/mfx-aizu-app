@@ -19,8 +19,8 @@ const RoadmapSection = ({ id }: { id: string }) => {
 
   return (
     <div id={id} className="bg-transparent min-h-screen text-white flex flex-col items-start sm:items-center py-[50px] md:py-[150px]">
-      <h2 className="text-[40px] sm:text-[64px] font-[700] mb-4">Roadmap</h2>
-      <p className="text-left sm:text-center max-w-5xl mb-12 text-white text-[18px] sm:text-[24px] font-[500]">
+      <h2 data-aos="fade-right" className="text-[40px] sm:text-[64px] font-[700] mb-4">Roadmap</h2>
+      <p data-aos="fade-left" className="text-left sm:text-center max-w-5xl mb-12 text-white text-[18px] sm:text-[24px] font-[500]">
         AizuCoin is committed to revolutionizing the crypto space with a structured and strategic development plan. 
         Our roadmap outlines key milestones to ensure steady growth, innovation, and community engagement.
       </p>

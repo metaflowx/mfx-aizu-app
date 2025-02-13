@@ -3,7 +3,7 @@ import React from 'react'
 export default function CoinSelector({ selectedToken, setSelectedToken }: { selectedToken?: any, setSelectedToken?: any }) {
   return (
     <div className="mb-8">
-      <h2 className="text-white text-lg mb-4 sm:text-center text-left">
+      <h2 data-aos="fade-right" className="text-white text-lg mb-4 sm:text-center text-left">
         Step 1 - Select the Payment Method (BEP20)
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -34,6 +34,7 @@ export default function CoinSelector({ selectedToken, setSelectedToken }: { sele
           },
         ].map((token) => (
           <div
+          data-aos="fade-right"
             key={token.id}
             className={`rounded-[3px] w-full p-[1px] cursor-pointer transition-all duration-300
               ${selectedToken === token.id ? "bg-[#2865FF]" : "bg-gradient-to-b from-transparent via-gray-400 to-transparent"}

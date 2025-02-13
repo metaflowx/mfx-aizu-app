@@ -13,7 +13,7 @@ import FeaturedIn from "@/components/marketing/Featured";
 import NewsLetter from "@/components/marketing/NewsLetter";
 import SpherePacking from "@/components/marketing/banner/SpherePacking";
 import PageBox from "@/components/PageBox";
-
+import "aos/dist/aos.css";
 // import Container from "../global/container";
 const HomePage = () => {
   return (
