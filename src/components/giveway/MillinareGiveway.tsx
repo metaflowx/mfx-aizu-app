@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface Step {
@@ -23,6 +24,34 @@ const stepPoint: Step[] = [
     des: "+50 entries for every friend you refer. More referrals, more chances to win."
   }
 ];
+
+const footerLink=[
+  {
+    logo:"/images/footer/twittericon.png",
+    url:""
+  },
+  {
+    logo:"/images/footer/instagramicon.png",
+    url:""
+  },
+  {
+    logo:"/images/footer/linkedingicon.png",
+    url:""
+  },
+  {
+    logo:"/images/footer/facebookicon.png",
+    url:""
+  },
+  {
+    logo:"/images/footer/telegramicon.png",
+    url:""
+  },
+  {
+    logo:"/images/footer/discordicon.png",
+    url:""
+  },
+]
+
 
 
 export default function MillinareGiveway() {
@@ -56,9 +85,9 @@ export default function MillinareGiveway() {
           background:
             "linear-gradient(180deg, #2865FF 0%, rgba(40, 101, 255, 0) 100%)",
         }}
-        className="p-[1px] rounded-[20px]"
+        className="p-[1px] rounded-[20px] pb-[40px]"
       >
-        <div style={{ background: "#000000" }} className=" rounded-[20px] px-6">
+        <div style={{ background: "#000000" }} className=" rounded-[20px] px-6 pb-[40px]">
           <h3 data-aos="fade-right" className="text-[30px] pt-10 md:text-[60px] font-[700] md:leading-[60px] leading-[30px] text-[#2D67FE]">
             Join now and secure your spot
           </h3>
@@ -112,10 +141,23 @@ export default function MillinareGiveway() {
               background:
                 "linear-gradient(180deg, #2865FF 0%, rgba(40, 101, 255, 0) 50%, #2865FF 100%)",
             }}
-            className="p-[1px] rounded-[20px] overflow-hidden"
+            className="p-[1px] rounded-[20px] overflow-hidden "
           >
-            <div style={{ background: "#000000" }} className=" rounded-[20px]">
-              <img src="/images/giveway/giveway.jpg" className="w-full rounded-[20px]" />
+            <div style={{ background: "#000000" }} className=" rounded-[20px] relative ">
+              <img src="/images/giveway/giveway.jpg" className="w-full rounded-[20px] " />
+
+              <div className="flex justify-center items-center mt-[-50px] pb-[20px]">
+                {footerLink.map((item,index)=>{
+                  return(
+                    <div className=" rounded-full mr-3" >
+                      <Link href={item.url} >
+                      <img src={item.logo} />
+                      </Link>
+                    </div>
+                  )
+                })}
+              </div>
+
             </div>
           </div>
         </div>
