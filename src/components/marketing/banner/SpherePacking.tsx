@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import Hero from "../hero";
 
 const SpherePacking: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -26,7 +25,9 @@ const SpherePacking: React.FC = () => {
     let n: { x: number; y: number; z: number; R: number };
     let xp: number, yp: number, zp: number;
     let attempts = 0;
-    let M = Math, R = M.random, C = M.cos, pi2 = M.PI * 2;
+    let M = Math,
+      R = M.random,
+      C = M.cos;
 
     function draw(obj: { x: number; y: number; z: number; R: number }) {
       let r, g, b;
@@ -73,7 +74,9 @@ const SpherePacking: React.FC = () => {
         attempts++;
         i = h.length;
         while (i--) {
-          let dx = xp - h[i].x, dy = yp - h[i].y, dz = zp - h[i].z;
+          let dx = xp - h[i].x,
+            dy = yp - h[i].y,
+            dz = zp - h[i].z;
           let d = Math.sqrt(dx * dx + dy * dy + dz * dz);
           if (radius + h[i].R > d || radius > 70) {
             ok = false;
@@ -110,77 +113,54 @@ const SpherePacking: React.FC = () => {
       renderer.render(scene, camera);
     }
 
-    // function init() {
-    //   container = containerRef.current;
-    //   if (!container) return;
-
-    //   scene = new THREE.Scene();
-    //   group = new THREE.Object3D();
-    //   group.rotation.z = 20;
-    //   scene.add(group);
-
-    //   camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
-    //   camera.position.set(0, 0, 0);
-    //   scene.add(camera);
-
-    //   let light1 = new THREE.DirectionalLight(0xff9090, 1);
-    //   light1.position.set(0, 1, 0).normalize();
-    //   scene.add(light1);
-
-    //   let light2 = new THREE.DirectionalLight(0xffffff);
-    //   light2.position.set(0, 0, -1).normalize();
-    //   scene.add(light2);
-
-    //   renderer = new THREE.WebGLRenderer({ antialias: true });
-    //   renderer.setSize(window.innerWidth, window.innerHeight);
-    //   container.appendChild(renderer.domElement);
-
-    //   n = { x: 0, y: 0, z: 0, R: 1 };
-    //   h.push(n);
-    //   create(false);
-
-    //   document.addEventListener("mousedown", toggleAdding);
-    //   document.addEventListener("mousemove", onDocumentMouseMove);
-    //   animate();
-    // }
     function init() {
       container = containerRef.current;
       if (!container) return;
-    
-      // Set fixed height of 1200px
+
+      // Set canvas size to fill viewport
       const canvasWidth = window.innerWidth;
-      const canvasHeight = 1400;
-    
+      const canvasHeight = window.innerHeight;
+
       scene = new THREE.Scene();
       group = new THREE.Object3D();
       group.rotation.z = 20;
       scene.add(group);
-    
+
       camera = new THREE.PerspectiveCamera(70, canvasWidth / canvasHeight, 1, 10000);
       camera.position.set(0, 0, 0);
       scene.add(camera);
-    
+
       let light1 = new THREE.DirectionalLight(0xff9090, 1);
       light1.position.set(0, 1, 0).normalize();
       scene.add(light1);
-    
+
       let light2 = new THREE.DirectionalLight(0xffffff);
       light2.position.set(0, 0, -1).normalize();
       scene.add(light2);
-    
+
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setSize(canvasWidth, canvasHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
       container.appendChild(renderer.domElement);
-    
+
       n = { x: 0, y: 0, z: 0, R: 1 };
       h.push(n);
       create(false);
-    
+
+      window.addEventListener("resize", onWindowResize);
       document.addEventListener("mousedown", toggleAdding);
       document.addEventListener("mousemove", onDocumentMouseMove);
+
       animate();
     }
-    
+
+    function onWindowResize() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    }
 
     function toggleAdding() {
       adding = !adding;
@@ -195,6 +175,7 @@ const SpherePacking: React.FC = () => {
     init();
 
     return () => {
+      window.removeEventListener("resize", onWindowResize);
       document.removeEventListener("mousedown", toggleAdding);
       document.removeEventListener("mousemove", onDocumentMouseMove);
       if (container) container.innerHTML = "";
@@ -202,18 +183,10 @@ const SpherePacking: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ position: "absolute", top: 0, left: 0,right:0, width: "100%", height: "100%", zIndex: -1,overflowX:"hidden" }}>
-    <div ref={containerRef} style={{ width: "100%", height: "1200px",}} />
-  </div>
-
-  )
- 
-
-   
+    <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
+      <div ref={containerRef} style={{ width: "100%", height: "100%" }} />
+    </div>
+  );
 };
 
 export default SpherePacking;
-
-
-
-

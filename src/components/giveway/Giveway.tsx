@@ -27,7 +27,7 @@ export default function Giveway() {
       <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
         {cardData.map((item,index)=>{
           return(
-            <div className='border border-[#2865FF] h-[213px] text-center flex justify-center items-center rounded-[40px]'>
+            <div style={{background:"rgba(0, 0, 0, 0.5)"}} className='border border-[#2865FF] h-[213px] text-center flex justify-center items-center rounded-[40px]'>
               <div>
                 <h3 data-aos="fade-right" className='text-[30px] md:text-[50px] font-[700]'>{item?.value}</h3>
                 <h4 data-aos="fade-right" className='text-[20px] md:text-[40px] font-[700]'>{item?.title}</h4>

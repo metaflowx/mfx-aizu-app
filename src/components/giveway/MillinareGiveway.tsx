@@ -1,13 +1,35 @@
 import React from "react";
 
+interface Step {
+  point: string;
+  title: string;
+  des: string;
+}
+
+const stepPoint: Step[] = [
+  {
+    point: "⦿",
+    title: "Step 1: Submit Your ERC20 Wallet Address",
+    des: "Provide your ERC20 Wallet address to qualify for the giveaway."
+  },
+  {
+    point: "⦿",
+    title: "Step 2: Complete All the Quests",
+    des: "Follow all the steps carefully to maximize your chance of winning. Don't miss any!"
+  },
+  {
+    point: "⦿",
+    title: "Step 3: Refer Friends and Boost Your Entries",
+    des: "+50 entries for every friend you refer. More referrals, more chances to win."
+  }
+];
+
+
 export default function MillinareGiveway() {
-  const stepPoint = [
-    {
-      point:"/images/",  
-      title: "Step 1: Submit Your ERC20 Wallet Address",
-      des:"Provide your ERC20 Wallet address to qualify    for the giveaway."
-    },
-  ];
+
+ 
+
+
   return (
     <div className="py-5 md:py-20 text-left sm:text-center">
       <h2 data-aos="fade-right" className="text-[20px] md:text-[60px] font-[700]">
@@ -44,16 +66,16 @@ export default function MillinareGiveway() {
             among the winners!
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 mt-10 pb-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-10 pb-5 gap-8 ">
             <div
               style={{
                 background:
                   "linear-gradient(180deg, #2865FF 0%, rgba(40, 101, 255, 0) 100%)",
               }}
-              className="rounded-tl-[70px] rounded-tr-[70px] rounded-bl-[8px] rounded-br-[8px] p-[1px] "
+              className="h-[100%] rounded-tl-[70px] rounded-tr-[70px] rounded-bl-[8px] rounded-br-[8px] p-[1px] "
             >
-              <div className="px-4 border border-[#2D67FE] rounded-tl-[70px] rounded-tr-[70px] rounded-bl-[8px] rounded-br-[8px]">
-                <h3 data-aos="fade-right" className="text-20px sm:text-[37px] pt-5 text-center">
+              <div className="h-[100%] px-4 flex flex-col justify-end items-end border border-[#2D67FE] rounded-tl-[70px] rounded-tr-[70px] rounded-bl-[8px] rounded-br-[8px]">
+                <h3 data-aos="fade-right" className="text-20px sm:text-[37px] font-[700] pt-5 text-center">
                   Follow these steps for your shot at winning $50,000. Good
                   luck!
                 </h3>
@@ -66,14 +88,23 @@ export default function MillinareGiveway() {
       transition-all duration-300 ease-in-out transform  
       hover:shadow-[0px_0px_16px_4px_#2D67FE80] mt-10  mb-5"
                 >
-                  <h6 data-aos="fade-right" className="text-[16px] md:text-[24px] font-[500]">
+                  <h6 data-aos="fade-right" className="text-[16px] md:text-[24px] font-[500] py-3">
                     Website:{" "}
                     <span className="underline"> https://aizucoin.com</span>
                   </h6>
                 </div>
               </div>
             </div>
-            <div></div>
+            <div className="h-[100%]">
+              {stepPoint.map((item,index)=>{
+                return(
+                  <div key={index} className="text-left pb-5 pt-2" >
+                    <p className="text-[#2D67FE] text-[24px] " >{item?.point} <span className="text-white text-[24px] font-[700] ">{item?.title}</span> </p>
+                    <h4 className="text-white text-[24px] font-[400] ">{item?.des}</h4>
+                  </div>
+                )
+              })}
+            </div>
           </div>
 
           <div

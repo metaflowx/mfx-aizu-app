@@ -19,8 +19,9 @@ const HomePage = () => {
   return (
     <PageBox>
     
+    
       <div className="relative overflow-x-hidden w-full pb-15 md:pb-10">
-        <SpherePacking />
+      <SpherePacking />
         <Hero id="home" />
       </div>
       <div className="w-full" style={{background:"url(/images/bg/bg1.jpg)",backgroundRepeat:"no-repeat",backgroundPosition:"top",backgroundSize:"100% 100%"}}>
