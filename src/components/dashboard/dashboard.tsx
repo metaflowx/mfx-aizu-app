@@ -38,12 +38,8 @@ export default function Dashboard() {
       </div>
 
       <div className="mb-8">
-
-      <Hero type="dashboard" />
+        <Hero type="dashboard" />
       </div>
-
-
-     
 
       <div className="grid gap-4 md:grid-cols-2">
         <Card className="p-6">
@@ -65,8 +61,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-
-        <div className="flex w-full items-center mt-8">
+          <div className="flex w-full items-center mt-8">
             <div
               style={{
                 background:
@@ -83,36 +78,31 @@ export default function Dashboard() {
               <p className="text-[20px] font-[700]">0.00</p>
             </div>
           </div>
-          
+
           <div className="mt-16">
             <div
-            style={{
-            
-
-background:" linear-gradient(90deg, rgba(40, 101, 255, 0) 0%, #2865FF 50%, rgba(40, 101, 255, 0) 100%)"
-
-
-            }}
-            className="p-[1px]"
+              style={{
+                background:
+                  " linear-gradient(90deg, rgba(40, 101, 255, 0) 0%, #2865FF 50%, rgba(40, 101, 255, 0) 100%)",
+              }}
+              className="p-[1px]"
             >
               <div
-              style={{
-                background: "linear-gradient(90deg, rgba(40, 101, 255, 0) 0%, rgba(221, 66, 66, 0.7) 50%, rgba(40, 101, 255, 0) 100%) "
-
-              }}
-              className=" flex justify-between items-center"
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(40, 101, 255, 0) 0%, rgba(221, 66, 66, 0.7) 50%, rgba(40, 101, 255, 0) 100%) ",
+                }}
+                className=" flex justify-between items-center"
               >
-
-            <p className="text-[18px] font-[400] text-white">
-              https://ico.aizu.com/dashboard/?ref=
-            </p>
-            <img src="/images/referral/share.png" />
+                <p className="text-[18px] font-[400] text-white">
+                  https://ico.aizu.com/dashboard/?ref=
+                </p>
+                <img src="/images/referral/share.png" />
               </div>
             </div>
           </div>
         </Card>
-        <Card className="overflow-hidden" >
-         
+        <Card className="overflow-hidden">
           <ReferralTable />
         </Card>
       </div>
