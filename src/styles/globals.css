@@ -220,6 +220,13 @@ img {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.bg-gradient{
+  background: transparent;
+}
+.bg-gradient:hover{
+  background: linear-gradient(90deg, #2865FF 0%, #DD4242 50%, #2865FF 100%);
+
+}
 /* @keyframes flip {
   0% {
     transform: rotateX(0deg);

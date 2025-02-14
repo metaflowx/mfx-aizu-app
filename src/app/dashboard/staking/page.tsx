@@ -1,90 +1,90 @@
-"use client"
+"use client";
 
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Lock, Timer, TrendingUp } from "lucide-react"
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Lock, Timer, TrendingUp } from "lucide-react";
+import { StatsCard } from "@/components/stats-card";
 
 export default function StakingPage() {
+  const earningsData = [
+    {
+      id: 1,
+      title: "Default",
+      title1: "No Staking",
+      amount: "$0.000",
+      sunvalue: "",
+      des: "3 Months Vesting from TGE",
+      btn: false,
+    },
+    {
+      id: 2,
+      title: "Teir 1",
+      title1: "Double Your",
+      amount: "$AIZU",
+      sunvalue: "",
+      des: "10 Months Lockup",
+      btn: true,
+    },
+    {
+      id: 3,
+      title: "Teir 2",
+      title1: "3x Your",
+      amount: "$AIZU",
+      sunvalue: "",
+      des: "15 Months Lockup",
+      btn: true,
+    },
+    {
+      id: 4,
+      title: "Teir 3",
+      title1: "4x Your",
+      amount: "$AIZU",
+      sunvalue: "",
+      des: "20 Months Lockup",
+      btn: true,
+    },
+  ];
   return (
     <>
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-bold">Staking</h1>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
-        <Card className="p-6">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="p-3 rounded-full bg-primary/10">
-              <Lock className="h-6 w-6 text-primary" />
-            </div>
-            <div>
-              <h3 className="font-semibold">Total Staked</h3>
-              <p className="text-2xl font-bold">0.000 AIZU</p>
-            </div>
-          </div>
-          <p className="text-sm text-muted-foreground">≈ $0.000 USD</p>
-        </Card>
-
-        <Card className="p-6">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="p-3 rounded-full bg-primary/10">
-              <TrendingUp className="h-6 w-6 text-primary" />
-            </div>
-            <div>
-              <h3 className="font-semibold">APR</h3>
-              <p className="text-2xl font-bold">12.5%</p>
-            </div>
-          </div>
-          <p className="text-sm text-muted-foreground">Annual Percentage Rate</p>
-        </Card>
-
-        <Card className="p-6">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="p-3 rounded-full bg-primary/10">
-              <Timer className="h-6 w-6 text-primary" />
-            </div>
-            <div>
-              <h3 className="font-semibold">Lock Period</h3>
-              <p className="text-2xl font-bold">30 Days</p>
-            </div>
-          </div>
-          <p className="text-sm text-muted-foreground">Minimum staking period</p>
-        </Card>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2">
-        <Card className="p-6">
-          <h3 className="text-xl font-semibold mb-6">Stake AIZU</h3>
-          <div className="space-y-4">
-            <div>
-              <label className="text-sm font-medium mb-2 block">Amount to Stake</label>
-              <Input type="number" placeholder="0.000" />
-              <p className="text-sm text-muted-foreground mt-2">Available: 0.000 AIZU</p>
-            </div>
-            <Button className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500">
-              Stake Now
-            </Button>
-          </div>
-        </Card>
-
-        <Card className="p-6">
-          <h3 className="text-xl font-semibold mb-6">Your Stakes</h3>
-          <div className="space-y-4">
-            <div className="flex justify-between items-center pb-4 border-b">
-              <div>
-                <p className="font-medium">Staked Amount</p>
-                <p className="text-2xl font-bold">0.000 AIZU</p>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
+        {earningsData.map((item) => {
+          return (
+            <div className="bg-[#00000080] hover:border  hover:border-[#2865FF] p-4 rounded-[20px] ">
+              <div
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(220, 67, 67, 0) 0%, #DC4343 50%, rgba(220, 67, 67, 0) 100%)",
+                }}
+                className="p-[1px] rounded-[8px]  "
+              >
+                <div className="bg-[#15171C] rounded-[8px] h-[50px] flex flex-col items-center justify-center ">
+                  <h3 className="text-sm font-medium text-muted-foreground text-center">
+                    {item.title}
+                  </h3>
+                </div>
               </div>
-              <Button variant="outline">Unstake</Button>
+              <div className="flex flex-col items-center space-y-5 ">
+                <h3 className="text-[24px] font-[400] text-white pt-5">
+                  {item.title1}
+                </h3>
+                <h3 className="text-[24px] font-[700] text-white ">
+                  {item.amount}
+                </h3>
+                <h3 className="text-[20px] font-[700] text-white pb-3 text-center">
+                  {item.des}
+                </h3>
+
+                {item.btn && <button className="border bg-gradient border-[#2865FF] text-white h-[50px] w-full rounded-[40px] text-[20px] font-[400] ">Stake</button>}
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Rewards Earned</p>
-              <p className="text-lg font-semibold">0.000 AIZU</p>
-            </div>
-          </div>
-        </Card>
+          );
+        })}
       </div>
     </>
-  )
+  );
 }
