@@ -11,6 +11,7 @@ const SpherePacking: React.FC = () => {
     let camera: THREE.PerspectiveCamera;
     let scene: THREE.Scene;
     let renderer: THREE.WebGLRenderer;
+    let textMesh: THREE.Mesh | null = null;
     let group: THREE.Object3D;
     let adding = true;
     let theta = 0;
@@ -105,6 +106,10 @@ const SpherePacking: React.FC = () => {
       theta += mx;
       dz -= 2;
       group.rotation.y = theta;
+      if (textMesh) {
+        textMesh.rotation.y = theta;
+      }
+
       let zo = dz < -1000 ? -1000 : dz;
       let py = Math.cos(dz / 260) * 300;
       let pz = zo + Math.sin(dz / 200) * 400;
@@ -146,12 +151,55 @@ const SpherePacking: React.FC = () => {
       n = { x: 0, y: 0, z: 0, R: 1 };
       h.push(n);
       create(false);
+      addWelcomeText(); // Add welcome text
 
       window.addEventListener("resize", onWindowResize);
       document.addEventListener("mousedown", toggleAdding);
       document.addEventListener("mousemove", onDocumentMouseMove);
 
       animate();
+    }
+
+
+    function addWelcomeText() {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+    
+      // Set canvas size
+      canvas.width = 512;
+      canvas.height = 128;
+    
+      // Set background color (optional)
+      ctx.fillStyle = "rgba(0, 0, 0, 0)"; // Transparent
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+      // Set text style
+      ctx.font = "Bold 60px Arial";
+      ctx.fillStyle = "white"; // Text color
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+    
+      // Draw text
+      ctx.fillText("Welcome! to AIJU", canvas.width / 2, canvas.height / 2);
+    
+      // Create texture from canvas
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.needsUpdate = true;
+    
+      // Create material with the texture
+      const textMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+    
+      // Create a plane to display the text
+      const textGeometry = new THREE.PlaneGeometry(300, 75); // Adjust size as needed
+      textMesh = new THREE.Mesh(textGeometry, textMaterial);
+    
+      // Position the text in the 3D scene
+      textMesh.position.set(0, 100, -300);
+      textMesh.lookAt(camera.position); // Ensure it faces the camera
+    
+      // Add to the group
+      group.add(textMesh);
     }
 
     function onWindowResize() {
