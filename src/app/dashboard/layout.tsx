@@ -1,12 +1,15 @@
 import '../../styles/globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Prompt } from 'next/font/google';
 
 import ContextProvider from '../context';
 import { headers } from 'next/headers';
 import { Sidebar } from '@/components/sidebar/sidebar';
 
-const inter = Inter({ subsets: ['latin'] });
+const prompt = Prompt({
+  subsets: ['latin'], // Optional
+  weight: '400',      // Optional
+});
 
 export const metadata: Metadata = {
   title: 'AIZU Dashboard',
@@ -18,13 +21,13 @@ export default async function RootLayout({children,}: { children: React.ReactNod
         const cookies = headersObj.get('cookie')
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}  >
+      <body className={`${prompt.className} dashboardbg`}  >
         <ContextProvider
           cookies={cookies}
         >
-          <div className="flex min-h-screen bg-background">
+          <div className="flex min-h-screen">
             <Sidebar className="hidden md:block" />
-            <main className="flex-1 p-8 pt-6">
+            <main className="flex-1 p-8 pt-6 overflow-hidden ">
               {children}
             </main>
           </div>

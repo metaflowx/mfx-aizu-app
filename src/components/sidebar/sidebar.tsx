@@ -62,7 +62,7 @@ export function Sidebar({ className }: SidebarProps) {
               variant="ghost" 
               className={cn(
                 "w-full justify-start transition-all duration-300",
-                pathname === href ? " text-white rounded-[40px]" : "hover:bg-gray-100"
+                pathname === href ? " text-white rounded-[40px]" : "hover:bg-gray-100 text-white"
               )} 
               asChild
             >

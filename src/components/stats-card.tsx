@@ -2,9 +2,10 @@ interface StatsCardProps {
   title: string;
   value: string;
   subValue: string;
+  isCoin?:boolean
 }
 
-export function StatsCard({ title, value, subValue }: StatsCardProps) {
+export function StatsCard({ title, value, subValue,isCoin }: StatsCardProps) {
   return (
     <div
       style={{
@@ -36,6 +37,9 @@ export function StatsCard({ title, value, subValue }: StatsCardProps) {
             <p className="text-[16px] md:text-[20px] font-[400] text-muted-foreground">
               {subValue}
             </p>
+            {isCoin && (
+              <img src="/images/trading/coins.png" className="mt-1" />
+            )}
           </div>
         </div>
       </div>
