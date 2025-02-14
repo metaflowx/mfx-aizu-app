@@ -1,32 +1,59 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib"
-import { LayoutDashboard, Coins, PiggyBank, Users, LineChart, UserCircle, ChevronLeft } from "lucide-react"
-import Link from "next/link"
-import { useState } from "react"
-import { usePathname } from "next/navigation"
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib";
+import {
+ 
+  ChevronLeft,
+} from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const menuItems = [
-  { name: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
-  { name: "Earning", icon: Coins, href: "/dashboard/earning" },
-  { name: "Staking", icon: PiggyBank, href: "/dashboard/staking" },
-  { name: "Referral", icon: Users, href: "/dashboard/referral" },
-  { name: "Algo Trading", icon: LineChart, href: "/dashboard/trading" },
-  { name: "Profile", icon: UserCircle, href: "/dashboard/profile" },
+  {
+    name: "Dashboard",
+    icon: "/images/dashboard/dashboardicon.png",
+    href: "/dashboard",
+  },
+  {
+    name: "Earning",
+    icon: "/images/dashboard/earnicon.png",
+    href: "/dashboard/earning",
+  },
+  {
+    name: "Staking",
+    icon: "/images/dashboard/staking.png",
+    href: "/dashboard/staking",
+  },
+  {
+    name: "Referral",
+    icon: "/images/dashboard/referralicon.png",
+    href: "/dashboard/referral",
+  },
+  {
+    name: "Algo Trading",
+    icon: "/images/dashboard/algoicon.png",
+    href: "/dashboard/trading",
+  },
+  {
+    name: "Profile",
+    icon: "/images/dashboard/profileicon.png",
+    href: "/dashboard/profile",
+  },
 ];
 
 export function Sidebar({ className }: SidebarProps) {
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname(); // Get current route
 
   return (
-    <div 
+    <div
       className={cn(
-        "relative border-r border-[#2865FF] transition-all duration-300 ease-in-out shadow-lg flex-shrink-0",
-        collapsed ? "w-[4rem]" : "w-64",
+        "relative  border-r border-[#2865FF] transition-all duration-300 ease-in-out shadow-lg flex-shrink-0",
+        collapsed ? "w-[6.5rem]" : "w-64",
         className
       )}
     >
@@ -34,44 +61,53 @@ export function Sidebar({ className }: SidebarProps) {
       <Button
         variant="ghost"
         size="icon"
-        className="h-8 w-8 absolute -right-4 top-4 bg-white shadow-md border rounded-full z-50"
+        className="h-8 w-8 absolute -right-4 top-16 bg-[#2865FF] shadow-md border border-[#2865FF] rounded-full z-50"
         onClick={() => setCollapsed(!collapsed)}
       >
-        <ChevronLeft className={cn(
-          "h-4 w-4 transition-transform duration-300",
-          collapsed && "rotate-180"
-        )} />
+        <ChevronLeft
+          className={cn(
+            "h-4 w-4 transition-transform duration-300 text-white ",
+            collapsed && "rotate-180"
+          )}
+        />
       </Button>
 
-      <div className="px-3 py-2">
+      <div className="px-6 py-2">
         {/* Logo */}
-        <div className="flex items-center mb-4">
-          <img src="/images/home/logo.png" className="w-[90px] h-[67px]" />
+        <div className="flex items-center mb-5 pt-[15px]">
+          <img src="/images/home/logo.png" className="w-[90px] h-[67px] object-contain" />
         </div>
 
         {/* Sidebar Menu Items */}
-        <div className="space-y-1 flex flex-col">
-          {menuItems.map(({ name, icon: Icon, href }) => (
-            <Button 
-              key={name} 
+        <div className="space-y-5 flex flex-col pt-5">
+          {menuItems.map(({ name, icon, href }) => (
+            <Button
+              key={name}
               style={{
-                background:  pathname === href? "linear-gradient(90deg, #2865FF 0%, #DD4242 50%, #2865FF 100%)":"transparent",
-                border:  pathname === href ? "1px solid #2865FF":"none"
-
+                background:
+                  pathname === href
+                    ? "linear-gradient(90deg, #2865FF 0%, #DD4242 50%, #2865FF 100%)"
+                    : "transparent",
+                border: pathname === href ? "1px solid #2865FF" : "none",
               }}
-              variant="ghost" 
+              variant="ghost"
               className={cn(
-                "w-full justify-start transition-all duration-300",
-                pathname === href ? " text-white rounded-[40px]" : "hover:bg-gray-100 text-white"
-              )} 
+                "w-full justify-start transition-all duration-300 h-[50px]  ",
+                pathname === href
+                  ? " text-white rounded-[40px]"
+                  : "hover:bg-gray-100 text-white"
+              )}
               asChild
             >
               <Link href={href}>
-                <Icon className="h-4 w-4 shrink-0" />
-                <span className={cn(
-                  "ml-2 transition-opacity duration-300",
-                  collapsed ? "opacity-0 w-0 hidden" : "opacity-100"
-                )}>
+                <img src={icon} />
+
+                <span
+                  className={cn(
+                    "ml-2 transition-opacity duration-300 text-[18px] font-[400] ",
+                    collapsed ? "opacity-0 w-0 hidden" : "opacity-100"
+                  )}
+                >
                   {name}
                 </span>
               </Link>
@@ -80,5 +116,5 @@ export function Sidebar({ className }: SidebarProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

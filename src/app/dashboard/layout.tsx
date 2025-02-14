@@ -5,6 +5,7 @@ import { Prompt } from 'next/font/google';
 import ContextProvider from '../context';
 import { headers } from 'next/headers';
 import { Sidebar } from '@/components/sidebar/sidebar';
+import TopBar from '@/components/sidebar/header';
 
 const prompt = Prompt({
   subsets: ['latin'], // Optional
@@ -22,10 +23,13 @@ export default async function RootLayout({children,}: { children: React.ReactNod
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${prompt.className} dashboardbg`}  >
+        
         <ContextProvider
           cookies={cookies}
         >
+            <TopBar />
           <div className="flex min-h-screen">
+          
             <Sidebar className="hidden md:block" />
             <main className="flex-1 p-8 pt-6 overflow-hidden ">
               {children}
