@@ -9,7 +9,7 @@ import AnimatedBorderTrail from "../borderanimation";
 import { MagicCard } from "../ui/magic-card";
 import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 
-export default function Hero({ id }: { id: string }) {
+export default function Hero({ id,type }: { id?: string,type?:string }) {
   const [amount, setAmount] = useState<string>("");
   const [selectedToken, setSelectedToken] = useState("tether");
   const [progress, setProgress] = useState(30);
@@ -20,7 +20,7 @@ export default function Hero({ id }: { id: string }) {
   return (
     <main
       id={id}
-      className="min-h-screen  max-w-[68rem] mx-auto  flex items-center justify-center sm:mt-10 2xl:mt:5 mt-10"
+      className={`${type==="dashboard" ? "w-full":"max-w-[68rem]"}  mx-auto  flex items-center justify-center sm:mt-10 2xl:mt:5 mt-10`}
     >
       <MagicCard>
         <div
@@ -32,7 +32,9 @@ export default function Hero({ id }: { id: string }) {
           className="rounded-[20px] w-full"
         >
           <div className="w-full bg-[#0D0D0D] p-6 rounded-[20px] ">
-            {/* Header Stats */}
+           {type!=="dashboard" && (
+            <>
+            
             <AnimatedBorderTrail
               trailSize="lg"
               className="w-full rounded-[12px] mb-10"
@@ -54,6 +56,8 @@ export default function Hero({ id }: { id: string }) {
 
             {/* Countdown Timer */}
             <TimerCounter />
+            </>
+           )}
 
             <div
               style={{

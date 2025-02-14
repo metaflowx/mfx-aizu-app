@@ -213,6 +213,13 @@ img {
   border-radius: 30px;
   height: 50px;
 }
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 /* @keyframes flip {
   0% {
     transform: rotateX(0deg);
