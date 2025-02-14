@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
+
 
 const menuItems = [
   {
@@ -45,8 +45,8 @@ const menuItems = [
   },
 ];
 
-export function Sidebar({ className }: SidebarProps) {
-  const [collapsed, setCollapsed] = useState(false);
+export function Sidebar({ className,collapsed,setCollapsed }: {className?:any,collapsed?:boolean,setCollapsed:any}) {
+ 
   const pathname = usePathname(); // Get current route
 
   return (
