@@ -213,6 +213,30 @@ img {
   border-radius: 30px;
   height: 50px;
 }
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.bg-gradient{
+  background: transparent;
+}
+.bg-gradient:hover{
+  background: linear-gradient(90deg, #2865FF 0%, #DD4242 50%, #2865FF 100%);
+
+}
+.slider-slide{
+  width: 90% !important;
+  
+ 
+   border: 1px solid #2D67FE3B;
+   border-radius: 16px;
+   box-shadow: 0px 4px 4px 0px #00000040;
+   background: #00000080;
+
+}
 /* @keyframes flip {
   0% {
     transform: rotateX(0deg);
@@ -236,6 +260,14 @@ img {
 }
 .animate-spin-slow {
   animation: spin 10s linear infinite;
+}
+
+.dashboardbg{
+  background: url("/images/trading/dashboard.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
 }
 
 @keyframes spin {

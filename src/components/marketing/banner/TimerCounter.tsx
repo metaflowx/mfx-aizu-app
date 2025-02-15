@@ -10,6 +10,7 @@ export default function TimerCounter() {
         { value: "59", label: "SECOND" },
       ].map((time, index) => (
         <div
+        data-aos="fade-right"
           key={index}
           style={{
             background:

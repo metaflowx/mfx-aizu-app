@@ -19,6 +19,18 @@ export const NAV_LINKS = [
         name: "TOKENOMICS",
         href: "/#tokenomics"
     },
+    {
+        name: "ROADMAP",
+        href: "/#roadmap"
+    },
+    {
+        name: "FAQS",
+        href: "#faqs"
+    },
+    {
+        name: "GIVEWAY",
+        href: "/giveway"
+    },
 ];
 export const NAV_LINKS1 = [
     {
@@ -31,8 +43,40 @@ export const NAV_LINKS1 = [
     },
     {
         name: "GIVEWAY",
-        href: "/#giveway"
+        href: "/giveway"
     },
    
 ];
+export const menuItems = [
+    {
+      name: "Dashboard",
+      icon: "/images/dashboard/dashboardicon.png",
+      href: "/dashboard",
+    },
+    {
+      name: "Earning",
+      icon: "/images/dashboard/earnicon.png",
+      href: "/dashboard/earning",
+    },
+    {
+      name: "Staking",
+      icon: "/images/dashboard/staking.png",
+      href: "/dashboard/staking",
+    },
+    {
+      name: "Referral",
+      icon: "/images/dashboard/referralicon.png",
+      href: "/dashboard/referral",
+    },
+    {
+      name: "Algo Trading",
+      icon: "/images/dashboard/algoicon.png",
+      href: "/dashboard/trading",
+    },
+    {
+      name: "Profile",
+      icon: "/images/dashboard/profileicon.png",
+      href: "/dashboard/profile",
+    },
+  ];
 

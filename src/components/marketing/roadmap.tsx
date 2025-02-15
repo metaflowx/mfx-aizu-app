@@ -1,9 +1,7 @@
-
-"use client"
-import React from "react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-
+"use client";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const roadmapData = [
   { quarter: "Q1-2024", milestone: "Milestone #01", description: "3 AIZU B2B AI Tools Launch", color: "radial-gradient(94.42% 94.42% at 85.5% 9%, #FF6E27 0%, #E03347 99.8%)", img: "/images/roadmap/raodline.png", translate: "-translate-x-[11%]", textColor: "text-[#E03347]" },
@@ -14,32 +12,24 @@ const roadmapData = [
   { quarter: "Q4-2025", milestone: "Milestone #06", description: "AIZU NFT", color: "radial-gradient(94.42% 94.42% at 85.44% 9%, #FF2897 0%, #CE133C 100%)", img: "/images/roadmap/roadlineleft.png", translate: "-translate-x-[96%]", textColor: "text-[#CE133C]" }
 ];
 
-const RoadmapSection = ({id}:{id:string}) => {
-  const { ref, inView } = useInView({ triggerOnce: true });
+const RoadmapSection = ({ id }: { id: string }) => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <div id={id} className="bg-transparent min-h-screen text-white flex flex-col items-start sm:items-center py-[50px] md:py-[150px]">
-      <h2 className="text-[40px] sm:text-[64px] font-[700] mb-4">Roadmap</h2>
-      <p className="text-left sm:text-center max-w-5xl mb-12 text-white text-[18px] sm:text-[24px] font-[500]">
+      <h2 data-aos="fade-right" className="text-[40px] sm:text-[64px] font-[700] mb-4">Roadmap</h2>
+      <p data-aos="fade-left" className="text-left sm:text-center max-w-5xl mb-12 text-white text-[18px] sm:text-[24px] font-[500]">
         AizuCoin is committed to revolutionizing the crypto space with a structured and strategic development plan. 
         Our roadmap outlines key milestones to ensure steady growth, innovation, and community engagement.
       </p>
-      
+
       <div className="relative flex flex-col items-start sm:items-center w-full">
-        <div 
-          className="absolute top-0 bottom-0 w-1 border-l-2 border-white border-dashed"
-          style={{ background: "transparent" }} 
-        />
+        <div className="absolute top-0 bottom-0 w-1 border-l-2 border-white border-dashed" style={{ background: "transparent" }} />
+        
         {roadmapData.map((item, index) => (
-          <motion.div
-            key={index}
-            className="flex items-center w-full max-w-2xl mb-8 relative"
-            ref={ref}
-            initial={{ opacity: 0, y: 50 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-          
-            transition={{ duration: 0.8, delay: index * 0.4 }}
-          
-          >
+          <div key={index} className="flex items-center w-full max-w-2xl mb-8 relative" data-aos={index % 2 === 0 ?"fade-right":"fade-left" } >
             <div 
               style={{ background: item.color }} 
               className="w-6 h-6 rounded-full absolute left-0 sm:left-1/2 transform -translate-x-1/2 z-10"
@@ -47,38 +37,36 @@ const RoadmapSection = ({id}:{id:string}) => {
             <img src={item.img} className={`hidden sm:block absolute left-0 sm:left-1/2 transform ${item.translate} z-1`} />
             <img src="/images/roadmap/raodline.png" className="block sm:hidden absolute left-0 sm:left-1/2 transform -translate-x-[11%] z-1" />
 
-            <motion.div 
+            <div 
               style={{
                 border: "1px solid #2D67FE",
                 background: "linear-gradient(180deg, #2865FF 0%, rgba(40, 101, 255, 0) 100%)"
               }}
               className={`w-[285px] p-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out 
                 ${index % 2 === 0 ? "ml-auto" : "mr-auto"} hidden sm:block`}
-              whileHover={{ scale: 1.05, background: "linear-gradient(180deg, #2D67FE 0%, rgba(40, 101, 255, 0.3) 100%)" }}
             >
               <div className="bg-[#112453] h-[40px] rounded-[6px] text-center flex justify-center items-center">
                 <h3 className={`text-lg font-semibold ${item.textColor}`}>{item.quarter}</h3>
               </div>
               <p className="text-[20px] font-[700] text-white text-center pt-2">{item.milestone}</p>
               <p className="text-[18px] font-[400] text-gray-300 text-center">{item.description}</p>
-            </motion.div>
+            </div>
 
-            <motion.div 
+            <div 
               style={{
                 border: "1px solid #2D67FE",
                 background: "linear-gradient(180deg, #2865FF 0%, rgba(40, 101, 255, 0) 100%)"
               }}
               className={`w-[285px] p-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out 
                 ${index % 2 === 0 ? "ml-auto" : "ml-auto"} block sm:hidden`}
-              whileHover={{ scale: 1.05, background: "linear-gradient(180deg, #2D67FE 0%, rgba(40, 101, 255, 0.3) 100%)" }}
             >
               <div className="bg-[#112453] h-[40px] rounded-[6px] text-center flex justify-center items-center">
                 <h3 className={`text-lg font-semibold ${item.textColor}`}>{item.quarter}</h3>
               </div>
               <p className="text-[20px] font-[700] text-white text-center pt-2">{item.milestone}</p>
               <p className="text-[18px] font-[400] text-gray-300 text-center">{item.description}</p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         ))}
       </div>
     </div>

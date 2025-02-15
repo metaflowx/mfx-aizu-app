@@ -16,9 +16,7 @@ const MobileMenu = () => {
                 </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full sm:w-[300px] pt-12">
-                <SheetHeader className="mb-8">
-                    <SheetTitle className="text-left">Menu</SheetTitle>
-                </SheetHeader>
+               
                 <nav className="flex flex-col space-y-4">
                     {NAV_LINKS.map((link, index) => (
                         <Link

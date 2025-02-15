@@ -37,9 +37,9 @@ const HowToBuySection = ({id}:{id:string}) => {
         src="/images/buy/token.png"
         className="absolute top-[-110px] md:top-[-283px] transition-transform duration-300 group-hover:scale-110"
       />
-      <p className="text-[40px] md:text-[55px] font-[700] text-[#fff] leading-snug">How to Buy</p>
-      <p className="text-[40px] md:text-[55px] font-[700] text-[#fff] leading-snug">AizuCoin</p>
-      <CommonButton title="Buy" width="165px" />
+      <p data-aos="fade-right" className="text-[40px] md:text-[55px] font-[700] text-[#fff] leading-snug">How to Buy</p>
+      <p data-aos="fade-right" className="text-[40px] md:text-[55px] font-[700] text-[#fff] leading-snug">AizuCoin</p>
+      <CommonButton data-aos="fade-right" title="Buy" width="165px" />
     </div>
   </div>
 </div>
@@ -52,19 +52,19 @@ const HowToBuySection = ({id}:{id:string}) => {
           >
             <div>
               <div className="flex items-center space-x-3">
-                <img src={item.icon} alt="Step Icon" className="sm:w-auto sm:h-auto w-[40px] h-[40px] object-contain" />
+                <img data-aos="fade-right" src={item.icon} alt="Step Icon" className="sm:w-auto sm:h-auto w-[40px] h-[40px] object-contain" />
                 <div className="text-left pl-3">
-                  <p className="text-[20px] sm:text-[35px] font-[700] leading-snug bg-clip-text text-transparent"
+                  <p data-aos="fade-left" className="text-[20px] sm:text-[35px] font-[700] leading-snug bg-clip-text text-transparent"
                     style={{ background: "linear-gradient(90deg, #2865FF 0%, #DD4242 100%)", backgroundClip: "text" }}>
                     {item.title}
                   </p>
-                  <p className="text-[20px] sm:text-[35px] font-[700] leading-snug bg-clip-text text-transparent"
+                  <p data-aos="fade-right" className="text-[20px] sm:text-[35px] font-[700] leading-snug bg-clip-text text-transparent"
                     style={{ background: "linear-gradient(90deg, #2865FF 0%, #DD4242 100%)", backgroundClip: "text" }}>
                     {item.title1}
                   </p>
                 </div>
               </div>
-              <p className="text-[16px] sm:text-[20px] font-[500] text-white text-left leading-[31px]">{item.description}</p>
+              <p data-aos="fade-left" className="text-[16px] sm:text-[20px] font-[500] text-white text-left leading-[31px]">{item.description}</p>
             </div>
           </div>
         ))}

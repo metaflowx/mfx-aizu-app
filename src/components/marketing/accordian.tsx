@@ -11,10 +11,10 @@ const FAQContactSection = ({id}:{id:string}) => {
   };
 
   return (
-    <div id={id} className="text-white py-16">
+    <div id={id} className="text-white py-0 sm:py-16">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <h1 className="text-4xl font-bold text-left sm:text-center mb-12">Aizu Coin FAQs</h1>
+        <h1 data-aos="fade-right" className="text-4xl font-bold text-left sm:text-center mb-12">Aizu Coin FAQs</h1>
 
         {/* FAQ Section */}
         <Accordion

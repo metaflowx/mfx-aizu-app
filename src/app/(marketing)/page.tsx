@@ -13,14 +13,15 @@ import FeaturedIn from "@/components/marketing/Featured";
 import NewsLetter from "@/components/marketing/NewsLetter";
 import SpherePacking from "@/components/marketing/banner/SpherePacking";
 import PageBox from "@/components/PageBox";
-
+import "aos/dist/aos.css";
 // import Container from "../global/container";
 const HomePage = () => {
   return (
     <PageBox>
     
+    
       <div className="relative overflow-x-hidden w-full pb-15 md:pb-10">
-        <SpherePacking />
+      <SpherePacking />
         <Hero id="home" />
       </div>
       <div className="w-full" style={{background:"url(/images/bg/bg1.jpg)",backgroundRepeat:"no-repeat",backgroundPosition:"top",backgroundSize:"100% 100%"}}>
