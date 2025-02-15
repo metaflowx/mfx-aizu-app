@@ -11,13 +11,7 @@ import Hero from "../marketing/hero";
 export default function Dashboard() {
   return (
     <>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
-        <Button variant="outline" className="gap-2">
-          <Wallet className="h-4 w-4" />
-          0xbe...6a5d
-        </Button>
-      </div>
+      
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-8">
         <StatsCard

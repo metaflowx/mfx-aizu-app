@@ -2,40 +2,36 @@
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { NAV_LINKS } from "@/constants";
+
 import { Menu } from "lucide-react";
 import Link from "next/link";
-import CommonButton from "../ui/CommonButton";
+import { menuItems } from "@/constants/links";
 
-const MobileMenu = () => {
+const MobileMenuDashboard = () => {
     return (
         <Sheet>
-            <SheetTrigger asChild className="xl:hidden">
-                <Button variant="ghost" size="icon" className="xl:hidden">
-                    <Menu className="h-6 w-6" />
+            <SheetTrigger asChild className="lg:hidden">
+                <Button variant="ghost" size="icon" className="lg:hidden">
+                    <Menu className="h-[30px] w-[30px] text-white" />
                 </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full sm:w-[300px] pt-12">
                
                 <nav className="flex flex-col space-y-4">
-                    {NAV_LINKS.map((link, index) => (
+                    {menuItems.map((link, index) => (
                         <Link
                             key={index}
                             href={link.href}
-                            className="text-base font-medium transition-colors hover:text-primary"
+                            className="text-base font-medium transition-colors hover:text-primary text-white"
                         >
                             {link.name}
                         </Link>
                     ))}
-                    <div className="pt-4 mt-4 border-t border-border">
-                        <Link href="#" >
-                           <CommonButton title="Connect Wallet" width="214px"  />
-                        </Link>
-                    </div>
+                  
                 </nav>
             </SheetContent>
         </Sheet>
     )
 };
 
-export default MobileMenu
+export default MobileMenuDashboard

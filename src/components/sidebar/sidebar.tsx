@@ -9,41 +9,11 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { menuItems } from "@/constants/links";
 
 
 
-const menuItems = [
-  {
-    name: "Dashboard",
-    icon: "/images/dashboard/dashboardicon.png",
-    href: "/dashboard",
-  },
-  {
-    name: "Earning",
-    icon: "/images/dashboard/earnicon.png",
-    href: "/dashboard/earning",
-  },
-  {
-    name: "Staking",
-    icon: "/images/dashboard/staking.png",
-    href: "/dashboard/staking",
-  },
-  {
-    name: "Referral",
-    icon: "/images/dashboard/referralicon.png",
-    href: "/dashboard/referral",
-  },
-  {
-    name: "Algo Trading",
-    icon: "/images/dashboard/algoicon.png",
-    href: "/dashboard/trading",
-  },
-  {
-    name: "Profile",
-    icon: "/images/dashboard/profileicon.png",
-    href: "/dashboard/profile",
-  },
-];
+
 
 export function Sidebar({ className,collapsed,setCollapsed }: {className?:any,collapsed?:boolean,setCollapsed:any}) {
  
