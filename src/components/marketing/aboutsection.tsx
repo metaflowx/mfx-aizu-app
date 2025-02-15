@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Bitcoin, Gem, Box, Triangle } from "lucide-react";
 import Image from "next/image";
 import CommonButton from "../ui/CommonButton";
+import Link from "next/link";
 
 export default function AboutSection({id}:{id:string}) {
   const floatingIcons = [
@@ -35,13 +36,30 @@ export default function AboutSection({id}:{id:string}) {
 
           {/* CTA Buttons */}
           <div data-aos="fade-right" className="flex justify-center gap-4 ">
-            <CommonButton title="White Paper" width="176px" />
-            <Button
+          <Link
+                 
+                  href={"/whitepaper.pdf"}
+                  target="_blank"
+                  
+                >
+                  <CommonButton title="White Paper" width="176px" />
+                </Link>
+
+                <Link
+                 
+                 href={"/whitepaper.pdf"}
+                 target="_blank"
+                 
+               >
+                 <Button
               variant="outline"
               className="bg-transparent border-2 border-blue-600 text-blue-400 hover:bg-blue-900/20 px-8 py-6 text-lg rounded-full"
             >
               Light Paper
             </Button>
+               </Link>
+           
+           
           </div>
         </div>
       </div>
