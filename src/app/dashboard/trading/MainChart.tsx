@@ -50,12 +50,12 @@ export default function MainChart() {
       <div style={{
         border:" 1px solid #99999933"
       }} className="bg-black p-4 rounded-lg shadow-lg mt-5">
-      <h2 className="text-[30px] font-[700] text-white mb-4 pt-4">Crypto Currency Price</h2>
-      <div className='flex justify-end items-center'>
+      <h2 className="text-[16px] md:text-[30px] font-[700] text-white mb-4 pt-4">Crypto Currency Price</h2>
+      <div className='flex justify-end items-center mb-2'>
         {priceUpDown.map((item,index)=>{
           return(
             <div className='flex items-center w-[200px]'>
-              <div className='text-[18px] font-[400] text-white'>
+              <div className='text-[12px] md:text-[18px] font-[400] text-white'>
                 <h3 className='pb-2'>{item.price}</h3>
                 <h6 className='font-[700]'>{item.value}</h6>
               </div>

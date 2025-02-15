@@ -56,7 +56,7 @@ export default function MarketValueTable() {
   return (
     <div>
 
-        <h4 className='pt-4 text-white text-[24px] font-[400] pb-2'>Crypto Currencies Market Value</h4>
+        <h4 className='pt-4 text-white text-[16px] md:text-[24px] font-[400] pb-2'>Crypto Currencies Market Value</h4>
 
         <Card className='overflow-hidden'>
 

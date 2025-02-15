@@ -20,7 +20,7 @@ export default function ProfilePage() {
           <div>
             <div className="flex items-center pb-10">
               <img src="/images/profile/profile.png" />
-              <h3 className="flex items-center text-white text-[24px] font-[400] pl-5 ">
+              <h3 className="flex items-center text-white text-[16px]  md:text-[24px] font-[400] pl-5 ">
               0x39deb3.....e2ac64rd  <Copy />
               </h3>
             </div>
@@ -77,7 +77,7 @@ export default function ProfilePage() {
                   }}
                   className=" flex  items-center justify-between"
                 >
-                  <p className="text-[18px] font-[400] text-white flex items-center">
+                  <p className="text-[14px] md:text-[18px] font-[400] text-white flex items-center">
                     https://ico.aizu.com/dashboard/?ref={" "}
                     <Copy className="h-4 w-4" />
                   </p>

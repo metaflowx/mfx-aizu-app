@@ -70,7 +70,7 @@ export default function ReferralPage() {
                   }}
                   className=" flex  items-center justify-between"
                 >
-                  <p className="text-[18px] font-[400] text-white flex items-center">
+                  <p className="text-[12px] md:text-[18px] font-[400] text-white flex items-center">
                     https://ico.aizu.com/dashboard/?ref={" "}
                     <Copy className="h-4 w-4" />
                   </p>

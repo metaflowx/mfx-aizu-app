@@ -17,7 +17,7 @@ import { menuItems } from "@/constants/links";
 
 export function Sidebar({ className,collapsed,setCollapsed }: {className?:any,collapsed?:boolean,setCollapsed:any}) {
  
-  const pathname = usePathname(); // Get current route
+  const pathname = usePathname();
 
   return (
     <div

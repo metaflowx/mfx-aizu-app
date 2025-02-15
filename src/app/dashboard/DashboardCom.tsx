@@ -12,7 +12,7 @@ export default function DashboardCom({children}:{children:any}) {
             </div>
 
             {/* Main Content - Scrollable */}
-            <main className="flex-1 p-8 pt-6 overflow-y-auto min-h-screen">
+            <main className="flex-1 px-4 py-8 sm:p-8 pt-6 overflow-y-auto min-h-screen">
               {children}
             </main>
           </div>

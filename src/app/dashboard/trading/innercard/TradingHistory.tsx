@@ -62,7 +62,7 @@ export default function TradingHistory() {
         },
     ]
   return (
-    <Card>
+    <Card className='overflow-hidden'>
 
 
         <div className='overflow-hidden '>
@@ -86,12 +86,15 @@ export default function TradingHistory() {
           </TableHeader>
           <TableBody className="[&>*:nth-child(odd)]:bg-[#15171C] [&>*:nth-child(even)]:bg-[#07070A] max-h-80">
             {listData.map((item:any, index:any) => (
-              <TableRow key={index} className="border-b-0">
+              <TableRow key={index} className="border-b-0 text-[16px] font-[400] ">
                 
               
                 <TableCell className="text-white">
-                <img src={item.logo} />
-                    {item.coinname}</TableCell>
+               <div className='flex items-center'>
+               <img src={item.logo} className='pr-2' />
+               {item.coinname}
+               </div>
+                    </TableCell>
                
                 <TableCell className=" text-white">{item.price}</TableCell>
 

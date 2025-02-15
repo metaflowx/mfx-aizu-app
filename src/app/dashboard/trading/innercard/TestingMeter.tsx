@@ -3,12 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 const Speedometer = ({speed}:{speed:number}) => {
-//   const [speed, setSpeed] = useState(65); // Default speed
 
-//   const checkSpeed = () => {
-//     const newSpeed = Math.floor(Math.random() * 101); // Random speed between 0 and 100
-//     setSpeed(newSpeed);
-//   };
 
   return (
     <div className="flex flex-col items-center space-y-4 pt-4">

@@ -88,7 +88,7 @@ export default function Dashboard() {
                 }}
                 className=" flex justify-between items-center"
               >
-                <p className="text-[18px] font-[400] text-white">
+                <p className="text-[14px] md:text-[18px] font-[400] text-white">
                   https://ico.aizu.com/dashboard/?ref=
                 </p>
                 <img src="/images/referral/share.png" />
