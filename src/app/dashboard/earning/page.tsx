@@ -15,9 +15,7 @@ export default function EarningPage() {
   ];
   return (
     <>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold">Earning</h1>
-      </div>
+     
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 mb-8">
       {earningsData.map((item) => (
