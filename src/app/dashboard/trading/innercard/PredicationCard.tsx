@@ -1,6 +1,8 @@
+"use client"
 import { Card } from "@/components/ui/card";
 import CommonButton from "@/components/ui/CommonButton";
-import React from "react";
+import React, { useState } from "react";
+import Speedometer from "./TestingMeter";
 
 export default function PredicationCard() {
     const datalist =[
@@ -23,6 +25,12 @@ export default function PredicationCard() {
             bg:"bg-[#FF3D3333]"
         },
     ]
+     const [speed, setSpeed] = useState(65); // Default speed
+    
+      const checkSpeed = () => {
+        const newSpeed = Math.floor(Math.random() * 101); // Random speed between 0 and 100
+        setSpeed(newSpeed);
+      };
   return (
     <Card className="p-4 space-y-3 ">
       <div className="flex flex-col justify-center items-center">
@@ -43,7 +51,8 @@ export default function PredicationCard() {
         </div>
 
         <div className="py-3">
-            <img src="/images/trading/meter.png" />
+            <Speedometer speed={speed} />
+            {/* <img src="/images/trading/meter.png" /> */}
         </div>
         {datalist.map((item,index)=>{
             return(
@@ -65,7 +74,7 @@ export default function PredicationCard() {
                 </div>
             )
         })}
-        <CommonButton title="Start Predict" />
+        <CommonButton onClick={()=>checkSpeed()} title="Start Predict" />
       </div>
     </Card>
   );
