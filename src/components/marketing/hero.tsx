@@ -11,7 +11,11 @@ import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 
 export default function Hero({ id,type }: { id?: string,type?:string }) {
   const [amount, setAmount] = useState<string>("");
-  const [selectedToken, setSelectedToken] = useState("tether");
+  const [selectedToken, setSelectedToken] = useState({
+    name:"USDT",
+    id:"tether",
+    imgurl: "/images/coin-icon/usdt.png",
+  });
   const [progress, setProgress] = useState(30);
   const max = 100;
   const progressWidth = (progress / max) * 100;
@@ -132,10 +136,10 @@ export default function Hero({ id,type }: { id?: string,type?:string }) {
                     />
                     <div className="flex items-center gap-2">
                       <img
-                        src="/images/coin-icon/usdt.png"
+                        src={selectedToken?.imgurl || "/images/coin-icon/usdt.png"}
                         className="w-5 h-5 bg-[#26A17B] rounded-full"
                       />
-                      <span className="text-white">USDT</span>
+                      <span className="text-white">{selectedToken?.name}</span>
                     </div>
                   </div>
                 </div>
