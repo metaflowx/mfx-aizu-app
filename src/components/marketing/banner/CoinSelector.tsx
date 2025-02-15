@@ -16,15 +16,16 @@ export default function CoinSelector({ selectedToken, setSelectedToken }: { sele
           },
           {
             id: "binance",
-            name: "USDT",
+            name: "BNB",
             color: "#F3BA2F",
-            imgurl: "/images/coin-icon/usdc.svg",
+            imgurl: "/images/coin-icon/bnb.svg",
+            
           },
           {
             id: "solana",
-            name: "USDT",
+            name: "SOL",
             color: "#DC1FFF",
-            imgurl: "/images/coin-icon/bnb.svg",
+            imgurl: "/images/coin-icon/usdc.svg",
           },
           {
             id: "ethereum",
@@ -34,16 +35,16 @@ export default function CoinSelector({ selectedToken, setSelectedToken }: { sele
           },
         ].map((token) => (
           <div
-          data-aos="fade-right"
+         
             key={token.id}
             className={`rounded-[3px] w-full p-[1px] cursor-pointer transition-all duration-300
-              ${selectedToken === token.id ? "bg-[#2865FF]" : "bg-gradient-to-b from-transparent via-gray-400 to-transparent"}
+              ${selectedToken.id === token.id ? "bg-[#2865FF]" : "bg-gradient-to-b from-transparent via-gray-400 to-transparent"}
               hover:bg-[#3A75FF]`}
-            onClick={() => setSelectedToken(token.id)}
+            onClick={() => setSelectedToken(token)}
           >
             <button
               className={`flex flex-wrap sm:flex w-full items-center justify-center gap-2 py-3 rounded-[3px] 
-                ${selectedToken === token.id ? "bg-[#2865FF]" : "bg-[#15171C]"}`}
+                ${selectedToken.id === token.id ? "bg-[#2865FF]" : "bg-[#15171C]"}`}
             >
               <img
                 src={token.imgurl}
