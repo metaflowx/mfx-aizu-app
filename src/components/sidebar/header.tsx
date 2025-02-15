@@ -4,11 +4,10 @@ import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import AnimatedBorderTrail from "../borderanimation";
 import Link from "next/link";
 import MobileMenuDashboard from "./MobileMenuDashboard";
-
 const TopBar = () => {
   const { open, close } = useAppKit();
   const { address, isConnected } = useAppKitAccount();
- 
+
   return (
     <header 
     style={{
@@ -27,24 +26,13 @@ const TopBar = () => {
           <div className="flex items-center gap-3">
             <ul className="flex items-center gap-14 2xl:gap-16">
               
-              {!address ? (
-                <AnimatedBorderTrail
-                  trailSize="lg"
-                  className="w-full hover:scale-105"
-                  trailColor="white"
-                >
-                  <CommonButton
-                    onClick={async () => open()}
-                    title="Connect Wallet"
-                    width="214px"
-                  />
-                </AnimatedBorderTrail>
-              ) : (
-                <>
+             
                   {/* @ts-expect-error msg */}
                   <appkit-account-button balance="hide" />
-                </>
-              )}
+
+                 
+
+               
              
             </ul>
           <MobileMenuDashboard />

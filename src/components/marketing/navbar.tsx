@@ -7,8 +7,10 @@ import { NAV_LINKS1 } from "@/constants/links";
 import CommonButton from "../ui/CommonButton";
 import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import AnimatedBorderTrail from "../borderanimation";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+    const router = useRouter()
   const { open, close } = useAppKit();
   const { address, isConnected } = useAppKitAccount();
   return (
@@ -61,8 +63,13 @@ const Navbar = () => {
                 </AnimatedBorderTrail>
               ) : (
                 <>
-                  {/* @ts-expect-error msg */}
-                  <appkit-account-button balance="hide" />
+                 
+                  {/* <appkit-account-button balance="hide" /> */}
+                  <CommonButton
+                    onClick={()=>router.push("/dashboard")}
+                    title="Dashboard"
+                    width="150px"
+                  />
                 </>
               )}
             </ul>
