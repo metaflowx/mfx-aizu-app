@@ -22,9 +22,7 @@ import MainChart from "./MainChart"
 export default function TradingPage() {
   return (
     <>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold">Algo Trading</h1>
-      </div>
+    
 
       <MainDashboard />
 
