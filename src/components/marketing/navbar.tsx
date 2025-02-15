@@ -18,12 +18,12 @@ const Navbar = () => {
       <Wrapper className="h-full">
         <div className="flex items-center justify-between h-full">
           <div className="hidden xl:flex items-center gap-3">
-            <ul className="flex items-center gap-14 2xl:gap-16">
+            <ul className="flex items-center gap-12 2xl:gap-16">
               {NAV_LINKS.slice(0, 5).map((link, index) => (
                 <li
                   style={{ fontFamily: "Prompt" }}
                   key={index}
-                  className="text-[14px] 2xl:text-[16px] object-contain uppercase  -1 link"
+                  className="text-[14px] 2xl:text-[16px] object-contain uppercase  -1 link text-white"
                 >
                   <Link href={link.href}>{link.name}</Link>
                 </li>
@@ -39,12 +39,12 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="hidden xl:flex items-center gap-3">
-            <ul className="flex items-center gap-14 2xl:gap-16">
+            <ul className="flex items-center gap-12 2xl:gap-16">
               {NAV_LINKS1.map((link, index) => (
                 <li
                   style={{ fontFamily: "Prompt" }}
                   key={index}
-                  className="text-[14px] 2xl:text-[16px] uppercase -1 link"
+                  className="text-[14px] 2xl:text-[16px] uppercase -1 link whitespace-pre text-white"
                 >
                   <Link href={link.href}>{link.name}</Link>
                 </li>

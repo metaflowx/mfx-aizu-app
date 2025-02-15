@@ -24,6 +24,10 @@ export const NAV_LINKS = [
         href: "/#roadmap"
     },
     {
+        name: "Algo Trading",
+        href: "/algo-trading"
+    },
+    {
         name: "FAQS",
         href: "#faqs"
     },
@@ -36,6 +40,10 @@ export const NAV_LINKS1 = [
     {
         name: "ROADMAP",
         href: "/#roadmap"
+    },
+    {
+        name: "Trading",
+        href: "/algo-trading"
     },
     {
         name: "FAQS",
