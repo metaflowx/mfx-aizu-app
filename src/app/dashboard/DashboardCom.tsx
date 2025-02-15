@@ -1,4 +1,5 @@
 "use client"
+import Footer from '@/components/sidebar/footer'
 import { Sidebar } from '@/components/sidebar/sidebar'
 import React, { useState } from 'react'
 
@@ -14,6 +15,7 @@ export default function DashboardCom({children}:{children:any}) {
             {/* Main Content - Scrollable */}
             <main className="flex-1 px-4 py-8 sm:p-8 pt-6 overflow-y-auto min-h-screen">
               {children}
+              <Footer />
             </main>
           </div>
   )
