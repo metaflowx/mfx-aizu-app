@@ -1,8 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import ShareModal from "@/components/ui/ShareModal"
 import {
  
   Copy
@@ -88,7 +87,7 @@ export default function ProfilePage() {
           </div>
 
           <div className="w-full flex justify-center items-center">
-            <img src="/images/buy/aizucoin.png " />
+          <ShareModal />
           </div>
         </div>
 
