@@ -95,10 +95,10 @@ export default function Hero({ id,type }: { id?: string,type?:string }) {
                   src="/images/coin-icon/usdt.png"
                   className="w-6 h-6 bg-[#26A17B] rounded-full"
                 />
-                <span data-aos="fade-right" className="text-white">0.81 USDT</span>
+                <span data-aos="fade-right" className="text-white">0.01 USDT</span>
               </div>
               <div data-aos="fade-right" className="text-white text-sm sm:mt-0 mt-[15px]">
-                Final phase is LIVE. Listing price 2$
+                Final phase is LIVE. Listing price $0.06
               </div>
             </div>
 

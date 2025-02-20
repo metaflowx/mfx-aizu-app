@@ -25,7 +25,7 @@ export default function Dashboard() {
           subValue="$0.000"
         />
         <StatsCard
-          title="Your Spot Earnings"
+          title="Projected AIZU at $1"
           value="$0.000"
           subValue="$0.000"
         />
