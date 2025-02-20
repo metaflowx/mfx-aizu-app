@@ -87,7 +87,7 @@ export default function ShareModal() {
                 "@media(max-width : 900px)": { fontSize: "16px" },
               }}
               variant="h5"
-              color={"#1AB3E5"}
+              color={"#2865FF"}
             >
               Earn AIZU Coin Coin by referring your friends and community!
             </Typography>
@@ -95,7 +95,7 @@ export default function ShareModal() {
               Share your unique link below and receive{" "}
               <Typography component={"span"}>
                 <Link
-                  style={{ textDecoration: "none", color: "#1AB3E5" }}
+                  style={{ textDecoration: "none", color: "#2865FF" }}
                   href={""}
                 >
                   10%
@@ -103,7 +103,7 @@ export default function ShareModal() {
                 of all transactions realized with your link{" "}
                 <Typography component={"span"}>
                   <Link
-                    style={{ textDecoration: "none", color: "#1AB3E5" }}
+                    style={{ textDecoration: "none", color: "#2865FF" }}
                     href={""}
                   >
                     instantly{" "}
