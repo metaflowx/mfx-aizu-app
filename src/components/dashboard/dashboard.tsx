@@ -3,10 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Wallet } from "lucide-react";
+import { Copy, Wallet } from "lucide-react";
 import { StatsCard } from "../stats-card";
 import { ReferralTable } from "../referral-table";
 import Hero from "../marketing/hero";
+import ShareModal from "../ui/ShareModal";
 
 export default function Dashboard() {
   return (
@@ -25,7 +26,7 @@ export default function Dashboard() {
           subValue="$0.000"
         />
         <StatsCard
-          title="Your Spot Earnings"
+          title="Projected AIZU at $1"
           value="$0.000"
           subValue="$0.000"
         />
@@ -88,10 +89,10 @@ export default function Dashboard() {
                 }}
                 className=" flex justify-between items-center"
               >
-                <p className="text-[14px] md:text-[18px] font-[400] text-white">
-                  https://ico.aizu.com/dashboard/?ref=
+                <p className="text-[14px] flex items-center md:text-[18px] font-[400] text-white">
+                  https://ico.aizu.com/dashboard/?ref= <Copy color="#fff" />
                 </p>
-                <img src="/images/referral/share.png" />
+                <ShareModal />
               </div>
             </div>
           </div>
