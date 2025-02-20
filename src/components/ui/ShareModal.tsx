@@ -59,12 +59,13 @@ export default function ShareModal() {
       <Box onClick={handleClickOpen("body")} style={{cursor:"pointer"}} >
         <img src="/images/referral/share.png"  />
       </Box>
+      {open && (
       <Dialog
         sx={{
           backgroundColor: "#0000008f",
           "& .MuiDialog-paperScrollBody": {
             backgroundImage: "linear-gradient(#000000, #000000)",
-            border: "1px solid #1AB3E5",
+            border: "1px solid #2865FF",
             padding: "1rem",
             borderRadius: "12px",
           },
@@ -162,6 +163,8 @@ export default function ShareModal() {
           {/* <Link href={'/'} target='_blank'><Image src={github} alt={''} width={32}/></Link> */}
         </BoxSocial>
       </Dialog>
+
+      )}
     </React.Fragment>
   );
 }
