@@ -62,6 +62,11 @@ export const menuItems = [
       href: "/dashboard",
     },
     {
+        name: "Calculator",
+        icon: "/images/dashboard/algoicon.png",
+        href: "/dashboard/calculator",
+      },
+    {
       name: "Earning",
       icon: "/images/dashboard/earnicon.png",
       href: "/dashboard/earning",
@@ -81,6 +86,7 @@ export const menuItems = [
       icon: "/images/dashboard/algoicon.png",
       href: "/dashboard/trading",
     },
+  
     {
       name: "Profile",
       icon: "/images/dashboard/profileicon.png",

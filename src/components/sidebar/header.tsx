@@ -5,7 +5,6 @@ import {
   useAppKitAccount,
   useDisconnect,
 } from "@reown/appkit/react";
-import AnimatedBorderTrail from "../borderanimation";
 import Link from "next/link";
 import MobileMenuDashboard from "./MobileMenuDashboard";
 import { LogOut } from "lucide-react";
@@ -36,13 +35,13 @@ const TopBar = () => {
             <ul className="flex items-center gap-14 2xl:gap-16">
               {address ? (
               <div
-                onClick={disconnect}
+               
                 style={{
                   boxShadow: "0px 4px 4px 0px #00000040",
                 }}
                 className="border border-[#2865FF] cursor-pointer rounded-[40px] flex items-center p-2 bg-[#07080B] px-4 "
               >
-                {address && <LogOut color="#fff" />}
+                {/* {address && <LogOut color="#fff"  onClick={disconnect} style={{cursor:"pointer"}} />} */}
 
                 {/* @ts-expect-error msg */}
                 <appkit-account-button balance="hide" />

@@ -81,7 +81,7 @@ export default function ReferralPage() {
           </div>
 
           <div className="w-full flex justify-center items-center">
-            <img src="/images/buy/token.png" className="w-[430px] h-[290px] " />
+            <img src="/images/buy/aizucoin.png"  />
           </div>
         </div>
       </Card>

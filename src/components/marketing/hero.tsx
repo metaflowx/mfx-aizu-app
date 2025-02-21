@@ -50,13 +50,44 @@ export default function Hero({ id,type }: { id?: string,type?:string }) {
             </AnimatedBorderTrail>
 
             {/* Title */}
+            <div className="flex justify-between" >
+              <div>
+                 <h1
+            
+            data-aos="fade-right"
+            className="text-[14px] md:text-[18px] font-bold text-center text-white"
+          >
+            Phase 1/20
+          </h1>
+          <p className="text-[12px] md:text-[14px] text-white  " >0.01 USDT</p>
+          </div>
+          <div> <h1
+            
+            data-aos="fade-right"
+            className="text-[14px] md:text-[18px] font-bold text-center text-white "
+          >
+           Next phase will starts in 5 days
+          </h1></div>
+          <div> <h1
+            
+            data-aos="fade-right"
+            className="text-[14px] md:text-[18px] font-bold text-center text-white "
+          >
+           Next Phase 2
+          </h1>
+          <p className="text-[12px] md:text-[14px] text-white " >0.0105 USDT</p>
+          </div>
+
+            </div>
+           
             <h1
             
               data-aos="fade-right"
-              className="text-4xl font-bold text-center text-white mb-10"
+              className="text-3xl font-bold text-center text-white mb-2"
             >
               BUY AIZU
             </h1>
+           
 
             {/* Countdown Timer */}
             <TimerCounter />
