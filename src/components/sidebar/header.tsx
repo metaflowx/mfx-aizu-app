@@ -5,7 +5,6 @@ import {
   useAppKitAccount,
   useDisconnect,
 } from "@reown/appkit/react";
-import AnimatedBorderTrail from "../borderanimation";
 import Link from "next/link";
 import MobileMenuDashboard from "./MobileMenuDashboard";
 import { LogOut } from "lucide-react";
