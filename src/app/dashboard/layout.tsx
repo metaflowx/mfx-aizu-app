@@ -16,8 +16,8 @@ const prompt = Prompt({
 });
 
 export const metadata: Metadata = {
-  title: 'AIZU Dashboard',
-  description: 'AIZU ICO Dashboard',
+  title: 'AIZU Dashboard | AIZU ICO Dashboard',
+  
 };
 
 export default async function RootLayout({children,}: { children: React.ReactNode}) {
