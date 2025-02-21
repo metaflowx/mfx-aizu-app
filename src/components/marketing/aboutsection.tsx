@@ -71,12 +71,9 @@ export default function AboutSection({ id }: { id: string }) {
       {/* Central Coin Section */}
       <div className="relative">
         {/* Center AIZU coin */}
-        <div className="relative w-[full] flex justify-center items-center ">
+        <div className="relative w-[full] flex justify-center items-center overflow-hidden ">
           <CircularRoation />
-          {/* <img
-            src="/images/home/image-rotation.png"
-            className="max-w-full xl:max-w-[1350px] mx-auto h-full object-contain"
-          /> */}
+         
         </div>
 
       

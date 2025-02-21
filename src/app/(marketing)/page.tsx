@@ -21,7 +21,7 @@ const HomePage = () => {
     
     
       <div className="relative overflow-x-hidden w-full pb-15 md:pb-10">
-      <div style={{ width: "100%", height: "100vh",overflow:"hidden",overflowY:"scroll" }} className="overflow-x-hidden">
+      <div style={{ width: "100%", height: "70vh",overflow:"hidden",overflowY:"scroll" }} className="hidden sm:block overflow-x-hidden">
       <iframe
         src="/spark.html"
         width="100%"

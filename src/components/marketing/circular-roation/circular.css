@@ -183,3 +183,21 @@ and planet size. And colors :) */
 .mars-spin1 {
     animation: spin-right 78.7s linear infinite;
   }
+
+
+ 
+  
+  /* Reduce font size for screens smaller than 768px */
+  /* @media (max-width: 768px) {
+    .earth-spin,
+    .moon-spin,
+    
+    
+    .mars-spin,
+    .mars-spin1 {
+        animation: none;
+    }
+} */
+
+  
+ 

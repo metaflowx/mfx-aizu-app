@@ -31,11 +31,12 @@ const HowToBuySection = ({id}:{id:string}) => {
       <div
   className="group flex items-center justify-center bg-transparent p-1 md:p-8 text-center text-black rounded-[40px] relative mt-[0]"
 >
-  <div className="mt-[50px] md:mt-[20px] flex justify-center items-center">
+  <div className=" flex justify-center items-center">
     <div className="w-full flex flex-col justify-center items-center">
       <img
-        src="/images/buy/aizucoin.png"
-        className="  transition-transform duration-300 group-hover:scale-110"
+        src="/images/tokenomics/tokengif.gif"
+        style={{width:"140px"}}
+        className="  transition-transform duration-300 group-hover:scale-110 "
       />
       <p data-aos="fade-right" className="pt-3 text-[40px] md:text-[55px] font-[700] text-[#fff] leading-snug">How to Buy</p>
       <p data-aos="fade-right" className="text-[40px] md:text-[55px] font-[700] text-[#fff] leading-snug">AizuCoin</p>
