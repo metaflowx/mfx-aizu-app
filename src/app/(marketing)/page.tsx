@@ -21,7 +21,16 @@ const HomePage = () => {
     
     
       <div className="relative overflow-x-hidden w-full pb-15 md:pb-10">
-      <SpherePacking />
+      <div style={{ width: "100%", height: "100vh",overflow:"hidden",overflowY:"scroll" }} className="overflow-x-hidden">
+      <iframe
+        src="/spark.html"
+        width="100%"
+        height="100%"
+        style={{ border: "none",overflow:"hidden",overflowY:"scroll" }}
+      />
+    </div>
+     
+    
         <Hero id="home" />
       </div>
       <div className="w-full" style={{background:"url(/images/bg/bg1.jpg)",backgroundRepeat:"no-repeat",backgroundPosition:"top",backgroundSize:"100% 100%"}}>

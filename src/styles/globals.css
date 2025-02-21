@@ -237,6 +237,13 @@ img {
    background: #00000080;
 
 }
+
+wui-flex{
+  height: 50px !important;
+  background: #07080B !important;
+  border: 1px solid #2865FF;
+  border-radius: 40px;
+}
 /* @keyframes flip {
   0% {
     transform: rotateX(0deg);

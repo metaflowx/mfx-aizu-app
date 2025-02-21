@@ -101,6 +101,26 @@ const SpherePacking: React.FC = () => {
       renderScene();
     }
 
+    // function renderScene() {
+    //   mx -= (mx - mouse.x * 0.04) * 0.1;
+    //   theta += mx;
+    //   dz -= 2;
+    //   group.rotation.y = theta;
+    
+    //   if (textMesh) {
+    //     textMesh.position.set(camera.position.x, camera.position.y, camera.position.z - 300); // Keep in front
+    //     textMesh.lookAt(camera.position); // Always face the camera
+    //   }
+    
+    //   let zo = dz < -1000 ? -1000 : dz;
+    //   let py = Math.cos(dz / 260) * 300;
+    //   let pz = zo + Math.sin(dz / 200) * 400;
+    //   camera.position.set(100, py, pz);
+    //   camera.lookAt(scene.position);
+    //   renderer.render(scene, camera);
+    // }
+    
+
     function renderScene() {
       mx -= (mx - mouse.x * 0.04) * 0.1;
       theta += mx;
@@ -151,7 +171,7 @@ const SpherePacking: React.FC = () => {
       n = { x: 0, y: 0, z: 0, R: 1 };
       h.push(n);
       create(false);
-      addWelcomeText(); // Add welcome text
+     
 
       window.addEventListener("resize", onWindowResize);
       document.addEventListener("mousedown", toggleAdding);
@@ -161,46 +181,8 @@ const SpherePacking: React.FC = () => {
     }
 
 
-    function addWelcomeText() {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
+  
     
-      // Set canvas size
-      canvas.width = 512;
-      canvas.height = 128;
-    
-      // Set background color (optional)
-      ctx.fillStyle = "rgba(0, 0, 0, 0)"; // Transparent
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-      // Set text style
-      ctx.font = "Bold 60px Arial";
-      ctx.fillStyle = "white"; // Text color
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-    
-      // Draw text
-      ctx.fillText("Welcome! to AIJU", canvas.width / 2, canvas.height / 2);
-    
-      // Create texture from canvas
-      const texture = new THREE.CanvasTexture(canvas);
-      texture.needsUpdate = true;
-    
-      // Create material with the texture
-      const textMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
-    
-      // Create a plane to display the text
-      const textGeometry = new THREE.PlaneGeometry(300, 75); // Adjust size as needed
-      textMesh = new THREE.Mesh(textGeometry, textMaterial);
-    
-      // Position the text in the 3D scene
-      textMesh.position.set(0, 100, -300);
-      textMesh.lookAt(camera.position); // Ensure it faces the camera
-    
-      // Add to the group
-      group.add(textMesh);
-    }
 
     function onWindowResize() {
       const width = window.innerWidth;

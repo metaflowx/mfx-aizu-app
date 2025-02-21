@@ -64,15 +64,21 @@ const data = {
   ],
 };
 
-const TokenomicsPage = ({id}:{id:string}) => {
+const TokenomicsPage = ({ id }: { id: string }) => {
   return (
     <div id={id} className="container mx-auto ">
       <div className="text-white  flex flex-col items-center justify-center space-y-6">
         <div className="text-left sm:text-center">
-          <h2 data-aos="fade-right" className="text-white text-[40px] md:text-[64px] font-bold">
+          <h2
+            data-aos="fade-right"
+            className="text-white text-[40px] md:text-[64px] font-bold"
+          >
             Tokenomics
           </h2>
-          <h3 data-aos="fade-left" className="text-[#2865FF] text-[30px] md:text-[40px] font-bold">
+          <h3
+            data-aos="fade-left"
+            className="text-[#2865FF] text-[30px] md:text-[40px] font-bold"
+          >
             Supply: {data.supply}
           </h3>
         </div>
@@ -80,7 +86,7 @@ const TokenomicsPage = ({id}:{id:string}) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 place-items-center">
           {data.prices.map((item, index) => (
             <div
-            data-aos="fade-right"
+              data-aos="fade-right"
               style={{
                 background:
                   " linear-gradient(90deg, rgba(40, 101, 255, 0) 0%, #2865FF 50%, rgba(40, 101, 255, 0) 100%)",
@@ -105,42 +111,54 @@ const TokenomicsPage = ({id}:{id:string}) => {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 mt-20">
-        <div className="flex  items-center overflow-hidden">
-          <img src="/images/tokenomics/chart.png" className="rotate-image" />
+        <div className="flex  items-center overflow-hidden relative">
+          <img src="/images/tokenomics/circle.svg" className="rotate-image m-auto " />
+          <img
+    src="/images/buy/aizucoin.png"
+    className="absolute"
+    style={{
+      width: '30%',
+      height: 'auto',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+    }}
+  />
         </div>
         <div>
-  {data?.chartData.map((item) => {
-    return (
-       
-
-      <div
-        // style={{ border: "1px solid #ffffff17" }}
-        className="rounded-[12px]"
-        data-aos="fade-down"
-      >
-         <MagicCard className="w-full py-3 px-5 mt-[20px] rounded-[12px]" gradientSize={150}>
-        <div className="flex items-center">
-          <div
-            style={{
-              background: item.bg,
-              borderTopLeftRadius: "20px",
-              borderBottomLeftRadius: "20px",
-              width: item.width,
-            }}
-            className="h-[20px]"
-          ></div>
-          <p className={`${item?.color} text-[24px] font-[500]`}>
-            {item?.value}%
-          </p>
+          {data?.chartData.map((item) => {
+            return (
+              <div
+                // style={{ border: "1px solid #ffffff17" }}
+                className="rounded-[12px]"
+                data-aos="fade-down"
+              >
+                <MagicCard
+                  className="w-full py-3 px-5 mt-[20px] rounded-[12px]"
+                  gradientSize={150}
+                >
+                  <div className="flex items-center">
+                    <div
+                      style={{
+                        background: item.bg,
+                        borderTopLeftRadius: "20px",
+                        borderBottomLeftRadius: "20px",
+                        width: item.width,
+                      }}
+                      className="h-[20px]"
+                    ></div>
+                    <p className={`${item?.color} text-[24px] font-[500]`}>
+                      {item?.value}%
+                    </p>
+                  </div>
+                  <p className="text-[30px] font-[500] text-white">
+                    {item.name}
+                  </p>
+                </MagicCard>
+              </div>
+            );
+          })}
         </div>
-        <p className="text-[30px] font-[500] text-white">{item.name}</p>
-        </MagicCard>
-      </div>
-       
-    );
-  })}
-</div>
-
       </div>
     </div>
   );
