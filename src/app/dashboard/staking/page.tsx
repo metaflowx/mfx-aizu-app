@@ -1,10 +1,6 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Lock, Timer, TrendingUp } from "lucide-react";
-import { StatsCard } from "@/components/stats-card";
+
 
 export default function StakingPage() {
   const earningsData = [
@@ -17,33 +13,33 @@ export default function StakingPage() {
       des: "3 Months Vesting from TGE",
       btn: false,
     },
-    {
-      id: 2,
-      title: "Teir 1",
-      title1: "Double Your",
-      amount: "$AIZU",
-      sunvalue: "",
-      des: "10 Months Lockup",
-      btn: true,
-    },
-    {
-      id: 3,
-      title: "Teir 2",
-      title1: "3x Your",
-      amount: "$AIZU",
-      sunvalue: "",
-      des: "15 Months Lockup",
-      btn: true,
-    },
-    {
-      id: 4,
-      title: "Teir 3",
-      title1: "4x Your",
-      amount: "$AIZU",
-      sunvalue: "",
-      des: "20 Months Lockup",
-      btn: true,
-    },
+    // {
+    //   id: 2,
+    //   title: "Teir 1",
+    //   title1: "Double Your",
+    //   amount: "$AIZU",
+    //   sunvalue: "",
+    //   des: "10 Months Lockup",
+    //   btn: true,
+    // },
+    // {
+    //   id: 3,
+    //   title: "Teir 2",
+    //   title1: "3x Your",
+    //   amount: "$AIZU",
+    //   sunvalue: "",
+    //   des: "15 Months Lockup",
+    //   btn: true,
+    // },
+    // {
+    //   id: 4,
+    //   title: "Teir 3",
+    //   title1: "4x Your",
+    //   amount: "$AIZU",
+    //   sunvalue: "",
+    //   des: "20 Months Lockup",
+    //   btn: true,
+    // },
   ];
   return (
     <>

@@ -87,7 +87,7 @@ export default function ProfilePage() {
           </div>
 
           <div className="w-full flex justify-center items-center">
-          <ShareModal />
+          <img src="/images/buy/aizucoin.png"  />
           </div>
         </div>
 
