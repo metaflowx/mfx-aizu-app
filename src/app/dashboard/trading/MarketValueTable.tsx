@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
-
+import moment from "moment"
 // Helper function to format timestamps
 const formatDateTime = (timestamp: number, format: "time" | "date") => {
   if (!timestamp) return "N/A";
@@ -47,7 +47,11 @@ const getLifetime = (startTime: number, lastUpdateTime: number) => {
 export default function MarketValueTable({
   isLoading,
   data,
+  tabType,
+  setTabType
 }: {
+  tabType:any;
+  setTabType:any;
   isLoading: boolean;
   data: any;
 }) {
@@ -57,12 +61,49 @@ export default function MarketValueTable({
         Crypto Currencies Market Value
       </h4>
 
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 mb-2">
+        {[
+          {
+            id: "live",
+            name: "Live Orders",
+            color: "#26A17B",
+           
+          },
+          {
+            id: "order",
+            name: "All Orders",
+            color: "#F3BA2F",
+         
+            
+          },
+         
+        ].map((token) => (
+          <div
+         
+            key={token.id}
+            className={`rounded-[10px] w-full  p-[1px] cursor-pointer transition-all duration-300
+              ${tabType === token?.id ? "bg-[#2865FF]" : "bg-gradient-to-b from-transparent via-gray-400 to-transparent"}
+              hover:bg-[#3A75FF]`}
+            onClick={() => setTabType(token?.id)}
+          >
+            <button
+              className={`flex flex-wrap sm:flex w-full  items-center justify-center gap-2 py-3 rounded-[10px] 
+                ${tabType === token?.id ? "bg-[#2865FF]" : "bg-[#15171C]"}`}
+            >
+            
+              <span className="text-white">{token.name}</span>
+            </button>
+          </div>
+        ))}
+      </div>
+
       <Card className="overflow-hidden">
+      
         <div className="w-full rounded-lg shadow-md">
-          <div className="max-h-[500px] overflow-y-auto scrollbar-none">
-            <Table className="min-w-full">
+          <div className="overflow-y-auto h-[500px] scrollbar-none" >
+            <Table className="min-w-full"  >
               {/* Table Header */}
-              <TableHeader className="sticky top-0 bg-[#2D67FE4D] shadow-md z-10">
+              <TableHeader className="sticky top-0  shadow-md z-10">
                 <TableRow className="border-[#2D67FE4D]">
                   <TableHead className="text-white">Symbol</TableHead>
                   <TableHead className="text-white">Timestamp</TableHead>
@@ -97,15 +138,15 @@ export default function MarketValueTable({
                 ) : (
                   data &&
                   data.map((trade: any, index: number) => {
-                    const startTime = formatDateTime(trade?.timestamp, "time");
-                    const lastUpdateTime = formatDateTime(trade?.lastUpdateTime, "time");
-                    const lifetime = getLifetime(trade?.timestamp, trade?.lastUpdateTime);
-                    const formattedDate = formatDateTime(trade?.timestamp, "date");
+                    const startTime = formatDateTime(moment(trade?.timestamp).unix(), "time");
+                    const lastUpdateTime = formatDateTime(moment(trade?.lastUpdateTime).unix(), "time");
+                    const lifetime = getLifetime(moment(trade?.timestamp).unix(), moment(trade?.lastUpdateTime).unix());
+                    const formattedDate = formatDateTime(moment(trade?.timestamp).unix(), "date");
 
                     return (
                       <TableRow key={index} className="border-b-0 text-[16px] font-[400]">
                         <TableCell className="text-white">{trade?.symbol}</TableCell>
-                        <TableCell className="text-white">{trade?.timestamp}</TableCell>
+                        <TableCell className="text-white">{moment(trade?.timestamp).unix()}</TableCell>
                         <TableCell className="text-white">{trade?.price}</TableCell>
                         <TableCell className="text-white">{trade?.lastPrice}</TableCell>
                         <TableCell className="text-white">{trade?.order_type}</TableCell>
@@ -135,3 +176,9 @@ export default function MarketValueTable({
     </div>
   );
 }
+
+
+
+
+
+
