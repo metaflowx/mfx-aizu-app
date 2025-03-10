@@ -1,177 +1,184 @@
-import { Card } from '@/components/ui/card'
-import React from 'react'
-
+import { Card } from "@/components/ui/card";
+import React from "react";
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-  } from "@/components/ui/table"
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Skeleton } from "@/components/ui/skeleton";
+import moment from "moment"
+// Helper function to format timestamps
+const formatDateTime = (timestamp: number, format: "time" | "date") => {
+  if (!timestamp) return "N/A";
+  
+  const date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
 
-export default function MarketValueTable() {
-  const tradeHistory = [
-    {
-        symbol: "BTC...",
-        timestamp: "1741...",
-        price: "8704...",
-        lastPrice: "8288...",
-        orderType: "buy",
-        status: "Closed",
-        pnl: "-3598",
-        startTime: "12:59...",
-        lastUpdate: "07:15...",
-        lifetime: "06:16...",
-        pnlHigh: "322",
-        pnlLow: "-3598",
-        pnlPercentage: "-4.13",
-        quantity: "1",
-        date: "Tuesday"
-    },
-    {
-        symbol: "BTC...",
-        timestamp: "1741...",
-        price: "8945...",
-        lastPrice: "8871...",
-        orderType: "sell",
-        status: "Closed",
-        pnl: "771",
-        startTime: "11:44...",
-        lastUpdate: "11:54...",
-        lifetime: "00:09...",
-        pnlHigh: "771",
-        pnlLow: "-71",
-        pnlPercentage: "0.86",
-        quantity: "1",
-        date: "Monday"
-    },
-    {
-        symbol: "BTC...",
-        timestamp: "1741...",
-        price: "9018...",
-        lastPrice: "8961...",
-        orderType: "sell",
-        status: "Closed",
-        pnl: "570",
-        startTime: "10:57...",
-        lastUpdate: "11:40...",
-        lifetime: "00:43...",
-        pnlHigh: "666",
-        pnlLow: "-778",
-        pnlPercentage: "0.63",
-        quantity: "1",
-        date: "Monday"
-    },
-    {
-      symbol: "BTC...",
-      timestamp: "1741...",
-      price: "8704...",
-      lastPrice: "8288...",
-      orderType: "buy",
-      status: "Closed",
-      pnl: "-3598",
-      startTime: "12:59...",
-      lastUpdate: "07:15...",
-      lifetime: "06:16...",
-      pnlHigh: "322",
-      pnlLow: "-3598",
-      pnlPercentage: "-4.13",
-      quantity: "1",
-      date: "Tuesday"
-  },
-  {
-      symbol: "BTC...",
-      timestamp: "1741...",
-      price: "8945...",
-      lastPrice: "8871...",
-      orderType: "sell",
-      status: "Closed",
-      pnl: "771",
-      startTime: "11:44...",
-      lastUpdate: "11:54...",
-      lifetime: "00:09...",
-      pnlHigh: "771",
-      pnlLow: "-71",
-      pnlPercentage: "0.86",
-      quantity: "1",
-      date: "Monday"
-  },
-  {
-      symbol: "BTC...",
-      timestamp: "1741...",
-      price: "9018...",
-      lastPrice: "8961...",
-      orderType: "sell",
-      status: "Closed",
-      pnl: "570",
-      startTime: "10:57...",
-      lastUpdate: "11:40...",
-      lifetime: "00:43...",
-      pnlHigh: "666",
-      pnlLow: "-778",
-      pnlPercentage: "0.63",
-      quantity: "1",
-      date: "Monday"
+  if (format === "time") {
+    return date.toLocaleTimeString("en-US", { hour12: true });
   }
-];
+
+  if (format === "date") {
+    return date.toLocaleDateString("en-US", {
+      weekday: "long",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+  }
+
+  return "N/A";
+};
+
+// Function to calculate lifetime as HH:MM:SS
+const getLifetime = (startTime: number, lastUpdateTime: number) => {
+  if (!startTime || !lastUpdateTime) return "N/A";
+
+  const diff = Math.abs(lastUpdateTime - startTime); // Difference in seconds
+  const hours = Math.floor(diff / 3600);
+  const minutes = Math.floor((diff % 3600) / 60);
+  const seconds = diff % 60;
+
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+};
+
+export default function MarketValueTable({
+  isLoading,
+  data,
+  tabType,
+  setTabType
+}: {
+  tabType:any;
+  setTabType:any;
+  isLoading: boolean;
+  data: any;
+}) {
   return (
     <div>
+      <h4 className="pt-4 text-white text-[16px] md:text-[24px] font-[400] pb-2">
+        Crypto Currencies Market Value
+      </h4>
 
-        <h4 className='pt-4 text-white text-[16px] md:text-[24px] font-[400] pb-2'>Crypto Currencies Market Value</h4>
-
-        <Card className='overflow-hidden'>
-
-        <div className="w-full overflow-hidden rounded-lg   shadow-md">
-      <div className="max-h-80 overflow-y-auto scrollbar-none">
-      <Table className="min-w-full max-h-80">
-                            <TableHeader className="sticky top-0 bg-[#2D67FE4D] shadow">
-                                <TableRow className="border-[#2D67FE4D]">
-                                    <TableHead>Symbol</TableHead>
-                                    <TableHead>Timestamp</TableHead>
-                                    <TableHead>Price</TableHead>
-                                    <TableHead>Last Price</TableHead>
-                                    <TableHead>Order</TableHead>
-                                    <TableHead>Status</TableHead>
-                                    <TableHead>PNL</TableHead>
-                                    <TableHead>Start Time</TableHead>
-                                    <TableHead>Last Update</TableHead>
-                                    <TableHead>Lifetime</TableHead>
-                                    <TableHead>PNL High</TableHead>
-                                    <TableHead>PNL Low</TableHead>
-                                    <TableHead>PNL %</TableHead>
-                                    <TableHead>Quantity</TableHead>
-                                    <TableHead>Date</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody className="[&>*:nth-child(odd)]:bg-[#15171C] [&>*:nth-child(even)]:bg-[#07070A] max-h-80">
-                                {tradeHistory.map((trade, index) => (
-                                    <TableRow key={index} className="border-b-0 text-[16px] font-[400]">
-                                        <TableCell className="text-white">{trade.symbol}</TableCell>
-                                        <TableCell className="text-white">{trade.timestamp}</TableCell>
-                                        <TableCell className="text-white">{trade.price}</TableCell>
-                                        <TableCell className="text-white">{trade.lastPrice}</TableCell>
-                                        <TableCell className="text-white">{trade.orderType}</TableCell>
-                                        <TableCell className="text-white">{trade.status}</TableCell>
-                                        <TableCell className={`text-white ${trade.pnl.startsWith('-') ? 'text-red-500' : 'text-green-500'}`}>{trade.pnl}</TableCell>
-                                        <TableCell className="text-white">{trade.startTime}</TableCell>
-                                        <TableCell className="text-white">{trade.lastUpdate}</TableCell>
-                                        <TableCell className="text-white">{trade.lifetime}</TableCell>
-                                        <TableCell className="text-white">{trade.pnlHigh}</TableCell>
-                                        <TableCell className="text-white">{trade.pnlLow}</TableCell>
-                                        <TableCell className={`text-white ${trade.pnlPercentage.startsWith('-') ? 'text-red-500' : 'text-green-500'}`}>{trade.pnlPercentage}</TableCell>
-                                        <TableCell className="text-white">{trade.quantity}</TableCell>
-                                        <TableCell className="text-white">{trade.date}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 mb-2">
+        {[
+          {
+            id: "live",
+            name: "Live Orders",
+            color: "#26A17B",
+           
+          },
+          {
+            id: "order",
+            name: "All Orders",
+            color: "#F3BA2F",
+         
+            
+          },
+         
+        ].map((token) => (
+          <div
+         
+            key={token.id}
+            className={`rounded-[10px] w-full  p-[1px] cursor-pointer transition-all duration-300
+              ${tabType === token?.id ? "bg-[#2865FF]" : "bg-gradient-to-b from-transparent via-gray-400 to-transparent"}
+              hover:bg-[#3A75FF]`}
+            onClick={() => setTabType(token?.id)}
+          >
+            <button
+              className={`flex flex-wrap sm:flex w-full  items-center justify-center gap-2 py-3 rounded-[10px] 
+                ${tabType === token?.id ? "bg-[#2865FF]" : "bg-[#15171C]"}`}
+            >
+            
+              <span className="text-white">{token.name}</span>
+            </button>
+          </div>
+        ))}
       </div>
-    </div>
 
-
-        </Card>
+      <Card className="overflow-hidden">
       
+        <div className="w-full rounded-lg shadow-md">
+          <div className="overflow-y-auto h-[500px] scrollbar-none" >
+            <Table className="min-w-full"  >
+              {/* Table Header */}
+              <TableHeader className="sticky top-0  shadow-md z-10">
+                <TableRow className="border-[#2D67FE4D]">
+                  <TableHead className="text-white">Symbol</TableHead>
+                  <TableHead className="text-white">Timestamp</TableHead>
+                  <TableHead className="text-white">Price</TableHead>
+                  <TableHead className="text-white">Last Price</TableHead>
+                  <TableHead className="text-white">Order</TableHead>
+                  <TableHead className="text-white">Status</TableHead>
+                  <TableHead className="text-white">PNL</TableHead>
+                  <TableHead className="text-white">Start Time</TableHead>
+                  <TableHead className="text-white">Last Update</TableHead>
+                  <TableHead className="text-white">Lifetime</TableHead>
+                  <TableHead className="text-white">PNL High</TableHead>
+                  <TableHead className="text-white">PNL Low</TableHead>
+                  <TableHead className="text-white">PNL %</TableHead>
+                  <TableHead className="text-white">Quantity</TableHead>
+                  <TableHead className="text-white">Date</TableHead>
+                </TableRow>
+              </TableHeader>
+
+              {/* Table Body */}
+              <TableBody className="[&>*:nth-child(odd)]:bg-[#15171C] [&>*:nth-child(even)]:bg-[#07070A]">
+                {isLoading ? (
+                  [...Array(10)].map((_, index) => (
+                    <TableRow key={index} className="border-b-0">
+                      {[...Array(15)].map((_, i) => (
+                        <TableCell key={i}>
+                          <Skeleton className="h-5 w-full" />
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))
+                ) : (
+                  data &&
+                  data.map((trade: any, index: number) => {
+                    const startTime = formatDateTime(moment(trade?.timestamp).unix(), "time");
+                    const lastUpdateTime = formatDateTime(moment(trade?.lastUpdateTime).unix(), "time");
+                    const lifetime = getLifetime(moment(trade?.timestamp).unix(), moment(trade?.lastUpdateTime).unix());
+                    const formattedDate = formatDateTime(moment(trade?.timestamp).unix(), "date");
+
+                    return (
+                      <TableRow key={index} className="border-b-0 text-[16px] font-[400]">
+                        <TableCell className="text-white">{trade?.symbol}</TableCell>
+                        <TableCell className="text-white">{moment(trade?.timestamp).unix()}</TableCell>
+                        <TableCell className="text-white">{trade?.price}</TableCell>
+                        <TableCell className="text-white">{trade?.lastPrice}</TableCell>
+                        <TableCell className="text-white">{trade?.order_type}</TableCell>
+                        <TableCell className="text-white">{trade?.status}</TableCell>
+                        <TableCell className={`text-white ${trade?.pnl?.toString()?.startsWith('-') ? 'text-red-500' : 'text-green-500'}`}>
+                          {trade?.pnl}
+                        </TableCell>
+                        <TableCell className="text-white">{startTime}</TableCell>
+                        <TableCell className="text-white">{lastUpdateTime}</TableCell>
+                        <TableCell className="text-white">{lifetime}</TableCell>
+                        <TableCell className="text-white">{trade?.pnlHigh}</TableCell>
+                        <TableCell className="text-white">{trade?.pnlLow}</TableCell>
+                        <TableCell className={`text-white ${trade?.pnlPercentage?.toString()?.startsWith('-') ? 'text-red-500' : 'text-green-500'}`}>
+                          {trade?.pnlPercentage}
+                        </TableCell>
+                        <TableCell className="text-white">{trade?.quantity}</TableCell>
+                        <TableCell className="text-white">{formattedDate}</TableCell>
+                      </TableRow>
+                    );
+                  })
+                )}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      </Card>
     </div>
-  )
+  );
 }
+
+
+
+
+
+

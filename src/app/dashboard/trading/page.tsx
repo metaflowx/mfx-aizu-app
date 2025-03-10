@@ -1,17 +1,4 @@
 "use client"
-
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import {
-  Bot,
-  LineChart,
-  Settings,
-  TrendingUp,
-  Clock,
-  ArrowUpRight,
-  ArrowDownRight
-} from "lucide-react"
 import MarketValueTable from "./MarketValueTable"
 import PredicationCard from "./innercard/PredicationCard"
 import PriceStatics from "./innercard/PriceStatics"
@@ -19,8 +6,14 @@ import TradingHistory from "./innercard/TradingHistory"
 import MainDashboard from "./MainDashboard"
 import MainChart from "./MainChart"
 import CommonButton from "@/components/ui/CommonButton"
+import { useLiveOrders, useOrders } from "@/hooks/useLiveOrders"
+import { useState } from "react"
 
 export default function TradingPage() {
+  const { data: liveOrders, isLoading: isLoadingLive, error: errorLive } = useLiveOrders();
+  const { data: orders, isLoading: isLoadingOrders, error: errorOrders } = useOrders();
+  console.log(">>>>>>>>>>>>>data",liveOrders);
+  const [tabType,setTabType]=useState("live")
   return (
     <>
     
@@ -48,7 +41,12 @@ export default function TradingPage() {
         
 
       </div>
-        <MarketValueTable />
+      {tabType==="live" ? (
+        <MarketValueTable tabType={tabType} setTabType={setTabType} data={liveOrders} isLoading={isLoadingLive} />
+      ):(
+        <MarketValueTable tabType={tabType} setTabType={setTabType} data={orders} isLoading={isLoadingOrders} />
+      )}
+        
     </>
   )
 }
