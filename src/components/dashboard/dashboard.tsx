@@ -36,7 +36,10 @@ export default function Dashboard() {
         <Hero type="dashboard" />
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-1">
+      <Card className="overflow-hidden">
+          <ReferralTable />
+        </Card>
         <Card className="p-6">
           <div className="flex w-full items-center">
             <div
@@ -97,9 +100,7 @@ export default function Dashboard() {
             </div>
           </div>
         </Card>
-        <Card className="overflow-hidden">
-          <ReferralTable />
-        </Card>
+       
       </div>
     </>
   );
