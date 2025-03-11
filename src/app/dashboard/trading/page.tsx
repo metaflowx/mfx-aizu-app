@@ -22,7 +22,7 @@ export default function TradingPage() {
 </div>
       <MainDashboard />
       <div className="flex items-center py-2" >
-      <h3>Apply for Bot access Whitelist </h3>&nbsp;
+      <h3 className="text-white">Apply for Bot access Whitelist </h3>&nbsp;
       <CommonButton title="Apply" width="150px" />
 
       </div>
