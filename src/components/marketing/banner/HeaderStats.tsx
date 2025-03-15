@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function HeaderStats() {
+export default function HeaderStats({calciulatedToken}:{calciulatedToken:any}) {
   return (
     <div
       style={{
@@ -15,7 +15,7 @@ export default function HeaderStats() {
       <div className="flex justify-between text-white rounded-[12px] w-full p-4">
         <div>
           <p className="text-[14px] md:text-[18px] font-[400]">USDT Raised</p>
-          <p className="text-[14px] md:text-[18px] font-[700]">$1,737,633</p>
+          <p className="text-[14px] md:text-[18px] font-[700]"> ${calciulatedToken?.totalSale || 0}</p>
         </div>
         <div className="text-center">
           <p className="text-[14px] md:text-[18px] font-[400]">Listing date</p>

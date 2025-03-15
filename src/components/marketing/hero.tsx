@@ -1,30 +1,265 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CommonButton from "../ui/CommonButton";
 import CoinSelector from "./banner/CoinSelector";
 import TimerCounter from "./banner/TimerCounter";
 import HeaderStats from "./banner/HeaderStats";
+import { toast } from "react-toastify";
 import AnimatedBorderTrail from "../borderanimation";
 import { MagicCard } from "../ui/magic-card";
-import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
-
-export default function Hero({ id,type }: { id?: string,type?:string }) {
+import { useAccount, useBalance, useBlockNumber, useReadContract, useReadContracts, useWriteContract } from "wagmi";
+import { ICOContractAddress, iocConfig, tokenConfig } from "@/constants/contract";
+import {
+  Address,
+  erc20Abi,
+  formatEther,
+  formatUnits,
+  parseEther,
+  parseUnits,
+  zeroAddress,
+} from "viem";
+import {
+  useAppKit,
+  useAppKitAccount,
+  useAppKitNetwork,
+} from "@reown/appkit/react";
+import { handleNegativeValue } from "@/utils";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import useCheckAllowance from "@/hooks/useCheckAllowance";
+import { IcoABI } from "@/app/ABI/IcoABI";
+import { useSearchParams } from "next/navigation";
+import { extractDetailsFromError } from "@/utils/extractDetailsFromError";
+export default function Hero({ id, type }: { id?: string; type?: string }) {
+  const { address } = useAccount();
+  const queryClient = useQueryClient();
+  const searchparm = useSearchParams();
+  const { data: blockNumber } = useBlockNumber({ watch: true });
   const [amount, setAmount] = useState<string>("");
+  const { chainId } = useAppKitNetwork();
+  const [isAproveERC20, setIsApprovedERC20] = useState(true);
+  const [referrer, setReferrer] = useState(
+    searchparm.get("ref") || zeroAddress
+  );
+  const { writeContractAsync, isPending, isSuccess, isError } =
+    useWriteContract();
   const [selectedToken, setSelectedToken] = useState({
-    name:"USDT",
-    id:"tether",
+    tokenname: "BNB",
+    id: "tether",
     imgurl: "/images/coin-icon/usdt.png",
+    address: zeroAddress,
   });
-  const [progress, setProgress] = useState(30);
-  const max = 100;
-  const progressWidth = (progress / max) * 100;
+
+ 
   const { open, close } = useAppKit();
-  const { address, isConnected } = useAppKitAccount();
+
+
+  const result = useReadContracts({
+    contracts: [
+      {
+        ...iocConfig,
+        functionName: "getSaleTokenPrice",
+        args: [1],
+        chainId: Number(chainId) ?? 97,
+      },
+
+      {
+        ...iocConfig,
+        functionName: "saleType2IcoDetail",
+        args: [1],
+        chainId: Number(chainId) ?? 97,
+      },
+      {
+        ...tokenConfig,
+        functionName: "totalSupply",
+        chainId: Number(chainId) ?? 97,
+      },
+      {
+        ...iocConfig,
+        functionName: "user2SaleType2Contributor",
+        args: [address as Address, 1],
+        chainId: Number(chainId) ?? 97,
+      },
+      {
+        ...iocConfig,
+        functionName: "saleType2IcoDetail",
+        args: [1],
+        chainId: Number(chainId),
+      },
+    ],
+  });
+
+  const tokenAddress =
+    selectedToken.tokenname === "BNB" ? zeroAddress : selectedToken.address;
+
+  const calculationresult = useReadContracts({
+    contracts: [
+      {
+        ...iocConfig,
+        functionName: "calculateUSDAmount",
+        args: [tokenAddress as Address, parseEther(amount)],
+        chainId: Number(chainId),
+      },
+    ],
+  });
+
+  const calciulatedToken = useMemo(() => {
+    if ((result && result?.data) || amount || calculationresult) {
+      const tokenPrice = result?.data && result?.data[0]?.result;
+      const dividedVa = calculationresult?.data
+        ? (Number(
+            formatEther(BigInt(calculationresult?.data[0]?.result ?? 0))
+          ) > 0
+            ? Number(
+                formatEther(BigInt(calculationresult?.data[0]?.result ?? 0))
+              )
+            : Number(amount)) / Number(formatEther(BigInt(tokenPrice ?? 0)))
+        : 0;
+      const purchaseToken =
+        result &&
+        result?.data &&
+        result?.data[3]?.result &&
+        formatEther(BigInt(result?.data[3]?.result?.volume));
+      const tokeninUSD =
+        result && result?.data
+          ? Number(formatEther(BigInt(result?.data[0]?.result ?? 0)))
+          : 0;
+      const totalTokenSupply =
+        result &&
+        result?.data &&
+        result?.data[4]?.result &&
+        formatEther(BigInt(result?.data[4]?.result?.saleTokenAmount));
+      const totalTokenQty =
+        result &&
+        result?.data &&
+        result?.data[4]?.result &&
+        formatEther(BigInt(result?.data[4]?.result?.saleQuantity));
+
+      const totalTokenSale =
+        result &&
+        result?.data &&
+        result?.data[4]?.result &&
+        formatEther(BigInt(result?.data[4]?.result?.saleTokenAmount));
+
+      const purchaseTokenUSD = Number(purchaseToken) * Number(tokeninUSD);
+      const totalTokenSupplyUSD = Number(totalTokenSupply) * Number(tokeninUSD);
+
+      const totalSoldToken = Number(totalTokenSale) - Number(totalTokenQty);
+      const totalSaleTokenUSD = Number(totalSoldToken) * Number(tokeninUSD);
+
+      return {
+        getToken: dividedVa?.toFixed(2),
+        purchaseTokenUSD: purchaseTokenUSD.toFixed(2),
+        totalTokenSupplyUSD: totalTokenSupplyUSD,
+        totalSale: totalSaleTokenUSD.toFixed(2),
+        purchaseToken: Number(purchaseToken).toFixed(2),
+      };
+    }
+  }, [result, amount, calculationresult]);
+
+  const resultOfCheckAllowance = useCheckAllowance({
+    spenderAddress: ICOContractAddress,
+    token: selectedToken.address,
+  });
+
+  
+
+
+  useEffect(() => {
+    queryClient.invalidateQueries({
+      queryKey: resultOfCheckAllowance.queryKey,
+    });
+    queryClient.invalidateQueries({
+      queryKey: result.queryKey,
+    });
+  }, [blockNumber, queryClient,result, resultOfCheckAllowance]);
+
+  const progressWidth =
+  (Number(calciulatedToken?.totalSale) /
+    Number(calciulatedToken?.totalTokenSupplyUSD)) *
+  100;
+
+  const minBuy = result?.data?.[4]?.result?.minBuy
+  ? Number(formatEther(BigInt(result.data[4].result.minBuy)))
+  : 0;
+const maxBuy = result?.data?.[4]?.result?.maxBuy
+  ? Number(formatEther(BigInt(result.data[4].result.maxBuy)))
+  : 0;
+
+
+
+
+  const handleBuy = async () => {
+    try {
+      const formattedAmount = parseUnits(amount, 18);
+      const tokenAddress = selectedToken?.address;
+      const res = await writeContractAsync({
+        address: ICOContractAddress,
+        abi: IcoABI,
+        functionName: "buy",
+        args: [
+          1,
+          tokenAddress as Address,
+          formattedAmount,
+          referrer as Address,
+        ],
+        value: selectedToken?.tokenname === "BNB" ? parseEther(amount) : BigInt(0),
+      });
+      if (res) {
+        setAmount("");
+        toast.success("Transaction completed");
+      }
+    } catch (error: any) {
+      toast.error(extractDetailsFromError(error.message as string) as string);
+    }
+  };
+
+  const approveToken = async () => {
+    try {
+      const formattedAmount =
+        Number?.(amount) > 0
+          ? parseEther?.(amount)
+          : parseEther?.(
+              BigInt((Number.MAX_SAFE_INTEGER ** 1.3)?.toString())?.toString()
+            );
+      const res = await writeContractAsync({
+        abi: erc20Abi,
+        address: selectedToken.address,
+        functionName: "approve",
+        args: [ICOContractAddress, formattedAmount],
+        account: address,
+      });
+      if (res) {
+        setIsApprovedERC20(true);
+        toast.success("Token approved successfully");
+      }
+    } catch (error: any) {
+      toast.error(extractDetailsFromError(error.message as string) as string);
+    }
+  };
+
+  const { data: Balance } = useBalance({
+    address: address,
+  });
+
+  const { data: resultOfTokenBalance } = useReadContract({
+    abi: erc20Abi,
+    address: selectedToken.address,
+    functionName: "balanceOf",
+    args: [address as Address],
+    account: address,
+    query: {
+      enabled: selectedToken.tokenname === "BNB" ? false : true,
+    },
+  });
+
+
   return (
     <main
       id={id}
-      className={`${type==="dashboard" ? "w-full":"max-w-[68rem]"}  mx-auto  flex items-center justify-center sm:mt-10 2xl:mt:5 mt-10`}
+      className={`${
+        type === "dashboard" ? "w-full" : "max-w-[68rem]"
+      }  mx-auto  flex items-center justify-center sm:mt-10 2xl:mt:5 mt-10`}
     >
       <MagicCard>
         <div
@@ -36,71 +271,98 @@ export default function Hero({ id,type }: { id?: string,type?:string }) {
           className="rounded-[20px] w-full"
         >
           <div className="w-full bg-[#0D0D0D] p-6 rounded-[20px] ">
-           {type!=="dashboard" && (
-            <>
-            
-            <AnimatedBorderTrail
-              trailSize="lg"
-              className="w-full rounded-[12px] mb-10"
-              contentClassName="rounded-[12px]"
-              trailColor="blue"
-              duration="8s"
-            >
-              <HeaderStats />
-            </AnimatedBorderTrail>
+            {type !== "dashboard" && (
+              <>
+                <AnimatedBorderTrail
+                  trailSize="lg"
+                  className="w-full rounded-[12px] mb-10"
+                  contentClassName="rounded-[12px]"
+                  trailColor="blue"
+                  duration="8s"
+                >
+                  <HeaderStats calciulatedToken={calciulatedToken} />
+                </AnimatedBorderTrail>
 
-            {/* Title */}
-            <div className="flex justify-between" >
-              <div>
-                 <h1
-            
-            data-aos="fade-right"
-            className="text-[14px] md:text-[18px] font-bold text-center text-white"
-          >
-            Phase 1/20
-          </h1>
-          <p className="text-[12px] md:text-[14px] text-white  " >0.01 USDT</p>
-          </div>
-          <div> <h1
-            
-            data-aos="fade-right"
-            className="text-[14px] md:text-[18px] font-bold text-center text-white "
-          >
-           Next phase will starts in 5 days
-          </h1></div>
-          <div> <h1
-            
-            data-aos="fade-right"
-            className="text-[14px] md:text-[18px] font-bold text-center text-white "
-          >
-           Next Phase 2
-          </h1>
-          <p className="text-[12px] md:text-[14px] text-white " >0.0105 USDT</p>
-          </div>
+                {/* Title */}
+                <div className="flex justify-between">
+                  <div>
+                    <h1
+                      data-aos="fade-right"
+                      className="text-[14px] md:text-[18px] font-bold text-center text-white"
+                    >
+                      Phase 1/20
+                    </h1>
+                    <p className="text-[12px] md:text-[14px] text-white  ">
+                      0.01 USDT
+                    </p>
+                  </div>
+                  <div>
+                    {" "}
+                    <h1
+                      data-aos="fade-right"
+                      className="text-[14px] md:text-[18px] font-bold text-center text-white "
+                    >
+                      Next phase will starts in 5 days
+                    </h1>
+                  </div>
+                  <div>
+                    {" "}
+                    <h1
+                      data-aos="fade-right"
+                      className="text-[14px] md:text-[18px] font-bold text-center text-white "
+                    >
+                      Next Phase 2
+                    </h1>
+                    <p className="text-[12px] md:text-[14px] text-white ">
+                      0.0105 USDT
+                    </p>
+                  </div>
+                </div>
 
-            </div>
-           
-            <h1
-            
-              data-aos="fade-right"
-              className="text-3xl font-bold text-center text-white mb-2"
-            >
-              BUY AIZU
-            </h1>
-           
+                <h1
+                  data-aos="fade-right"
+                  className="text-3xl font-bold text-center text-white mb-2"
+                >
+                  BUY AIZU
+                </h1>
 
-            {/* Countdown Timer */}
-            <TimerCounter />
-            </>
-           )}
+                {/* Countdown Timer */}
+                {Math.floor(Date.now() / 1000) <=
+                Number(result?.data?.[1]?.result?.startAt) ? (
+                  <TimerCounter
+                    label="Sale Starts In"
+                    targetTime={
+                      result &&
+                      result.data &&
+                      result.data &&
+                      result.data[1]?.result &&
+                      result.data[1]?.result &&
+                      result.data[1]?.result?.startAt
+                    }
+                  />
+                ) : (
+                  <TimerCounter
+                    label="Sale Ends In"
+                    targetTime={
+                      result &&
+                      result.data &&
+                      result.data &&
+                      result.data[1]?.result &&
+                      result.data[1]?.result &&
+                      result.data[1]?.result?.endAt
+                    }
+                  />
+                )}
+              </>
+            )}
 
             <div
               style={{
                 background:
-                  "linear-gradient(90deg, #DD4242 0%, rgba(221, 66, 66, 0) 100%)",
+                  "#000",
                 border: "1px solid #DD4242",
               }}
-              className="w-full h-[20px] rounded-full mb-6"
+              className="w-full h-[20px] rounded-full mb-6 overflow-hidden"
             >
               <div
                 style={{
@@ -120,15 +382,24 @@ export default function Hero({ id,type }: { id?: string,type?:string }) {
                   src="/images/coin-icon/aizu.png"
                   className="w-6 h-6 bg-[#FFD700] rounded-full"
                 />
-                <span data-aos="fade-right" className="text-white">1 AIZU</span>
-                <span data-aos="fade-right" className="text-white mx-1">+</span>
+                <span data-aos="fade-right" className="text-white">
+                  1 AIZU
+                </span>
+                <span data-aos="fade-right" className="text-white mx-1">
+                  +
+                </span>
                 <img
                   src="/images/coin-icon/usdt.png"
                   className="w-6 h-6 bg-[#26A17B] rounded-full"
                 />
-                <span data-aos="fade-right" className="text-white">0.01 USDT</span>
+                <span data-aos="fade-right" className="text-white">
+                  0.01 USDT
+                </span>
               </div>
-              <div data-aos="fade-right" className="text-white text-sm sm:mt-0 mt-[15px]">
+              <div
+                data-aos="fade-right"
+                className="text-white text-sm sm:mt-0 mt-[15px]"
+              >
                 Final phase is LIVE. Listing price $0.06
               </div>
             </div>
@@ -141,7 +412,10 @@ export default function Hero({ id,type }: { id?: string,type?:string }) {
 
             {/* Step 2 */}
             <div className="mb-8">
-              <h2 data-aos="fade-right" className="text-white text-lg mb-4 sm:text-center text-left">
+              <h2
+                data-aos="fade-right"
+                className="text-white text-lg mb-4 sm:text-center text-left"
+              >
                 Step 2 - Enter the Amount of Token You Would Like to Purchase
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -160,17 +434,31 @@ export default function Hero({ id,type }: { id?: string,type?:string }) {
                   >
                     <input
                       type="number"
+                      onKeyDown={(e) => {
+                        handleNegativeValue(e);
+                      }}
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
                       className="bg-transparent text-white w-full outline-none"
                       placeholder="0"
                     />
+                   
                     <div className="flex items-center gap-2">
                       <img
-                        src={selectedToken?.imgurl || "/images/coin-icon/usdt.png"}
-                        className="w-5 h-5 bg-[#26A17B] rounded-full"
+                        src={
+                          selectedToken?.tokenname === "USDT"
+                            ? "/images/coin-icon/usdt.png"
+                            : `/images/coin-icon/${
+                                selectedToken?.address === zeroAddress
+                                  ? "bnb"
+                                  : selectedToken?.tokenname?.toLowerCase()
+                              }.svg`
+                        }
+                        className="w-5 h-5 rounded-full"
                       />
-                      <span className="text-white">{selectedToken?.name}</span>
+                      <span className="text-white">
+                        {selectedToken?.tokenname}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -189,9 +477,7 @@ export default function Hero({ id,type }: { id?: string,type?:string }) {
                   >
                     <input
                       type="number"
-                      value={
-                        amount ? (parseFloat(amount) / 0.81).toFixed(2) : ""
-                      }
+                      value={calciulatedToken?.getToken || 0}
                       className="bg-transparent text-white w-full outline-none"
                       readOnly
                       placeholder="0"
@@ -205,6 +491,23 @@ export default function Hero({ id,type }: { id?: string,type?:string }) {
                     </div>
                   </div>
                 </div>
+                {amount ? (
+                <>
+                  {Number(amount) < minBuy && (
+                    <p className="pt-1" style={{ color: "red" }}>
+                      Min: {minBuy}
+                    </p>
+                  )}
+
+                  {Number(amount) > maxBuy && (
+                    <p className="pt-1" style={{ color: "red" }}>
+                      Max: {maxBuy}
+                    </p>
+                  )}
+                </>
+              ) : (
+                <p style={{ color: "red" }}></p>
+              )}
               </div>
             </div>
 
@@ -216,7 +519,36 @@ export default function Hero({ id,type }: { id?: string,type?:string }) {
               className="w-full"
             >
               {address ? (
-                <CommonButton title="Buy Now" width="100%" />
+                <CommonButton
+
+                onClick={() => {
+                  if (selectedToken?.tokenname === "BNB") {
+                    handleBuy();
+                  } else {
+                    !isAproveERC20 ? approveToken() : handleBuy();
+                  }
+                }}
+                
+                title= {isPending
+                  ? selectedToken?.tokenname === "BNB" || isAproveERC20
+                    ? "Buying..."
+                    : "Approving..."
+                  : selectedToken?.tokenname === "BNB" && amount === ""
+                  ? "Please enter amount"
+                  : selectedToken?.tokenname === "BNB" && Number(amount) <= 0
+                  ? "Please enter correct amount"
+                  : (
+                    selectedToken?.tokenname === "BNB"
+                        ? Number(Balance?.formatted) < Number(amount) ||
+                          Number(Balance?.formatted) === 0
+                        : Number(
+                            formatEther(BigInt(resultOfTokenBalance ?? 0))
+                          ) < Number(amount)
+                    )
+                  ? "Insufficient funds"
+                  : selectedToken?.tokenname === "BNB" || isAproveERC20
+                  ? "Buy Now"
+                  : "Approve"} width="100%" />
               ) : (
                 <CommonButton
                   title="Connect Wallet"
