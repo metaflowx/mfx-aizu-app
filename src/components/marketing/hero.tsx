@@ -100,8 +100,19 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
         args: [tokenAddress as Address, parseEther(amount)],
         chainId: Number(chainId),
       },
+      {
+        ...iocConfig,
+        functionName: "exchangelaunchDate",
+       
+        chainId: Number(chainId),
+      },
+
+      
     ],
   });
+
+  console.log(">>>>>>>>>calculationresult",calculationresult);
+  
 
   const calciulatedToken = useMemo(() => {
     if ((result && result?.data) || amount || calculationresult) {
@@ -147,12 +158,16 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
       const totalSoldToken = Number(totalTokenSale) - Number(totalTokenQty);
       const totalSaleTokenUSD = Number(totalSoldToken) * Number(tokeninUSD);
 
+      const launchDate = calculationresult?.data?.[1]?.result;
+
+
       return {
         getToken: dividedVa?.toFixed(2),
         purchaseTokenUSD: purchaseTokenUSD.toFixed(2),
         totalTokenSupplyUSD: totalTokenSupplyUSD,
         totalSale: totalSaleTokenUSD.toFixed(2),
         purchaseToken: Number(purchaseToken).toFixed(2),
+        launchDate:launchDate
       };
     }
   }, [result, amount, calculationresult]);
@@ -205,6 +220,8 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
         ],
         value: selectedToken?.tokenname === "BNB" ? parseEther(amount) : BigInt(0),
       });
+      console.log(">>>>>>>>>>res208",res);
+      
       if (res) {
         setAmount("");
         toast.success("Transaction completed");
@@ -572,12 +589,16 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
               )}
             </AnimatedBorderTrail>
 
+            {!address && (
+
             <p
               data-aos="fade-up"
               className="text-center text-gray-400 text-sm hover:text-gray-300 cursor-pointer pt-5"
             >
               Don't have a wallet?
             </p>
+            )}
+
           </div>
         </div>
       </MagicCard>
