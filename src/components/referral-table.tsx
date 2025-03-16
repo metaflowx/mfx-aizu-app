@@ -24,7 +24,7 @@ export function ReferralTable() {
       {
         ...iocConfig,
         functionName: "totalContributorLengthForUser",
-        args: [address as Address, 0],
+        args: [address as Address, 1],
         chainId: Number(chainId) ?? 97,
       },
     ],
