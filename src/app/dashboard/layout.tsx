@@ -9,6 +9,7 @@ import { Sidebar } from '@/components/sidebar/sidebar';
 import TopBar from '@/components/sidebar/header';
 import { useState } from 'react';
 import DashboardCom from './DashboardCom';
+import { ToastContainer } from 'react-toastify';
 
 const prompt = Prompt({
   subsets: ['latin'], // Optional
@@ -31,6 +32,7 @@ export default async function RootLayout({children,}: { children: React.ReactNod
         <ContextProvider
           cookies={cookies}
         >
+          <ToastContainer />
             <TopBar />
            <DashboardCom children={children} />
         </ContextProvider>

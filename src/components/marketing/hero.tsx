@@ -210,6 +210,8 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
         toast.success("Transaction completed");
       }
     } catch (error: any) {
+      console.log(">>>>>>>>>>>>.error",error);
+      
       toast.error(extractDetailsFromError(error.message as string) as string);
     }
   };
@@ -493,7 +495,7 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
                 </div>
                 {amount ? (
                 <>
-                  {Number(amount) < minBuy && (
+                  {  Number(amount) < minBuy && (
                     <p className="pt-1" style={{ color: "red" }}>
                       Min: {minBuy}
                     </p>
@@ -520,6 +522,18 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
             >
               {address ? (
                 <CommonButton
+
+                disabled={
+                
+                  isPending ||
+                  amount === "" ||
+                  Number(amount) <= 0 ||
+                  (selectedToken?.tokenname === "BNB"
+                    ? Number(Balance?.formatted) < Number(amount) ||
+                      Number(Balance?.formatted) === 0
+                    : Number(formatEther(BigInt(resultOfTokenBalance ?? 0))) <
+                      Number(amount))
+                }
 
                 onClick={() => {
                   if (selectedToken?.tokenname === "BNB") {

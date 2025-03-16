@@ -8,6 +8,7 @@ import { StatsCard } from "../stats-card";
 import { ReferralTable } from "../referral-table";
 import Hero from "../marketing/hero";
 import ShareModal from "../ui/ShareModal";
+import ReferralCard from "./ReferralCard";
 
 export default function Dashboard() {
   return (
@@ -40,66 +41,7 @@ export default function Dashboard() {
       <Card className="overflow-hidden">
           <ReferralTable />
         </Card>
-        <Card className="p-6">
-          <div className="flex w-full items-center">
-            <div
-              style={{
-                background:
-                  "linear-gradient(270deg, rgba(166, 166, 166, 0.7) 0%, rgba(166, 166, 166, 0) 50%, rgba(166, 166, 166, 0.7) 100%)",
-              }}
-              className="p-[1px] rounded-[8px]  h-[100%] "
-            >
-              <div className="bg-[#000000] rounded-[8px] h-[60px] w-[60px] flex justify-center items-center">
-                <img src="/images/referral/gift.png" />
-              </div>
-            </div>
-            <div className="pl-3">
-              <h3 className="text-[20px] font-[400]">Your referrals</h3>
-              <p className="text-[20px] font-[700]">0.00</p>
-            </div>
-          </div>
-
-          <div className="flex w-full items-center mt-8">
-            <div
-              style={{
-                background:
-                  "linear-gradient(270deg, rgba(166, 166, 166, 0.7) 0%, rgba(166, 166, 166, 0) 50%, rgba(166, 166, 166, 0.7) 100%)",
-              }}
-              className="p-[1px] rounded-[8px]  h-[100%] "
-            >
-              <div className="bg-[#000000] rounded-[8px] h-[60px] w-[60px] flex justify-center items-center">
-                <img src="/images/referral/dollar.png" />
-              </div>
-            </div>
-            <div className="pl-3">
-              <h3 className="text-[20px] font-[400]">Your referral earnings</h3>
-              <p className="text-[20px] font-[700]">0.00</p>
-            </div>
-          </div>
-
-          <div className="mt-16">
-            <div
-              style={{
-                background:
-                  " linear-gradient(90deg, rgba(40, 101, 255, 0) 0%, #2865FF 50%, rgba(40, 101, 255, 0) 100%)",
-              }}
-              className="p-[1px]"
-            >
-              <div
-                style={{
-                  background:
-                    "linear-gradient(90deg, rgba(40, 101, 255, 0) 0%, rgba(221, 66, 66, 0.7) 50%, rgba(40, 101, 255, 0) 100%) ",
-                }}
-                className=" flex justify-between items-center"
-              >
-                <p className="text-[14px] flex items-center md:text-[18px] font-[400] text-white">
-                  https://ico.aizu.com/dashboard/?ref= <Copy color="#fff" />
-                </p>
-                <ShareModal />
-              </div>
-            </div>
-          </div>
-        </Card>
+       <ReferralCard type="text" />
        
       </div>
     </>

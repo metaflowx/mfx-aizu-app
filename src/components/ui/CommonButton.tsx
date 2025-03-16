@@ -5,13 +5,16 @@ export default function CommonButton({
   title,
   width,
   onClick,
+  disabled
 }: {
   title: string;
   width?: string;
   onClick?: any;
+  disabled?:boolean
 }) {
   return (
     <button
+    disabled={disabled}
       onClick={() => {
         if (onClick) {
           onClick();
