@@ -30,6 +30,7 @@ import useCheckAllowance from "@/hooks/useCheckAllowance";
 import { IcoABI } from "@/app/ABI/IcoABI";
 import { useSearchParams } from "next/navigation";
 import { extractDetailsFromError } from "@/utils/extractDetailsFromError";
+import PhaseDisplay from "./PhaseDisplay";
 export default function Hero({ id, type }: { id?: string; type?: string }) {
   const { address } = useAccount();
   const queryClient = useQueryClient();
@@ -103,9 +104,25 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
       {
         ...iocConfig,
         functionName: "exchangelaunchDate",
-       
         chainId: Number(chainId),
       },
+
+      {
+        ...iocConfig,
+        functionName: "totalContributor",
+        args: [1],
+        chainId: Number(chainId),
+      },
+
+      {
+        ...iocConfig,
+        functionName: "getPaymentOption",
+        args: [tokenAddress as Address],
+        chainId: Number(chainId),
+      },
+
+
+      
 
       
     ],
@@ -154,11 +171,10 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
 
       const purchaseTokenUSD = Number(purchaseToken) * Number(tokeninUSD);
       const totalTokenSupplyUSD = Number(totalTokenSupply) * Number(tokeninUSD);
-
       const totalSoldToken = Number(totalTokenSale) - Number(totalTokenQty);
       const totalSaleTokenUSD = Number(totalSoldToken) * Number(tokeninUSD);
-
       const launchDate = calculationresult?.data?.[1]?.result;
+      const totalContributors = calculationresult?.data?.[2]?.result;
 
 
       return {
@@ -167,7 +183,8 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
         totalTokenSupplyUSD: totalTokenSupplyUSD,
         totalSale: totalSaleTokenUSD.toFixed(2),
         purchaseToken: Number(purchaseToken).toFixed(2),
-        launchDate:launchDate
+        launchDate:launchDate,
+        totalContributors:Number(totalContributors)
       };
     }
   }, [result, amount, calculationresult]);
@@ -272,6 +289,23 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
     },
   });
 
+  const calculateAmounts = (initialValue: number, days: number = 100, interval: number = 5, increment: number = 0.01) => {
+    const results: number[] = [];
+    let currentValue = initialValue;
+  
+    for (let day = interval; day <= days; day += interval) {
+      results.push(parseFloat(currentValue.toFixed(2))); // Ensuring precision
+      currentValue += increment;
+    }
+  
+    return results;
+  };
+  
+  // Example Usage:
+  const amounts = calculateAmounts(0.01); // Starting value is 1
+  console.log("amounts>>>>>>>>>.298",amounts);
+  
+
 
   return (
     <main
@@ -303,40 +337,15 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
                 </AnimatedBorderTrail>
 
                 {/* Title */}
-                <div className="flex justify-between">
-                  <div>
-                    <h1
-                      data-aos="fade-right"
-                      className="text-[14px] md:text-[18px] font-bold text-center text-white"
-                    >
-                      Phase 1/20
-                    </h1>
-                    <p className="text-[12px] md:text-[14px] text-white  ">
-                      0.01 USDT
-                    </p>
-                  </div>
-                  <div>
-                    {" "}
-                    <h1
-                      data-aos="fade-right"
-                      className="text-[14px] md:text-[18px] font-bold text-center text-white "
-                    >
-                      Next phase will starts in 5 days
-                    </h1>
-                  </div>
-                  <div>
-                    {" "}
-                    <h1
-                      data-aos="fade-right"
-                      className="text-[14px] md:text-[18px] font-bold text-center text-white "
-                    >
-                      Next Phase 2
-                    </h1>
-                    <p className="text-[12px] md:text-[14px] text-white ">
-                      0.0105 USDT
-                    </p>
-                  </div>
-                </div>
+                <PhaseDisplay  targetTime={
+                      result &&
+                      result.data &&
+                      result.data &&
+                      result.data[1]?.result &&
+                      result.data[1]?.result &&
+                      result.data[1]?.result?.startAt
+                    } />
+                
 
                 <h1
                   data-aos="fade-right"
@@ -510,22 +519,32 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
                     </div>
                   </div>
                 </div>
-                {amount ? (
+                {amount && (calculationresult?.data?.[0]?.result || calculationresult?.data?.[3]?.result) && (
                 <>
-                  {  Number(amount) < minBuy && (
+                  {(calculationresult?.data?.[3]?.result?.isStable && Number(amount) < Number(minBuy)) && (
+
                     <p className="pt-1" style={{ color: "red" }}>
-                      Min: {minBuy}
+                      Min: ${minBuy}
                     </p>
+
                   )}
 
-                  {Number(amount) > maxBuy && (
-                    <p className="pt-1" style={{ color: "red" }}>
-                      Max: {maxBuy}
-                    </p>
+                  {(
+
+                    <>
+
+                      {!calculationresult?.data?.[3]?.result?.isStable && Number(formatEther(BigInt(calculationresult?.data[0]?.result ?? 0))) < Number(minBuy) && (
+                        <p className="pt-1" style={{ color: "red" }}>
+                          Min: ${minBuy}
+                        </p>
+                      )}
+                    </>
+
                   )}
+
+
+                 
                 </>
-              ) : (
-                <p style={{ color: "red" }}></p>
               )}
               </div>
             </div>
@@ -541,6 +560,12 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
                 <CommonButton
 
                 disabled={
+
+                  (
+                    (calculationresult?.data?.[3]?.result?.isStable && Number(amount) < Number(minBuy))||
+                
+                    !calculationresult?.data?.[3]?.result?.isStable && Number(formatEther(BigInt(calculationresult?.data?.[0]?.result ?? 0))) < Number(minBuy)
+                ) ||
                 
                   isPending ||
                   amount === "" ||

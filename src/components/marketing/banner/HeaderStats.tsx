@@ -27,7 +27,7 @@ export default function HeaderStats({calciulatedToken}:{calciulatedToken:any}) {
         </div>
         <div className="text-right">
           <p className="text-[14px] md:text-[18px] font-[400]">Holders</p>
-          <p className="text-[14px] md:text-[18px] font-[700]">2,561</p>
+          <p className="text-[14px] md:text-[18px] font-[700]">{calciulatedToken?.totalContributors}</p>
         </div>
       </div>
     </div>
