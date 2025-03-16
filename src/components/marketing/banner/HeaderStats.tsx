@@ -1,6 +1,10 @@
+import moment from "moment";
 import React from "react";
 
-export default function HeaderStats() {
+export default function HeaderStats({calciulatedToken}:{calciulatedToken:any}) {
+  const date = new Date(Number(calciulatedToken?.launchDate) * 1000);
+
+  
   return (
     <div
       style={{
@@ -15,15 +19,15 @@ export default function HeaderStats() {
       <div className="flex justify-between text-white rounded-[12px] w-full p-4">
         <div>
           <p className="text-[14px] md:text-[18px] font-[400]">USDT Raised</p>
-          <p className="text-[14px] md:text-[18px] font-[700]">$1,737,633</p>
+          <p className="text-[14px] md:text-[18px] font-[700]"> ${calciulatedToken?.totalSale || 0}</p>
         </div>
         <div className="text-center">
           <p className="text-[14px] md:text-[18px] font-[400]">Listing date</p>
-          <p className="text-[14px] md:text-[18px] font-[700]">March 4, 2025</p>
+          <p className="text-[14px] md:text-[18px] font-[700]">{moment(date).format("lll")||""}</p>
         </div>
         <div className="text-right">
           <p className="text-[14px] md:text-[18px] font-[400]">Holders</p>
-          <p className="text-[14px] md:text-[18px] font-[700]">2,561</p>
+          <p className="text-[14px] md:text-[18px] font-[700]">{calciulatedToken?.totalContributors}</p>
         </div>
       </div>
     </div>
