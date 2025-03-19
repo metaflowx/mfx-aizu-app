@@ -86,7 +86,7 @@ const TokenData=({
                 ${coinType.tokenname === (coin === zeroAddress ? "BNB" : symbol) ? "bg-[#2865FF]" : "bg-[#15171C]"}`}
             >
               <img
-                src={symbol==="USDT" ? "/images/coin-icon/usdt.png": `/images/coin-icon/${coin === zeroAddress ? "bnb": symbol?.toLowerCase()}.svg`  }
+                src={symbol==="BTCB" ? "/images/coin-icon/btcb.png": symbol==="USDT" ? "/images/coin-icon/usdt.png": `/images/coin-icon/${coin === zeroAddress ? "bnb": symbol?.toLowerCase()}.svg`  }
                 className="w-5 h-5 rounded-full"
                
               />

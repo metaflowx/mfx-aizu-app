@@ -175,7 +175,7 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
       const totalSaleTokenUSD = Number(totalSoldToken) * Number(tokeninUSD);
       const launchDate = calculationresult?.data?.[1]?.result;
       const totalContributors = calculationresult?.data?.[2]?.result;
-console.log(">>>>>>>>>>>>totalSaleTokenUSD",totalSaleTokenUSD);
+const tokenPriceData =Number(formatEther(BigInt(tokenPrice ?? 0)))
 
 
       return {
@@ -185,7 +185,8 @@ console.log(">>>>>>>>>>>>totalSaleTokenUSD",totalSaleTokenUSD);
         totalSale: totalSaleTokenUSD.toFixed(2),
         purchaseToken: Number(purchaseToken).toFixed(2),
         launchDate:launchDate,
-        totalContributors:Number(totalContributors)
+        totalContributors:Number(totalContributors),
+        tokenPriceData:tokenPriceData
       };
     }
   }, [result, amount, calculationresult]);
@@ -415,14 +416,14 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
                   1 AIZU
                 </span>
                 <span data-aos="fade-right" className="text-white mx-1">
-                  +
+                  =
                 </span>
                 <img
                   src="/images/coin-icon/usdt.png"
                   className="w-6 h-6 bg-[#26A17B] rounded-full"
                 />
                 <span data-aos="fade-right" className="text-white">
-                  0.01 USDT
+                 {calciulatedToken?.tokenPriceData} USDT
                 </span>
               </div>
               <div
@@ -475,6 +476,7 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
                     <div className="flex items-center gap-2">
                       <img
                         src={
+                          selectedToken?.tokenname==="BTCB" ? "/images/coin-icon/btcb.png":
                           selectedToken?.tokenname === "USDT"
                             ? "/images/coin-icon/usdt.png"
                             : `/images/coin-icon/${
