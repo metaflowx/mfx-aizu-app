@@ -25,7 +25,7 @@ export default function CoinSelector({ selectedToken, setSelectedToken }: { sele
 
   
   return (
-    <div className="mb-8">
+    <div  className="mb-8  ">
       <h2 data-aos="fade-right" className="text-white text-lg mb-4 sm:text-center text-left">
         Step 1 - Select the Payment Method (BEP20)
       </h2>

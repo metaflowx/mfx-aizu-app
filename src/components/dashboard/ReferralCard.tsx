@@ -93,12 +93,12 @@ export default function ReferralCard({type}:{type?:string}) {
               className="p-[1px] rounded-[8px]  h-[100%] "
             >
               <div className="bg-[#000000] rounded-[8px] h-[60px] w-[60px] flex justify-center items-center">
-                <img src="/images/referral/dollar.png" />
+                <img src="/images/coin-icon/aizu.png" />
               </div>
             </div>
             <div className="pl-3">
               <h3 className="text-[20px] font-[400]">Your referral earnings</h3>
-              <p className="text-[20px] font-[700]">{ result?.data?.[0]?.result? Number(formatEther(BigInt(result?.data[0]?.result))).toFixed(2) : 0}</p>
+              <p className="text-[20px] font-[700]">{ result?.data?.[0]?.result? Number(formatEther(BigInt(result?.data[0]?.result))).toFixed(2) : 0} AIZU</p>
             </div>
           </div>
 
