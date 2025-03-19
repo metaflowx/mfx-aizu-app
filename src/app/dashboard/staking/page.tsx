@@ -1,5 +1,7 @@
 "use client";
 
+import ComingSoon from "@/components/ComingSoon";
+
 
 
 export default function StakingPage() {
@@ -43,11 +45,13 @@ export default function StakingPage() {
   ];
   return (
     <>
-      <div className="flex items-center justify-between mb-8">
+     <ComingSoon />
+      {/* <div className="flex items-center justify-between mb-8">
         <h1 className="text-[20px] md:text-[40px] text-white font-[700]">Staking Rules</h1>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
+     
         {earningsData.map((item) => {
           return (
             <div className="bg-[#00000080] hover:border  hover:border-[#2865FF] p-4 rounded-[20px] ">
@@ -80,7 +84,7 @@ export default function StakingPage() {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </>
   );
 }

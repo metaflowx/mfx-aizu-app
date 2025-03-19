@@ -29,7 +29,7 @@ const BoxSocial = styled(Box)(({ theme }) => ({
   padding: "0rem 2rem",
 }));
 
-export default function ShareModal() {
+export default function ShareModal({referLink}:{referLink:string}) {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState<DialogProps["scroll"]>("paper");
 
@@ -52,7 +52,7 @@ export default function ShareModal() {
     }
   }, [open]);
 
-  const referLink = `https://aizu.com/dashboard/?ref=${"address"}`;
+  // const referLink = `https://aizu.com/dashboard/?ref=${"address"}`;
 
   return (
     <React.Fragment>

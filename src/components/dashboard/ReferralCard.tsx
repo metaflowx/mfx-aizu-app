@@ -55,11 +55,7 @@ export default function ReferralCard({type}:{type?:string}) {
             args: [address as Address ],
             chainId: Number(chainId)??97
           },
-          {
-            ...contractConfig,
-            functionName: 'totalReferralBonusReward',
-            chainId: Number(chainId)??97
-          },
+          
          
          
         ],
@@ -84,7 +80,7 @@ export default function ReferralCard({type}:{type?:string}) {
             </div>
             <div className="pl-3">
               <h3 className="text-[20px] font-[400]">Your referrals</h3>
-              <p className="text-[20px] font-[700]">0.00</p>
+              <p className="text-[20px] font-[700]">{ result?.data?.[1]?.result? Number(result?.data[1]?.result) : 0}</p>
             </div>
           </div>
 
@@ -122,9 +118,9 @@ export default function ReferralCard({type}:{type?:string}) {
                 className=" flex justify-between items-center"
               >
                 <p className="text-[14px] flex items-center md:text-[18px] font-[400] text-white">
-                 {url} <Copy onClick={copyToClipboard} color="#fff" style={{cursor:"pointer"}} />
+                 {url} &nbsp; <Copy onClick={copyToClipboard} color="#fff" style={{cursor:"pointer"}} />
                 </p>
-                <ShareModal />
+                <ShareModal referLink={url1} />
               </div>
             </div>
           </div>

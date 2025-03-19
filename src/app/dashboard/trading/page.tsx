@@ -8,6 +8,7 @@ import MainChart from "./MainChart"
 import CommonButton from "@/components/ui/CommonButton"
 import { useLiveOrders, useOrders } from "@/hooks/useLiveOrders"
 import { useState } from "react"
+import ComingSoon from "@/components/ComingSoon"
 
 export default function TradingPage() {
   const { data: liveOrders, isLoading: isLoadingLive, error: errorLive } = useLiveOrders();
@@ -16,8 +17,9 @@ export default function TradingPage() {
   const [tabType,setTabType]=useState("live")
   return (
     <>
+      <ComingSoon /> 
     
-<div className="pb-2">
+{/* <div className="pb-2">
 <CommonButton title="Connect with Binance" width="280px" />
 </div>
       <MainDashboard />
@@ -45,7 +47,7 @@ export default function TradingPage() {
         <MarketValueTable tabType={tabType} setTabType={setTabType} data={liveOrders} isLoading={isLoadingLive} />
       ):(
         <MarketValueTable tabType={tabType} setTabType={setTabType} data={orders} isLoading={isLoadingOrders} />
-      )}
+      )} */}
         
     </>
   )

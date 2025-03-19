@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Coins, Gift, Trophy, Users } from "lucide-react"
 import { StatsCard } from "@/components/stats-card";
 import { EarningTable } from "./EarningTable";
+import ComingSoon from "@/components/ComingSoon";
 
 export default function EarningPage() {
   const earningsData = [
@@ -15,9 +16,11 @@ export default function EarningPage() {
   ];
   return (
     <>
+
+    <ComingSoon />
      
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 mb-8">
+      {/* <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 mb-8">
       {earningsData.map((item) => (
         <StatsCard
                  title={item?.title}
@@ -29,7 +32,7 @@ export default function EarningPage() {
 
       <Card className="overflow-hidden mt-4">
         <EarningTable />
-      </Card>
+      </Card> */}
     </>
   )
 }

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Copy, Share2, Users } from "lucide-react";
 import { ReferralTable } from "@/components/referral-table";
 import ReferralCard from "@/components/dashboard/ReferralCard";
+import RefTable from "./RefTable";
 
 export default function ReferralPage() {
   const referralLink = "https://ico.aizu.com/dashboard/?ref=0xbe...6a5d";
@@ -22,7 +23,7 @@ export default function ReferralPage() {
 
       <Card className="overflow-hidden">
         
-        <ReferralTable />
+       <RefTable />
       </Card>
     </>
   );

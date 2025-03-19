@@ -4,6 +4,7 @@ import Wrapper from '@/components/global/wrapper'
 import PageBox from '@/components/PageBox'
 import React from 'react'
 import "aos/dist/aos.css";
+import ComingSoon from '@/components/ComingSoon'
 
 
 export default function page() {
@@ -19,8 +20,10 @@ export default function page() {
 
          <div className="relative overflow-x-hidden w-full pb-15 md:pb-10 px-4">
 
-        <Giveway />
-        <MillinareGiveway />
+          <ComingSoon />
+
+        {/* <Giveway />
+        <MillinareGiveway /> */}
          </div>
       </Wrapper>
 

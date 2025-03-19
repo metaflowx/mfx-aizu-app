@@ -175,6 +175,7 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
       const totalSaleTokenUSD = Number(totalSoldToken) * Number(tokeninUSD);
       const launchDate = calculationresult?.data?.[1]?.result;
       const totalContributors = calculationresult?.data?.[2]?.result;
+console.log(">>>>>>>>>>>>totalSaleTokenUSD",totalSaleTokenUSD);
 
 
       return {
