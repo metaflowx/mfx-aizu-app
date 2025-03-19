@@ -25,7 +25,7 @@ export default function CoinSelector({ selectedToken, setSelectedToken }: { sele
 
   
   return (
-    <div className="mb-8">
+    <div  className="mb-8  ">
       <h2 data-aos="fade-right" className="text-white text-lg mb-4 sm:text-center text-left">
         Step 1 - Select the Payment Method (BEP20)
       </h2>
@@ -86,7 +86,7 @@ const TokenData=({
                 ${coinType.tokenname === (coin === zeroAddress ? "BNB" : symbol) ? "bg-[#2865FF]" : "bg-[#15171C]"}`}
             >
               <img
-                src={symbol==="USDT" ? "/images/coin-icon/usdt.png": `/images/coin-icon/${coin === zeroAddress ? "bnb": symbol?.toLowerCase()}.svg`  }
+                src={symbol==="BTCB" ? "/images/coin-icon/btcb.png": symbol==="USDT" ? "/images/coin-icon/usdt.png": `/images/coin-icon/${coin === zeroAddress ? "bnb": symbol?.toLowerCase()}.svg`  }
                 className="w-5 h-5 rounded-full"
                
               />

@@ -1,5 +1,14 @@
 import moment from "moment";
 import React from "react";
+import {
+  Address,
+  erc20Abi,
+  formatEther,
+  formatUnits,
+  parseEther,
+  parseUnits,
+  zeroAddress,
+} from "viem";
 
 export default function HeaderStats({calciulatedToken}:{calciulatedToken:any}) {
   const date = new Date(Number(calciulatedToken?.launchDate) * 1000);
@@ -19,7 +28,7 @@ export default function HeaderStats({calciulatedToken}:{calciulatedToken:any}) {
       <div className="flex justify-between text-white rounded-[12px] w-full p-4">
         <div>
           <p className="text-[14px] md:text-[18px] font-[400]">USDT Raised</p>
-          <p className="text-[14px] md:text-[18px] font-[700]"> ${calciulatedToken?.totalSale || 0}</p>
+          <p className="text-[14px] md:text-[18px] font-[700]"> ${calciulatedToken?.totalSale >0 ? calciulatedToken?.totalSale :0 || 0}</p>
         </div>
         <div className="text-center">
           <p className="text-[14px] md:text-[18px] font-[400]">Listing date</p>
@@ -27,7 +36,7 @@ export default function HeaderStats({calciulatedToken}:{calciulatedToken:any}) {
         </div>
         <div className="text-right">
           <p className="text-[14px] md:text-[18px] font-[400]">Holders</p>
-          <p className="text-[14px] md:text-[18px] font-[700]">{calciulatedToken?.totalContributors}</p>
+          <p className="text-[14px] md:text-[18px] font-[700]">{calciulatedToken?.totalContributors || 0}</p>
         </div>
       </div>
     </div>
