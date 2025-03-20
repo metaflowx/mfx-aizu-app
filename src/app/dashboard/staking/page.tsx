@@ -3,8 +3,12 @@
 import ComingSoon from "@/components/ComingSoon";
 import AmountDialog from "./AmountDialog";
 import { useState } from "react";
-
-
+import { toast } from "react-toastify";
+import { extractDetailsFromError } from "@/utils/extractDetailsFromError";
+import { parseEther, parseUnits } from "viem";
+import { StakeABI } from "@/app/ABI/StakeABI";
+import { useWriteContract } from "wagmi";
+import { StakeContractAddress } from "@/constants/contract";
 
 export default function StakingPage() {
   const earningsData = [
@@ -46,26 +50,47 @@ export default function StakingPage() {
     },
   ];
   const [open, setOpen] = useState(false);
-  const[selectedData,setSelectedData]=useState("")
-
-  const handleOpen = (item:any) => {
-    setOpen(true)
-    setSelectedData(item)
+  const [selectedData, setSelectedData] = useState("");
+  const { writeContractAsync, isPending, isSuccess, isError } =
+    useWriteContract();
+  const handleOpen = (item: any) => {
+    setOpen(true);
+    setSelectedData(item);
   };
   const handleClose = () => setOpen(false);
-  const handleSubmit = (amount: number) => {
-    console.log("Submitted Amount:", amount);
-    setOpen(false);
+
+  const handleSubmit = async (amount: string) => {
+    try {
+      const formattedAmount = parseEther(amount);
+
+      const res = await writeContractAsync({
+        address: StakeContractAddress,
+        abi: StakeABI,
+        functionName: "stake",
+        args: [BigInt(0), formattedAmount],
+      });
+
+      if (res) {
+        setOpen(false);
+        toast.success("Stake completed");
+      }
+    } catch (error: any) {
+      console.log(">>>>>>>>>>>>.error", error);
+
+      toast.error(extractDetailsFromError(error.message as string) as string);
+    }
   };
+
   return (
     <>
-     {/* <ComingSoon /> */}
+      {/* <ComingSoon /> */}
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-[20px] md:text-[40px] text-white font-[700]">Staking Rules</h1>
+        <h1 className="text-[20px] md:text-[40px] text-white font-[700]">
+          Staking Rules
+        </h1>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
-     
         {earningsData.map((item) => {
           return (
             <div className="bg-[#00000080] hover:border  hover:border-[#2865FF] p-4 rounded-[20px] ">
@@ -93,12 +118,24 @@ export default function StakingPage() {
                   {item.des}
                 </h3>
 
-                {item.btn && <button onClick={()=>handleOpen(item)} className="border bg-gradient border-[#2865FF] text-white h-[50px] w-full rounded-[40px] text-[20px] font-[400] ">Stake</button>}
+                {item.btn && (
+                  <button
+                    onClick={() => handleOpen(item)}
+                    className="border bg-gradient border-[#2865FF] text-white h-[50px] w-full rounded-[40px] text-[20px] font-[400] "
+                  >
+                    Stake
+                  </button>
+                )}
               </div>
             </div>
           );
         })}
-         <AmountDialog selectedData={selectedData} open={open} onClose={handleClose} onSubmit={handleSubmit} />
+        <AmountDialog
+          selectedData={selectedData}
+          open={open}
+          onClose={handleClose}
+          onSubmit={handleSubmit}
+        />
       </div>
     </>
   );
