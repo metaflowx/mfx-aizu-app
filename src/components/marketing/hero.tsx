@@ -8,8 +8,20 @@ import HeaderStats from "./banner/HeaderStats";
 import { toast } from "react-toastify";
 import AnimatedBorderTrail from "../borderanimation";
 import { MagicCard } from "../ui/magic-card";
-import { useAccount, useBalance, useBlockNumber, useReadContract, useReadContracts, useWriteContract } from "wagmi";
-import { ICOContractAddress, iocConfig, tokenConfig } from "@/constants/contract";
+import {
+  useAccount,
+  useBalance,
+  useBlockNumber,
+  useReadContract,
+  useReadContracts,
+  useWriteContract,
+} from "wagmi";
+import {
+  contractConfig,
+  ICOContractAddress,
+  iocConfig,
+  tokenConfig,
+} from "@/constants/contract";
 import {
   Address,
   erc20Abi,
@@ -51,9 +63,7 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
     address: zeroAddress,
   });
 
- 
   const { open, close } = useAppKit();
-
 
   const result = useReadContracts({
     contracts: [
@@ -86,6 +96,13 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
         functionName: "saleType2IcoDetail",
         args: [1],
         chainId: Number(chainId),
+      },
+
+      {
+        ...contractConfig,
+        functionName: "getReferrer",
+        args: [address as Address],
+        chainId: Number(chainId) ?? 97,
       },
     ],
   });
@@ -120,16 +137,8 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
         args: [tokenAddress as Address],
         chainId: Number(chainId),
       },
-
-
-      
-
-      
     ],
   });
-
-  console.log(">>>>>>>>>calculationresult",calculationresult);
-  
 
   const calciulatedToken = useMemo(() => {
     if ((result && result?.data) || amount || calculationresult) {
@@ -175,8 +184,7 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
       const totalSaleTokenUSD = Number(totalSoldToken) * Number(tokeninUSD);
       const launchDate = calculationresult?.data?.[1]?.result;
       const totalContributors = calculationresult?.data?.[2]?.result;
-const tokenPriceData =Number(formatEther(BigInt(tokenPrice ?? 0)))
-
+      const tokenPriceData = Number(formatEther(BigInt(tokenPrice ?? 0)));
 
       return {
         getToken: dividedVa?.toFixed(2),
@@ -184,9 +192,9 @@ const tokenPriceData =Number(formatEther(BigInt(tokenPrice ?? 0)))
         totalTokenSupplyUSD: totalTokenSupplyUSD,
         totalSale: totalSaleTokenUSD.toFixed(2),
         purchaseToken: Number(purchaseToken).toFixed(2),
-        launchDate:launchDate,
-        totalContributors:Number(totalContributors),
-        tokenPriceData:tokenPriceData
+        launchDate: launchDate,
+        totalContributors: Number(totalContributors),
+        tokenPriceData: tokenPriceData,
       };
     }
   }, [result, amount, calculationresult]);
@@ -196,9 +204,6 @@ const tokenPriceData =Number(formatEther(BigInt(tokenPrice ?? 0)))
     token: selectedToken.address,
   });
 
-  
-
-
   useEffect(() => {
     queryClient.invalidateQueries({
       queryKey: resultOfCheckAllowance.queryKey,
@@ -206,22 +211,22 @@ const tokenPriceData =Number(formatEther(BigInt(tokenPrice ?? 0)))
     queryClient.invalidateQueries({
       queryKey: result.queryKey,
     });
-  }, [blockNumber, queryClient,result, resultOfCheckAllowance]);
+  }, [blockNumber, queryClient, result, resultOfCheckAllowance]);
 
   const progressWidth =
-  (Number(calciulatedToken?.totalSale) /
-    Number(calciulatedToken?.totalTokenSupplyUSD)) *
-  100;
+    (Number(calciulatedToken?.totalSale) /
+      Number(calciulatedToken?.totalTokenSupplyUSD)) *
+    100;
 
   const minBuy = result?.data?.[4]?.result?.minBuy
-  ? Number(formatEther(BigInt(result.data[4].result.minBuy)))
-  : 0;
-const maxBuy = result?.data?.[4]?.result?.maxBuy
-  ? Number(formatEther(BigInt(result.data[4].result.maxBuy)))
-  : 0;
+    ? Number(formatEther(BigInt(result.data[4].result.minBuy)))
+    : 0;
+  const maxBuy = result?.data?.[4]?.result?.maxBuy
+    ? Number(formatEther(BigInt(result.data[4].result.maxBuy)))
+    : 0;
 
-
-
+    
+    
 
   const handleBuy = async () => {
     try {
@@ -235,19 +240,21 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
           1,
           tokenAddress as Address,
           formattedAmount,
-          referrer as Address,
+          (result?.data?.[5]?.result !== zeroAddress ? result?.data?.[5]?.result as Address : referrer as Address)
+         
         ],
-        value: selectedToken?.tokenname === "BNB" ? parseEther(amount) : BigInt(0),
+        value:
+          selectedToken?.tokenname === "BNB" ? parseEther(amount) : BigInt(0),
       });
-      console.log(">>>>>>>>>>res208",res);
-      
+     
+
       if (res) {
         setAmount("");
         toast.success("Transaction completed");
       }
     } catch (error: any) {
-      console.log(">>>>>>>>>>>>.error",error);
-      
+      console.log(">>>>>>>>>>>>.error", error);
+
       toast.error(extractDetailsFromError(error.message as string) as string);
     }
   };
@@ -291,23 +298,10 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
     },
   });
 
-  const calculateAmounts = (initialValue: number, days: number = 100, interval: number = 5, increment: number = 0.01) => {
-    const results: number[] = [];
-    let currentValue = initialValue;
-  
-    for (let day = interval; day <= days; day += interval) {
-      results.push(parseFloat(currentValue.toFixed(2))); // Ensuring precision
-      currentValue += increment;
-    }
-  
-    return results;
-  };
-  
-  // Example Usage:
-  const amounts = calculateAmounts(0.01); // Starting value is 1
-  console.log("amounts>>>>>>>>>.298",amounts);
-  
+ 
 
+ 
+ 
 
   return (
     <main
@@ -339,15 +333,16 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
                 </AnimatedBorderTrail>
 
                 {/* Title */}
-                <PhaseDisplay  targetTime={
-                      result &&
-                      result.data &&
-                      result.data &&
-                      result.data[1]?.result &&
-                      result.data[1]?.result &&
-                      result.data[1]?.result?.startAt
-                    } />
-                
+                <PhaseDisplay
+                  targetTime={
+                    result &&
+                    result.data &&
+                    result.data &&
+                    result.data[1]?.result &&
+                    result.data[1]?.result &&
+                    result.data[1]?.result?.startAt
+                  }
+                />
 
                 <h1
                   data-aos="fade-right"
@@ -388,8 +383,7 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
 
             <div
               style={{
-                background:
-                  "#000",
+                background: "#000",
                 border: "1px solid #DD4242",
               }}
               className="w-full h-[20px] rounded-full mb-6 overflow-hidden"
@@ -423,7 +417,7 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
                   className="w-6 h-6 bg-[#26A17B] rounded-full"
                 />
                 <span data-aos="fade-right" className="text-white">
-                 {calciulatedToken?.tokenPriceData} USDT
+                  {calciulatedToken?.tokenPriceData} USDT
                 </span>
               </div>
               <div
@@ -472,12 +466,13 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
                       className="bg-transparent text-white w-full outline-none"
                       placeholder="0"
                     />
-                   
+
                     <div className="flex items-center gap-2">
                       <img
                         src={
-                          selectedToken?.tokenname==="BTCB" ? "/images/coin-icon/btcb.png":
-                          selectedToken?.tokenname === "USDT"
+                          selectedToken?.tokenname === "BTCB"
+                            ? "/images/coin-icon/btcb.png"
+                            : selectedToken?.tokenname === "USDT"
                             ? "/images/coin-icon/usdt.png"
                             : `/images/coin-icon/${
                                 selectedToken?.address === zeroAddress
@@ -522,33 +517,33 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
                     </div>
                   </div>
                 </div>
-                {amount && (calculationresult?.data?.[0]?.result || calculationresult?.data?.[3]?.result) && (
-                <>
-                  {(calculationresult?.data?.[3]?.result?.isStable && Number(amount) < Number(minBuy)) && (
-
-                    <p className="pt-1" style={{ color: "red" }}>
-                      Min: ${minBuy}
-                    </p>
-
-                  )}
-
-                  {(
-
+                {amount &&
+                  (calculationresult?.data?.[0]?.result ||
+                    calculationresult?.data?.[3]?.result) && (
                     <>
+                      {calculationresult?.data?.[3]?.result?.isStable &&
+                        Number(amount) < Number(minBuy) && (
+                          <p className="pt-1" style={{ color: "red" }}>
+                            Min: ${minBuy}
+                          </p>
+                        )}
 
-                      {!calculationresult?.data?.[3]?.result?.isStable && Number(formatEther(BigInt(calculationresult?.data[0]?.result ?? 0))) < Number(minBuy) && (
-                        <p className="pt-1" style={{ color: "red" }}>
-                          Min: ${minBuy}
-                        </p>
-                      )}
+                      {
+                        <>
+                          {!calculationresult?.data?.[3]?.result?.isStable &&
+                            Number(
+                              formatEther(
+                                BigInt(calculationresult?.data[0]?.result ?? 0)
+                              )
+                            ) < Number(minBuy) && (
+                              <p className="pt-1" style={{ color: "red" }}>
+                                Min: ${minBuy}
+                              </p>
+                            )}
+                        </>
+                      }
                     </>
-
                   )}
-
-
-                 
-                </>
-              )}
               </div>
             </div>
 
@@ -561,53 +556,56 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
             >
               {address ? (
                 <CommonButton
-
-                disabled={
-
-                  (
-                    (calculationresult?.data?.[3]?.result?.isStable && Number(amount) < Number(minBuy))||
-                
-                    !calculationresult?.data?.[3]?.result?.isStable && Number(formatEther(BigInt(calculationresult?.data?.[0]?.result ?? 0))) < Number(minBuy)
-                ) ||
-                
-                  isPending ||
-                  amount === "" ||
-                  Number(amount) <= 0 ||
-                  (selectedToken?.tokenname === "BNB"
-                    ? Number(Balance?.formatted) < Number(amount) ||
-                      Number(Balance?.formatted) === 0
-                    : Number(formatEther(BigInt(resultOfTokenBalance ?? 0))) <
-                      Number(amount))
-                }
-
-                onClick={() => {
-                  if (selectedToken?.tokenname === "BNB") {
-                    handleBuy();
-                  } else {
-                    !isAproveERC20 ? approveToken() : handleBuy();
+                  disabled={
+                    (calculationresult?.data?.[3]?.result?.isStable &&
+                      Number(amount) < Number(minBuy)) ||
+                    (!calculationresult?.data?.[3]?.result?.isStable &&
+                      Number(
+                        formatEther(
+                          BigInt(calculationresult?.data?.[0]?.result ?? 0)
+                        )
+                      ) < Number(minBuy)) ||
+                    isPending ||
+                    amount === "" ||
+                    Number(amount) <= 0 ||
+                    (selectedToken?.tokenname === "BNB"
+                      ? Number(Balance?.formatted) < Number(amount) ||
+                        Number(Balance?.formatted) === 0
+                      : Number(formatEther(BigInt(resultOfTokenBalance ?? 0))) <
+                        Number(amount))
                   }
-                }}
-                
-                title= {isPending
-                  ? selectedToken?.tokenname === "BNB" || isAproveERC20
-                    ? "Buying..."
-                    : "Approving..."
-                  : selectedToken?.tokenname === "BNB" && amount === ""
-                  ? "Please enter amount"
-                  : selectedToken?.tokenname === "BNB" && Number(amount) <= 0
-                  ? "Please enter correct amount"
-                  : (
-                    selectedToken?.tokenname === "BNB"
-                        ? Number(Balance?.formatted) < Number(amount) ||
-                          Number(Balance?.formatted) === 0
-                        : Number(
-                            formatEther(BigInt(resultOfTokenBalance ?? 0))
-                          ) < Number(amount)
-                    )
-                  ? "Insufficient funds"
-                  : selectedToken?.tokenname === "BNB" || isAproveERC20
-                  ? "Buy Now"
-                  : "Approve"} width="100%" />
+                  onClick={() => {
+                    if (selectedToken?.tokenname === "BNB") {
+                      handleBuy();
+                    } else {
+                      !isAproveERC20 ? approveToken() : handleBuy();
+                    }
+                  }}
+                  title={
+                    isPending
+                      ? selectedToken?.tokenname === "BNB" || isAproveERC20
+                        ? "Buying..."
+                        : "Approving..."
+                      : selectedToken?.tokenname === "BNB" && amount === ""
+                      ? "Please enter amount"
+                      : selectedToken?.tokenname === "BNB" &&
+                        Number(amount) <= 0
+                      ? "Please enter correct amount"
+                      : (
+                          selectedToken?.tokenname === "BNB"
+                            ? Number(Balance?.formatted) < Number(amount) ||
+                              Number(Balance?.formatted) === 0
+                            : Number(
+                                formatEther(BigInt(resultOfTokenBalance ?? 0))
+                              ) < Number(amount)
+                        )
+                      ? "Insufficient funds"
+                      : selectedToken?.tokenname === "BNB" || isAproveERC20
+                      ? "Buy Now"
+                      : "Approve"
+                  }
+                  width="100%"
+                />
               ) : (
                 <CommonButton
                   title="Connect Wallet"
@@ -618,15 +616,13 @@ const maxBuy = result?.data?.[4]?.result?.maxBuy
             </AnimatedBorderTrail>
 
             {!address && (
-
-            <p
-              data-aos="fade-up"
-              className="text-center text-gray-400 text-sm hover:text-gray-300 cursor-pointer pt-5"
-            >
-              Don't have a wallet?
-            </p>
+              <p
+                data-aos="fade-up"
+                className="text-center text-gray-400 text-sm hover:text-gray-300 cursor-pointer pt-5"
+              >
+                Don't have a wallet?
+              </p>
             )}
-
           </div>
         </div>
       </MagicCard>
