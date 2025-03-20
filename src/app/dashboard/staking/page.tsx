@@ -1,6 +1,8 @@
 "use client";
 
 import ComingSoon from "@/components/ComingSoon";
+import AmountDialog from "./AmountDialog";
+import { useState } from "react";
 
 
 
@@ -43,10 +45,22 @@ export default function StakingPage() {
       btn: true,
     },
   ];
+  const [open, setOpen] = useState(false);
+  const[selectedData,setSelectedData]=useState("")
+
+  const handleOpen = (item:any) => {
+    setOpen(true)
+    setSelectedData(item)
+  };
+  const handleClose = () => setOpen(false);
+  const handleSubmit = (amount: number) => {
+    console.log("Submitted Amount:", amount);
+    setOpen(false);
+  };
   return (
     <>
-     <ComingSoon />
-      {/* <div className="flex items-center justify-between mb-8">
+     {/* <ComingSoon /> */}
+      <div className="flex items-center justify-between mb-8">
         <h1 className="text-[20px] md:text-[40px] text-white font-[700]">Staking Rules</h1>
       </div>
 
@@ -79,12 +93,13 @@ export default function StakingPage() {
                   {item.des}
                 </h3>
 
-                {item.btn && <button className="border bg-gradient border-[#2865FF] text-white h-[50px] w-full rounded-[40px] text-[20px] font-[400] ">Stake</button>}
+                {item.btn && <button onClick={()=>handleOpen(item)} className="border bg-gradient border-[#2865FF] text-white h-[50px] w-full rounded-[40px] text-[20px] font-[400] ">Stake</button>}
               </div>
             </div>
           );
         })}
-      </div> */}
+         <AmountDialog selectedData={selectedData} open={open} onClose={handleClose} onSubmit={handleSubmit} />
+      </div>
     </>
   );
 }

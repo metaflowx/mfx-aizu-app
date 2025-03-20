@@ -5,12 +5,15 @@ export default function CommonButton({
   title,
   width,
   onClick,
-  disabled
+  disabled,
+  scale
+
 }: {
   title: string;
   width?: string;
   onClick?: any;
-  disabled?:boolean
+  disabled?:boolean;
+  scale?:number
 }) {
   return (
     <button
@@ -26,8 +29,8 @@ export default function CommonButton({
         width: width ? width : "100%",
         overflow:"hidden"
       }}
-      className="rounded-[40px] h-[50px] text-white text-center text-[20px] flex justify-center items-center 
-                 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-[#2865FF]/50"
+      className={`rounded-[40px] h-[50px] text-white text-center text-[20px] flex justify-center items-center 
+                 transition-all duration-300 ease-in-out transform hover:scale-${scale?scale:105} hover:shadow-lg hover:shadow-[#2865FF]/50`}
     >
       <p>{title}</p>
     </button>

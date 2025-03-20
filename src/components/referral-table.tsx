@@ -19,7 +19,7 @@ import {
 import copy from 'clipboard-copy';
 import { useAppKitNetwork } from "@reown/appkit/react";
 import { Address, formatEther, formatUnits, parseUnits } from "viem";
-import { sortAddress } from "@/utils";
+import { convertToAbbreviated, sortAddress } from "@/utils";
 import { Box, Skeleton } from "@mui/material";
 import { toast } from "react-toastify";
 import { extractDetailsFromError } from "@/utils/extractDetailsFromError";
@@ -194,9 +194,7 @@ export function ReferralTable() {
             </h4>
             <p className="text-md">{`${
               result?.data?.[4]?.result?.[1]
-                ? Number(
-                    formatUnits(result?.data?.[4]?.result[1], 18)
-                  ).toFixed(2)
+                ? convertToAbbreviated(Number(formatUnits(result?.data?.[4]?.result[1], 18))||0)
                 : "0"
             } AIZU`}</p>
           </div>
