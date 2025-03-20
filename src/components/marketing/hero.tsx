@@ -334,14 +334,13 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
 
                 {/* Title */}
                 <PhaseDisplay
-                  targetTime={
-                    result &&
-                    result.data &&
-                    result.data &&
-                    result.data[1]?.result &&
-                    result.data[1]?.result &&
-                    result.data[1]?.result?.startAt
-                  }
+                tokenPrice={calciulatedToken?.tokenPriceData}
+                phaseData={ result &&
+                  result.data &&
+                  result.data &&
+                  result.data[1]?.result &&
+                  result.data[1]?.result}
+                 
                 />
 
                 <h1
