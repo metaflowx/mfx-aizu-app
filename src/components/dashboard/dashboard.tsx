@@ -26,7 +26,7 @@ export default function Dashboard() {
     ...iocConfig,
     functionName: "getSaleTokenPrice",
     args: [1],
-    chainId: Number(chainId) ?? 97,
+    chainId: Number(chainId) ?? 56,
   });
   const tokenPrice = tokenPriceUSDT && tokenPriceUSDT;
   const tokenPriceBig = Number(formatEther(BigInt(tokenPrice ?? 0)));
@@ -37,7 +37,7 @@ export default function Dashboard() {
         ...iocConfig,
         functionName: "user2SaleType2Contributor",
         args: [address as Address, 1],
-        chainId: Number(chainId) ?? 97,
+        chainId: Number(chainId) ?? 56,
         query: {
           select(data) {
             const value = parseFloat(formatEther(data.volume)) * 0.1;

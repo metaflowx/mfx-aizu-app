@@ -35,14 +35,14 @@ export function EarningTable() {
     ...stakeConfig,
     functionName: "totalStakedLengthForUser",
     args: [address as Address],
-    chainId: Number(chainId) ?? 97,
+    chainId: Number(chainId) ?? 56,
   });
 
   const result = useReadContract({
     ...stakeConfig,
     functionName: "user2StakerList",
     args: [address as Address, BigInt(0), BigInt(totalStakeLenth?.data || 0)],
-    chainId: Number(chainId) ?? 97,
+    chainId: Number(chainId) ?? 56,
   });
 
 
@@ -160,7 +160,7 @@ const ActionSection = ({ item, index }: { item: any; index: any }) => {
     ...stakeConfig,
     functionName: "getTier",
     args: [item?.tierId],
-    chainId: Number(chainId) ?? 97,
+    chainId: Number(chainId) ?? 56,
   });
 
   const handleClaim = async () => {
@@ -260,7 +260,7 @@ const DailyReward = ({
     ...stakeConfig,
     functionName: "calculateRewards",
     args: [address, BigInt(index)],
-    chainId: Number(chainId) ?? 97,
+    chainId: Number(chainId) ?? 56,
   });
   useEffect(() => {
     queryClient.invalidateQueries({

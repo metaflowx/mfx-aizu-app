@@ -1,6 +1,6 @@
 import { cookieStorage, createStorage, http } from '@wagmi/core'
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
-import {bscTestnet, AppKitNetwork} from '@reown/appkit/networks'
+import { AppKitNetwork, bsc} from '@reown/appkit/networks'
 
 // Get projectId from https://cloud.reown.com
 // export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID
@@ -12,7 +12,7 @@ if (!projectId) {
   throw new Error('Project ID is not defined')
 }
 
-export const networks = [bscTestnet] as [AppKitNetwork, ...AppKitNetwork[]]
+export const networks = [bsc] as [AppKitNetwork, ...AppKitNetwork[]]
 
 //Set up the Wagmi Adapter (Config)
 export const wagmiAdapter = new WagmiAdapter({
@@ -23,7 +23,7 @@ export const wagmiAdapter = new WagmiAdapter({
   projectId,
   networks,
   transports: {
-    [bscTestnet.id]: http('https://data-seed-prebsc-2-s1.bnbchain.org:8545')
+    [bsc.id]: http('https://bsc.drpc.org')
   },
 })
 

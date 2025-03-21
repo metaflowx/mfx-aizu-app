@@ -30,14 +30,14 @@ export default function StakingPage() {
   const totalTierLenth = useReadContract({
     ...stakeConfig,
     functionName: "totalTierLenth",
-    chainId: Number(chainId) ?? 97,
+    chainId: Number(chainId) ?? 56,
   });
 
   const result = useReadContract({
     ...stakeConfig,
     functionName: "getTierList",
     args: [BigInt(0), BigInt(totalTierLenth?.data || 0)],
-    chainId: Number(chainId) ?? 97,
+    chainId: Number(chainId) ?? 56,
   });
 
   const isLoading = result.isLoading || totalTierLenth.isLoading;
