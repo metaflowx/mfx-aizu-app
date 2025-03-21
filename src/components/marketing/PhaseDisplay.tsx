@@ -6,9 +6,9 @@ const PhaseDisplay = ({  phaseData,tokenPrice }: {  phaseData: any,tokenPrice:an
 
 
   const totalPhases = 20;
-  const saleRateChangeInDuration = Number(phaseData.saleRateChangeInDuration); // Assuming it's in seconds
-  const startTimestamp = Number(phaseData.startAt); 
-  const endTimestamp = Number(phaseData.endAt); 
+  const saleRateChangeInDuration = Number(phaseData?.saleRateChangeInDuration); // Assuming it's in seconds
+  const startTimestamp = Number(phaseData?.startAt); 
+  const endTimestamp = Number(phaseData?.endAt); 
   const now = Math.floor(Date.now() / 1000); // Current time in seconds
 
   if (now < startTimestamp) {
