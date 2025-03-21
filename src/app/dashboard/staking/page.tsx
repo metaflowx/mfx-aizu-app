@@ -1,139 +1,122 @@
 "use client";
 
-import ComingSoon from "@/components/ComingSoon";
 import AmountDialog from "./AmountDialog";
 import { useState } from "react";
-import { toast } from "react-toastify";
-import { extractDetailsFromError } from "@/utils/extractDetailsFromError";
-import { parseEther, parseUnits } from "viem";
-import { StakeABI } from "@/app/ABI/StakeABI";
-import { useReadContracts, useWriteContract } from "wagmi";
-import { stakeConfig, StakeContractAddress } from "@/constants/contract";
+import { formatEther } from "viem";
+import { useReadContract } from "wagmi";
+import { stakeConfig } from "@/constants/contract";
 import { useAppKitNetwork } from "@reown/appkit/react";
 
 export default function StakingPage() {
-  const earningsData = [
-    {
-      id: 1,
-      title: "Default",
-      title1: "No Staking",
-      amount: "$0.000",
-      sunvalue: "",
-      des: "3 Months Vesting from TGE",
-      btn: false,
-    },
-    {
-      id: 2,
-      title: "Teir 1",
-      title1: "10X Your",
-      amount: "$AIZU",
-      sunvalue: "",
-      des: "10 Months Lockup",
-      btn: true,
-    },
-    {
-      id: 3,
-      title: "Teir 2",
-      title1: "20x Your",
-      amount: "$AIZU",
-      sunvalue: "",
-      des: "15 Months Lockup",
-      btn: true,
-    },
-    {
-      id: 4,
-      title: "Teir 3",
-      title1: "30x Your",
-      amount: "$AIZU",
-      sunvalue: "",
-      des: "20 Months Lockup",
-      btn: true,
-    },
-  ];
   const { chainId } = useAppKitNetwork();
   const [open, setOpen] = useState(false);
   const [selectedData, setSelectedData] = useState("");
-  const { writeContractAsync, isPending, isSuccess, isError } =
-    useWriteContract();
-  const handleOpen = (item: any) => {
+  const [selectedId, setSelectedId] = useState("");
+
+
+  
+
+  const handleOpen = (item: any,index:any) => {
     setOpen(true);
     setSelectedData(item);
+    setSelectedId(index)
   };
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false)
+    setSelectedData("")
+    setSelectedId("")
+  };
 
+  const totalTierLenth = useReadContract({
+    ...stakeConfig,
+    functionName: "totalTierLenth",
+    chainId: Number(chainId) ?? 97,
+  });
 
-   const result = useReadContracts({
-      contracts: [
-        {
-          ...stakeConfig,
-          functionName: "getTierList",
-          args: [BigInt(0),BigInt(2)],
-          chainId: Number(chainId) ?? 97,
-        },
-       
-      
-      ],
-    });
+  const result = useReadContract({
+    ...stakeConfig,
+    functionName: "getTierList",
+    args: [BigInt(0), BigInt(totalTierLenth?.data || 0)],
+    chainId: Number(chainId) ?? 97,
+  });
 
-    console.log(">>>>>>>>>>>result",result);
-    
+  const isLoading = result.isLoading || totalTierLenth.isLoading;
+console.log(">>>>>>>>>>>>isLoading",totalTierLenth,isLoading,result);
 
   return (
     <>
-      {/* <ComingSoon /> */}
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-[20px] md:text-[40px] text-white font-[700]">
           Staking Rules
         </h1>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
-        {earningsData.map((item) => {
-          return (
-            <div className="bg-[#00000080] hover:border  hover:border-[#2865FF] p-4 rounded-[20px] ">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
+        {isLoading ? (
+          // Skeleton loader (4 cards)
+          Array.from({ length: 4 }).map((_, i) => (
+            <div
+              key={i}
+              className="bg-[#00000080] animate-pulse p-4 rounded-[20px] h-[250px] flex flex-col justify-between"
+            >
+              <div className="bg-[#1f1f1f] h-[50px] rounded-md mb-4" />
+              <div className="space-y-3">
+                <div className="h-6 bg-[#1f1f1f] rounded w-1/2 mx-auto" />
+                <div className="h-6 bg-[#1f1f1f] rounded w-3/4 mx-auto" />
+                <div className="h-5 bg-[#1f1f1f] rounded w-2/3 mx-auto" />
+                <div className="h-[50px] bg-[#1f1f1f] rounded-[40px]" />
+              </div>
+            </div>
+          ))
+        ) : result?.data && result.data.length > 0 ? (
+          result.data.map((item, index) => (
+            <div
+              key={index}
+              className="bg-[#00000080] hover:border hover:border-[#2865FF] p-4 rounded-[20px]"
+            >
               <div
                 style={{
                   background:
                     "linear-gradient(90deg, rgba(220, 67, 67, 0) 0%, #DC4343 50%, rgba(220, 67, 67, 0) 100%)",
                 }}
-                className="p-[1px] rounded-[8px]  "
+                className="p-[1px] rounded-[8px]"
               >
-                <div className="bg-[#15171C] rounded-[8px] h-[50px] flex flex-col items-center justify-center ">
+                <div className="bg-[#15171C] rounded-[8px] h-[50px] flex flex-col items-center justify-center">
                   <h3 className="text-sm font-medium text-muted-foreground text-center">
-                    {item.title}
+                    {`TIER ${index + 1}`}
                   </h3>
                 </div>
               </div>
-              <div className="flex flex-col items-center space-y-5 ">
+              <div className="flex flex-col items-center space-y-5">
                 <h3 className="text-[24px] font-[400] text-white pt-5">
-                  {item.title1}
+                  {`${Number(item.returnInPercent) / 1e4}X`}
                 </h3>
-                <h3 className="text-[24px] font-[700] text-white ">
-                  {item.amount}
+                <h3 className="text-[24px] font-[700] text-white">
+                  {`${item?.minStaked ? formatEther(item?.minStaked) : "0"} AIZU`}
                 </h3>
                 <h3 className="text-[20px] font-[700] text-white pb-3 text-center">
-                  {item.des}
+                  {`${Number(item.lockPeriod)} Months Lockup`}
                 </h3>
-
-                {item.btn && (
-                  <button
-                    onClick={() => handleOpen(item)}
-                    className="border bg-gradient border-[#2865FF] text-white h-[50px] w-full rounded-[40px] text-[20px] font-[400] "
-                  >
-                    Stake
-                  </button>
-                )}
+                <button
+                  onClick={() => handleOpen(item,index)}
+                  className="border bg-gradient border-[#2865FF] text-white h-[50px] w-full rounded-[40px] text-[20px] font-[400]"
+                >
+                  Stake
+                </button>
               </div>
             </div>
-          );
-        })}
-        <AmountDialog
-          selectedData={selectedData}
-          open={open}
-          onClose={handleClose}
-          
-        />
+          ))
+        ) : (
+          // No Data Found
+          <div className="col-span-full text-center text-white text-lg font-medium">
+            No data found.
+          </div>
+        )}
       </div>
+
+      {open && (
+        <AmountDialog selectedData={selectedData} open={open} onClose={handleClose} selectedId={selectedId} />
+      )}
     </>
   );
 }
