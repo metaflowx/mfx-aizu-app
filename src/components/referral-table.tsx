@@ -12,6 +12,7 @@ import CommonButton from "./ui/CommonButton";
 import { iocConfig } from "@/constants/contract";
 import {
   useAccount,
+  useBlockNumber,
   useReadContract,
   useReadContracts,
   useWriteContract,
@@ -24,8 +25,12 @@ import { Box, Skeleton } from "@mui/material";
 import { toast } from "react-toastify";
 import { extractDetailsFromError } from "@/utils/extractDetailsFromError";
 import { Copy } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 export function ReferralTable() {
+   const { data: blockNumber } = useBlockNumber({ watch: true });
+    const queryClient = useQueryClient();
   const { writeContractAsync, isPending, isSuccess, isError } =useWriteContract();
   const { address } = useAccount();
   const { chainId } = useAppKitNetwork();
@@ -65,6 +70,15 @@ export function ReferralTable() {
       
     ],
   });
+
+    useEffect(() => {
+      queryClient.invalidateQueries({
+        queryKey: result.queryKey,
+      });
+      
+    }, [blockNumber, queryClient,result]);
+
+
 
   const totalLength = result?.data?.[0]?.result?.toString() || "0";
   const historyTable = useReadContract({

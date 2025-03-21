@@ -3,15 +3,17 @@ import React, { useEffect, useState } from 'react'
 import { Card } from "@/components/ui/card";
 import ShareModal from '../ui/ShareModal';
 import { Copy } from 'lucide-react';
-import { useAccount, useReadContracts } from 'wagmi';
+import { useAccount, useBlockNumber, useReadContracts } from 'wagmi';
 import { toast } from 'react-toastify';
 import { sortAddress } from '@/utils';
 import { contractConfig } from '@/constants/contract';
 import { useAppKitNetwork } from '@reown/appkit/react';
 import { Address, formatEther, parseEther } from "viem";
+import { useQueryClient } from '@tanstack/react-query';
 export default function ReferralCard({type}:{type?:string}) {
     const {chainId} = useAppKitNetwork()
-    console.log(">>>>>>>>>>>>chainId",chainId);
+    const { data: blockNumber } = useBlockNumber({ watch: true });
+    const queryClient = useQueryClient();
     
     const [url, setUrl] = useState("");
     const [url1, setUrl1] = useState("");
@@ -60,6 +62,15 @@ export default function ReferralCard({type}:{type?:string}) {
          
         ],
       })
+
+       useEffect(() => {
+          queryClient.invalidateQueries({
+            queryKey: result.queryKey,
+          });
+          
+        }, [blockNumber, queryClient,result]);
+
+
   return (
     <div>
        <Card className="p-6">
