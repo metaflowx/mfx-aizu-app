@@ -1,7 +1,7 @@
 interface StatsCardProps {
   title: string;
   value: string;
-  subValue: string;
+  subValue: any;
   isCoin?:boolean
 }
 

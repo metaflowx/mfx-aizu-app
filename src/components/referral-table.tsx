@@ -12,6 +12,7 @@ import CommonButton from "./ui/CommonButton";
 import { iocConfig } from "@/constants/contract";
 import {
   useAccount,
+  useBlockNumber,
   useReadContract,
   useReadContracts,
   useWriteContract,
@@ -24,8 +25,12 @@ import { Box, Skeleton } from "@mui/material";
 import { toast } from "react-toastify";
 import { extractDetailsFromError } from "@/utils/extractDetailsFromError";
 import { Copy } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 export function ReferralTable() {
+   const { data: blockNumber } = useBlockNumber({ watch: true });
+    const queryClient = useQueryClient();
   const { writeContractAsync, isPending, isSuccess, isError } =useWriteContract();
   const { address } = useAccount();
   const { chainId } = useAppKitNetwork();
@@ -65,6 +70,15 @@ export function ReferralTable() {
       
     ],
   });
+
+    useEffect(() => {
+      queryClient.invalidateQueries({
+        queryKey: result.queryKey,
+      });
+      
+    }, [blockNumber, queryClient,result]);
+
+
 
   const totalLength = result?.data?.[0]?.result?.toString() || "0";
   const historyTable = useReadContract({
@@ -136,7 +150,16 @@ export function ReferralTable() {
       ? result?.data?.[2]?.result
       : BigInt(0);
 
-  const lastClaim = addTime(initialTimestamp);
+      const lastClaimDate :bigint =
+      result?.data?.[1]?.result && typeof result?.data?.[1]?.result?.lastClaimedAt === "bigint"
+        ? result?.data?.[1]?.result?.lastClaimedAt
+        : BigInt(0);
+
+
+      console.log(">>>>>>>>>>>>initialTimestamp",initialTimestamp);
+      
+
+  const lastClaim = addTime(Number(result?.data?.[1]?.result?.lastClaimedAt) > 0? lastClaimDate : initialTimestamp);
   const value = result?.data?.[4]?.result?.[2];
   const isZeroBigInt: boolean = typeof value === "bigint" && value === BigInt(0);
    const handleCopy = (item:any) => {
@@ -252,7 +275,7 @@ export function ReferralTable() {
                 <TableRow key={index} className="border-b-0">
                   <TableCell className="text-white">
                    <Box sx={{display:"flex",alignItems:"center"}}>
-                   {sortAddress(item?.user)}
+                   {sortAddress(item?.user)}&nbsp;
                     <Box onClick={()=>handleCopy(item?.user)}>
                     <Copy color="#fff" />
                 </Box>

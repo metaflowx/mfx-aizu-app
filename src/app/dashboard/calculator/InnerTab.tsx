@@ -9,6 +9,10 @@ import {
 
 import Slidercoin from "./slidercoin";
 import { SetStateAction, useState } from "react";
+import { useReadContract } from "wagmi";
+import { iocConfig } from "@/constants/contract";
+import { useAppKitNetwork } from "@reown/appkit/react";
+import { formatEther } from "viem";
 
 const InnerTab = ({
   setValue,
@@ -20,11 +24,21 @@ const InnerTab = ({
   setSelectedCurrency: any;
 }) => {
   const [selectedLable, setSelectedLable] = useState("Pre-Sale");
-
+ const { chainId } = useAppKitNetwork();
 
   const handleSelectLable = (value: SetStateAction<string>) => {
     setSelectedLable(value);
   };
+   const tokenPrice = useReadContract({
+         
+                ...iocConfig,
+                functionName: "getSaleTokenPrice",
+                args: [1],
+                chainId: Number(chainId) ?? 97,
+              
+      })
+
+
 
   return (
     <>
@@ -70,7 +84,7 @@ const InnerTab = ({
           <Box>
             <Typography color="#fff">Current Price</Typography>
             <Typography color="#fff" fontSize={20} fontWeight={500}>
-              $0.05
+              ${Number(formatEther(BigInt(tokenPrice?.data ?? 0)))}
             </Typography>
           </Box>
         </Box>
