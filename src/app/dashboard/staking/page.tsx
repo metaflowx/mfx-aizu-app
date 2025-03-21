@@ -41,7 +41,7 @@ export default function StakingPage() {
   });
 
   const isLoading = result.isLoading || totalTierLenth.isLoading;
-console.log(">>>>>>>>>>>>isLoading",totalTierLenth,isLoading,result);
+
 
   return (
     <>
