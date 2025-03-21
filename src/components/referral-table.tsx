@@ -150,7 +150,16 @@ export function ReferralTable() {
       ? result?.data?.[2]?.result
       : BigInt(0);
 
-  const lastClaim = addTime(initialTimestamp);
+      const lastClaimDate :bigint =
+      result?.data?.[1]?.result && typeof result?.data?.[1]?.result?.lastClaimedAt === "bigint"
+        ? result?.data?.[1]?.result?.lastClaimedAt
+        : BigInt(0);
+
+
+      console.log(">>>>>>>>>>>>initialTimestamp",initialTimestamp);
+      
+
+  const lastClaim = addTime(Number(result?.data?.[1]?.result?.lastClaimedAt) > 0? lastClaimDate : initialTimestamp);
   const value = result?.data?.[4]?.result?.[2];
   const isZeroBigInt: boolean = typeof value === "bigint" && value === BigInt(0);
    const handleCopy = (item:any) => {
