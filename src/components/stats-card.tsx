@@ -1,7 +1,7 @@
 interface StatsCardProps {
   title: string;
   value: string;
-  subValue: string;
+  subValue: any;
   isCoin?:boolean
 }
 
@@ -32,10 +32,10 @@ export function StatsCard({ title, value, subValue,isCoin }: StatsCardProps) {
 
           <div className="flex items-center flex-col">
             <p className="text-[20px] md:text-[30px] font-[700] text-white">
-              {value}
+              {value} AIZU
             </p>
             <p className="text-[16px] md:text-[20px] font-[400] text-muted-foreground">
-              {subValue}
+              ${subValue}
             </p>
             {isCoin && (
               <img src="/images/trading/coins.png" className="mt-1" />
