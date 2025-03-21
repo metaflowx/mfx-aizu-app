@@ -40,7 +40,7 @@ export default function Dashboard() {
         chainId: Number(chainId) ?? 56,
         query: {
           select(data) {
-            const value = parseFloat(formatEther(data.volume)) * 0.1;
+            const value = parseFloat(formatEther(data.volume));
             return value.toFixed(2);
           },
         },
