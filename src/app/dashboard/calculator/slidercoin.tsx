@@ -79,7 +79,7 @@ const ValueLabelComponent = (props: {
 };
 
 const Slidercoin = ({ setValue }: { setValue: any }) => {
-  const [valueTop, setValueTop] = useState<number[]>([0.05]);
+  const [valueTop, setValueTop] = useState<number[]>([0.01]);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValueTop(newValue as number[]);
@@ -102,7 +102,7 @@ const Slidercoin = ({ setValue }: { setValue: any }) => {
             value={valueTop}
             onChange={handleChange}
             aria-labelledby="range-slider"
-            min={0.05}
+            min={0.01}
             step={0.001}
             max={10}
             valueLabelDisplay="auto"

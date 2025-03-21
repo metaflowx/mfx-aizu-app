@@ -35,7 +35,7 @@ export function StatsCard({ title, value, subValue,isCoin }: StatsCardProps) {
               {value} AIZU
             </p>
             <p className="text-[16px] md:text-[20px] font-[400] text-muted-foreground">
-              ${subValue}
+              ${subValue > 0 ? Number(subValue).toFixed(2):"0"}
             </p>
             {isCoin && (
               <img src="/images/trading/coins.png" className="mt-1" />
