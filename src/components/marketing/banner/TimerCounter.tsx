@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 export default function TimerCounter({label,targetTime}:{label: string;
   targetTime: any;}) {
 
+    console.log(">>>>>>>>>>>>>.targetTime",targetTime);
+    
+
 
     const calculateTimeLeft = () => {
       const now = Math.floor(Date.now() / 1000); // Current time in Unix seconds
