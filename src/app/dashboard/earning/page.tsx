@@ -17,10 +17,10 @@ export default function EarningPage() {
   return (
     <>
 
-    <ComingSoon />
+    {/* <ComingSoon /> */}
      
 
-      {/* <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 mb-8">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 mb-8">
       {earningsData.map((item) => (
         <StatsCard
                  title={item?.title}
@@ -32,7 +32,7 @@ export default function EarningPage() {
 
       <Card className="overflow-hidden mt-4">
         <EarningTable />
-      </Card> */}
+      </Card>
     </>
   )
 }

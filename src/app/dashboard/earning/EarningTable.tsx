@@ -10,7 +10,10 @@ import {
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
 import CommonButton from "@/components/ui/CommonButton"
-
+import { stakeConfig } from "@/constants/contract"
+import { useAccount, useReadContract } from "wagmi"
+import { useAppKitNetwork } from "@reown/appkit/react"
+import { Address } from "viem";
 interface ReferralData {
   user: string
   amount: string
@@ -28,6 +31,27 @@ const data: ReferralData[] = [
 ]
 
 export function EarningTable() {
+const {address} =useAccount()
+   const { chainId } = useAppKitNetwork();
+  
+
+    const totalStakeLenth = useReadContract({
+      ...stakeConfig,
+      functionName: "totalStakedLengthForUser",
+      chainId: Number(chainId) ?? 97,
+    });
+  
+    const result = useReadContract({
+      ...stakeConfig,
+      functionName: "user2StakerList",
+      args: [address as Address, BigInt(0), BigInt(totalStakeLenth?.data || 0)],
+      chainId: Number(chainId) ?? 97,
+    });
+
+    console.log(">>>>>>>>>>>>>>.result",result);
+    
+
+
   return (
     <div className="w-full overflow-hidden rounded-lg shadow-md">
       <div className="max-h-80 overflow-y-auto scrollbar-none">
