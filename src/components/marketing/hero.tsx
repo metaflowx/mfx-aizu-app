@@ -205,6 +205,20 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
   });
 
   useEffect(() => {
+    if (resultOfCheckAllowance && address) {
+      const price = parseFloat(amount === "" ? "0" : amount);
+      const allowance = parseFloat(
+        formatEther?.(resultOfCheckAllowance.data ?? BigInt(0))
+      );
+      if (allowance >= price) {
+        setIsApprovedERC20(true);
+      } else {
+        setIsApprovedERC20(false);
+      }
+    }
+  }, [resultOfCheckAllowance, address, amount]);
+
+  useEffect(() => {
     queryClient.invalidateQueries({
       queryKey: resultOfCheckAllowance.queryKey,
     });
@@ -334,14 +348,13 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
 
                 {/* Title */}
                 <PhaseDisplay
-                  targetTime={
-                    result &&
-                    result.data &&
-                    result.data &&
-                    result.data[1]?.result &&
-                    result.data[1]?.result &&
-                    result.data[1]?.result?.startAt
-                  }
+                tokenPrice={calciulatedToken?.tokenPriceData}
+                phaseData={ result &&
+                  result.data &&
+                  result.data &&
+                  result.data[1]?.result &&
+                  result.data[1]?.result}
+                 
                 />
 
                 <h1
