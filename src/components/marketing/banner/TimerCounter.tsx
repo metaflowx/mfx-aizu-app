@@ -1,47 +1,65 @@
 import React, { useEffect, useState } from "react";
 
-export default function TimerCounter({label,targetTime}:{label: string;
-  targetTime: any;}) {
+type TimerCounterProps = {
+  phaseData?: {
+    saleRateChangeInDuration?: any; // in seconds
+    startAt?: any; // unix timestamp
+    endAt?: any;   // unix timestamp
+  };
+  targetTime?: any; // Currently unused
+};
 
-    console.log(">>>>>>>>>>>>>.targetTime",targetTime);
-    
+export default function TimerCounter({ phaseData, targetTime }: TimerCounterProps) {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
+  const calculateTimeLeft = () => {
+    const now = Math.floor(Date.now() / 1000);
+    const duration = Number(phaseData?.saleRateChangeInDuration || 0);
+    const startAt = Number(phaseData?.startAt || 0);
 
-    const calculateTimeLeft = () => {
-      const now = Math.floor(Date.now() / 1000); // Current time in Unix seconds
-      const difference = Number(targetTime) - now;
-  
-      if (difference <= 0 || difference===undefined) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-  
-      return {
-        days: Math.floor(difference / (24 * 3600)),
-        hours: Math.floor((difference % (24 * 3600)) / 3600),
-        minutes: Math.floor((difference % 3600) / 60),
-        seconds: difference % 60,
-      };
+    if (!duration || !startAt) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    // Find the timestamp of the next phase
+    const elapsed = now - startAt;
+    const nextPhaseIn = duration - (elapsed % duration);
+    const nextPhaseTimestamp = now + nextPhaseIn;
+
+    const diff = nextPhaseTimestamp - now;
+
+    return {
+      days: Math.floor(diff / (24 * 3600)),
+      hours: Math.floor((diff % (24 * 3600)) / 3600),
+      minutes: Math.floor((diff % 3600) / 60),
+      seconds: diff % 60,
     };
-  
-    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-  
-    useEffect(() => {
-      const timer = setInterval(() => {
-        setTimeLeft(calculateTimeLeft());
-      }, 1000);
-  
-      return () => clearInterval(timer);
-    }, [targetTime]);
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [phaseData]);
 
   return (
     <div className="flex flex-wrap sm:flex justify-center gap-3 mb-8">
       {[
-        { value: timeLeft.days ||0, label: "DAYS" },
-        { value: timeLeft.hours || 0, label: "HOUR" },
-        { value: timeLeft.minutes || 0, label: "MINUTES" },
-        { value: timeLeft.seconds || 0, label: "SECOND" },
+        { value: timeLeft.days, label: "DAYS" },
+        { value: timeLeft.hours, label: "HOUR" },
+        { value: timeLeft.minutes, label: "MINUTES" },
+        { value: timeLeft.seconds, label: "SECOND" },
       ].map((time, index) => (
         <div
-        data-aos="fade-right"
           key={index}
+          data-aos="fade-right"
           style={{
             background:
               "linear-gradient(270deg, rgba(166, 166, 166, 0.7) 0%, rgba(166, 166, 166, 0) 50%, rgba(166, 166, 166, 0.7) 100%)",
