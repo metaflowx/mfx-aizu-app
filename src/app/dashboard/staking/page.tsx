@@ -70,6 +70,7 @@ export default function StakingPage() {
           args: [BigInt(0),BigInt(2)],
           chainId: Number(chainId) ?? 97,
         },
+       
       
       ],
     });
