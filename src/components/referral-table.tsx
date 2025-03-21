@@ -275,7 +275,7 @@ export function ReferralTable() {
                 <TableRow key={index} className="border-b-0">
                   <TableCell className="text-white">
                    <Box sx={{display:"flex",alignItems:"center"}}>
-                   {sortAddress(item?.user)}
+                   {sortAddress(item?.user)}&nbsp;
                     <Box onClick={()=>handleCopy(item?.user)}>
                     <Copy color="#fff" />
                 </Box>
