@@ -52,17 +52,17 @@ export default function Dashboard() {
           title="Your Wallet Balance"
           value={`${convertToAbbreviated(Number(
             formatEther(BigInt(resultOfTokenBalance ?? 0))
-          ))}  AIZU`}
+          ))}`}
           subValue={`$${convertToAbbreviated(Number(aizuUSDTAmount))}`}
         />
         <StatsCard
           title="Your Coin Worth at Launch"
-          value={`${convertToAbbreviated(Number(getRef?.data||0)) || 0} AIZU`}
+          value={`${convertToAbbreviated(Number(getRef?.data||0)) || 0}`}
           subValue={`$${convertToAbbreviated(Number(getRef?.data||0) * Number(0.06)) || 0 }`}
         />
         <StatsCard
           title="Projected AIZU at $1"
-          value={`${convertToAbbreviated(Number(getRef?.data||0)) || 0} AIZU`}
+          value={`${convertToAbbreviated(Number(getRef?.data||0)) || 0}`}
           subValue={`$${convertToAbbreviated(Number(getRef?.data||0) * Number(1)) || 0 }`}
         />
       </div>

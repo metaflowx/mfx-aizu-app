@@ -32,7 +32,7 @@ console.log(">>>>>>>>>>>.dailyReward",tokenPrice,dailyReward);
 
   const earningsData = [
     { id: 1, title: "Total Earnings", amount:dailyReward?.data?.claimedRewards ? Number(formatEther(dailyReward?.data?.claimedRewards)).toFixed(2):"0", sunvalue:  Number(formatEther(BigInt(dailyReward?.data?.claimedRewards ?? 0))) * Number(formatEther(BigInt(tokenPrice?.data ?? 0)))} ,
-    { id: 2, title: "Total Staking Amount", amount: dailyReward?.data?.amount ? Number(formatEther(dailyReward?.data?.amount)).toFixed(2):"0", sunvalue:  Number(formatEther(BigInt(dailyReward?.data?.amount ?? 0))) * Number(formatEther(BigInt(tokenPrice?.data ?? 0)))  },
+    { id: 2, title: "Total Staking Amount", amount: dailyReward?.data?.amount ? Number(formatEther(dailyReward?.data?.amount)).toFixed(2):"0", sunvalue: Number( Number(formatEther(BigInt(dailyReward?.data?.amount ?? 0))) * Number(formatEther(BigInt(tokenPrice?.data ?? 0))) ).toFixed(2) },
     // { id: 3, title: "Staking Rewards", amount: "$0.000", sunvalue:"$0.000" },
     // { id: 4, title: "Bonus Rewards", amount: "$0.000", sunvalue:"$0.000" },
   ];
@@ -46,8 +46,8 @@ console.log(">>>>>>>>>>>.dailyReward",tokenPrice,dailyReward);
       {earningsData.map((item) => (
         <StatsCard
                  title={item?.title}
-                 value={item?.amount}
-                 subValue={item?.sunvalue}
+                 value={`${item?.amount} AIZU`}
+                 subValue={`$${Number(item?.sunvalue).toFixed(2)}`}
                />
       ))}
     </div>

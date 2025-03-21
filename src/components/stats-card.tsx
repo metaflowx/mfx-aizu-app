@@ -32,10 +32,10 @@ export function StatsCard({ title, value, subValue,isCoin }: StatsCardProps) {
 
           <div className="flex items-center flex-col">
             <p className="text-[20px] md:text-[30px] font-[700] text-white">
-              {value} AIZU
+              {value}
             </p>
             <p className="text-[16px] md:text-[20px] font-[400] text-muted-foreground">
-              ${subValue > 0 ? Number(subValue).toFixed(2):"0"}
+              {subValue}
             </p>
             {isCoin && (
               <img src="/images/trading/coins.png" className="mt-1" />
