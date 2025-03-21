@@ -38,6 +38,7 @@ const {address} =useAccount()
     const totalStakeLenth = useReadContract({
       ...stakeConfig,
       functionName: "totalStakedLengthForUser",
+      args: [address as Address],
       chainId: Number(chainId) ?? 97,
     });
   
