@@ -27,14 +27,14 @@ import { StakeABI } from "@/app/ABI/StakeABI";
 interface AmountDialogProps {
   open: boolean;
   onClose: () => void;
- 
+  selectedId:any
   selectedData: any;
 }
 
 const AmountDialog: React.FC<AmountDialogProps> = ({
   open,
   onClose,
- 
+  selectedId,
   selectedData,
 }) => {
   const [amount, setAmount] = useState<string | "">("");
@@ -106,7 +106,7 @@ const AmountDialog: React.FC<AmountDialogProps> = ({
             address: StakeContractAddress,
             abi: StakeABI,
             functionName: "stake",
-            args: [BigInt(0), formattedAmount],
+            args: [BigInt(selectedId), formattedAmount],
           });
     
           if (res) {
@@ -122,7 +122,9 @@ const AmountDialog: React.FC<AmountDialogProps> = ({
       }
     
     };
-  
+    const minStaked = parseFloat(formatEther(selectedData?.minStaked));
+    const userAmount = parseFloat(amount);
+console.log(">>>>>>>>>>>>checking", userAmount < minStaked);
 
 
 
@@ -157,14 +159,12 @@ const AmountDialog: React.FC<AmountDialogProps> = ({
               {selectedData.title1}
             </Typography>
             <Typography style={{ color: "#fff" }} variant="body1">
-              Multiplier: {selectedData.title}
+              Multiplier: {`${Number(selectedData.returnInPercent)/1e4}X`}
             </Typography>
             <Typography style={{ color: "#fff" }} variant="body1">
-              Staking Benefit: {selectedData.des}
+             Daily Staking Benefit: {Number(selectedData?.dailyRewardRateInPercent)/1e2}
             </Typography>
-            <Typography style={{ color: "#fff" }} variant="body1">
-              Reward: {selectedData.amount}
-            </Typography>
+           
           </>
         )}
         <Typography style={{ color: "#fff" }} pt={2}>
@@ -188,10 +188,14 @@ const AmountDialog: React.FC<AmountDialogProps> = ({
             input: { color: "#fff" }, // Text color inside the input
           }}
         />
+        { ( userAmount < minStaked) && (
+
+        <Typography sx={{color:"red",pt:1}}>Min : {`${selectedData?.minStaked ? formatEther(selectedData?.minStaked):"0"} AIZU`} </Typography>
+        )}
       </DialogContent>
       <DialogActions style={{ background: "#000" }}>
         <CommonButton
-        disabled={isPending||amount===""}
+        disabled={isPending||amount==="" || userAmount < minStaked}
           title={
             isPending
               ? isAproveERC20
