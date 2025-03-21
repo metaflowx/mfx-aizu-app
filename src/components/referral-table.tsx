@@ -40,13 +40,13 @@ export function ReferralTable() {
         ...iocConfig,
         functionName: "totalContributorLengthForUser",
         args: [address as Address, 1],
-        chainId: Number(chainId) ?? 97,
+        chainId: Number(chainId) ?? 56,
       },
       {
         ...iocConfig,
         functionName: "user2SaleType2ClaimableDetail",
         args: [address as Address, 1],
-        chainId: Number(chainId) ?? 97,
+        chainId: Number(chainId) ?? 56,
       },
       {
         ...iocConfig,
@@ -57,14 +57,14 @@ export function ReferralTable() {
         ...iocConfig,
         functionName: "saleType2IcoDetail",
         args: [1],
-        chainId: Number(chainId) ?? 97,
+        chainId: Number(chainId) ?? 56,
       },
 
       {
         ...iocConfig,
         functionName: "getPresaleTokenDue",
         args: [1,address as Address],
-        chainId: Number(chainId) ?? 97,
+        chainId: Number(chainId) ?? 56,
       },
 
       
@@ -85,7 +85,7 @@ export function ReferralTable() {
     ...iocConfig,
     functionName: "user2SaleType2ContributorList",
     args: [address as Address, 1, BigInt(0), BigInt(totalLength)],
-    chainId: Number(chainId) ?? 97,
+    chainId: Number(chainId) ?? 56,
   });
 
   const dateTime = (timestamp: any) => {

@@ -63,7 +63,7 @@ export const menuItems = [
     },
     {
         name: "Calculator",
-        icon: "/images/dashboard/algoicon.png",
+        icon: "/images/dashboard/cal48.png",
         href: "/dashboard/calculator",
       },
     {

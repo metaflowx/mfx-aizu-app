@@ -24,7 +24,7 @@ export default function RefTable() {
     ...contractConfig,
     functionName: "getReferralsCount",
     args: [address as Address],
-    chainId: Number(chainId) ?? 97,
+    chainId: Number(chainId) ?? 56,
   });
 
   const dataRef =
@@ -34,7 +34,7 @@ export default function RefTable() {
     ...contractConfig,
     functionName: "getDirectReferrals",
     args: [address as Address, BigInt(0), dataRef],
-    chainId: Number(chainId) ?? 97,
+    chainId: Number(chainId) ?? 56,
   });
 
   return (
@@ -83,7 +83,7 @@ const TableBodyData = ({ index, item }: { index: number; item: any }) => {
     ...iocConfig,
     functionName: "user2SaleType2Contributor",
     args: [item as Address, 1],
-    chainId: Number(chainId) ?? 97,
+    chainId: Number(chainId) ?? 56,
     query: {
       select(data) {
         const value = parseFloat(formatEther(data.volume)) * 0.1;

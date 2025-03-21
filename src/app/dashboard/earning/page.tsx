@@ -17,14 +17,14 @@ export default function EarningPage() {
       ...stakeConfig,
       functionName: "user2Staker",
       args: [address as Address, ],
-      chainId: Number(chainId) ?? 97,
+      chainId: Number(chainId) ?? 56,
     });
     const tokenPrice = useReadContract({
        
               ...iocConfig,
               functionName: "getSaleTokenPrice",
               args: [1],
-              chainId: Number(chainId) ?? 97,
+              chainId: Number(chainId) ?? 56,
             
     })
 console.log(">>>>>>>>>>>.dailyReward",tokenPrice,dailyReward);

@@ -34,7 +34,7 @@ const InnerTab = ({
                 ...iocConfig,
                 functionName: "getSaleTokenPrice",
                 args: [1],
-                chainId: Number(chainId) ?? 97,
+                chainId: Number(chainId) ?? 56,
               
       })
 

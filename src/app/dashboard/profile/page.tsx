@@ -31,7 +31,7 @@ export default function ProfilePage() {
         ...contractConfig,
         functionName: "getReferrer",
         args: [address as Address],
-        chainId: Number(chainId) ?? 97,
+        chainId: Number(chainId) ?? 56,
       });
 
       console.log(">>>>>>>>>>>>>getReffAdd",getReffAdd);
