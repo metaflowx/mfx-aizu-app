@@ -22,18 +22,19 @@ import { toast } from "react-toastify";
 import { extractDetailsFromError } from "@/utils/extractDetailsFromError";
 import useCheckAllowance from "@/hooks/useCheckAllowance";
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { StakeABI } from "@/app/ABI/StakeABI";
 
 interface AmountDialogProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: (amount: string) => void;
+ 
   selectedData: any;
 }
 
 const AmountDialog: React.FC<AmountDialogProps> = ({
   open,
   onClose,
-  onSubmit,
+ 
   selectedData,
 }) => {
   const [amount, setAmount] = useState<string | "">("");
@@ -43,12 +44,7 @@ const AmountDialog: React.FC<AmountDialogProps> = ({
   const [isAproveERC20, setIsApprovedERC20] = useState(true);
   const { writeContractAsync, isPending, isSuccess, isError } =
     useWriteContract();
-  const handleSubmit = () => {
-    if (amount !== "") {
-      onSubmit(String(amount));
-     
-    }
-  };
+ 
 
   const approveToken = async () => {
     try {
@@ -100,7 +96,35 @@ const AmountDialog: React.FC<AmountDialogProps> = ({
     });
   }, [blockNumber, QueryClient, resultOfCheckAllowance]);
 
-  console.log(">>>>>>>>>>>isAproveERC20", isAproveERC20);
+
+    const handleSubmit = async () => {
+      if (amount !== "") {
+        try {
+          const formattedAmount = parseEther(amount);
+    
+          const res = await writeContractAsync({
+            address: StakeContractAddress,
+            abi: StakeABI,
+            functionName: "stake",
+            args: [BigInt(0), formattedAmount],
+          });
+    
+          if (res) {
+            onClose();
+            toast.success("Stake completed");
+          }
+        } catch (error: any) {
+          console.log(">>>>>>>>>>>>.error", error);
+    
+          toast.error(extractDetailsFromError(error.message as string) as string);
+        }
+       
+      }
+    
+    };
+  
+
+
 
   return (
     <Dialog
@@ -167,6 +191,7 @@ const AmountDialog: React.FC<AmountDialogProps> = ({
       </DialogContent>
       <DialogActions style={{ background: "#000" }}>
         <CommonButton
+        disabled={isPending||amount===""}
           title={
             isPending
               ? isAproveERC20

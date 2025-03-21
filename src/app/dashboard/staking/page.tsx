@@ -7,8 +7,9 @@ import { toast } from "react-toastify";
 import { extractDetailsFromError } from "@/utils/extractDetailsFromError";
 import { parseEther, parseUnits } from "viem";
 import { StakeABI } from "@/app/ABI/StakeABI";
-import { useWriteContract } from "wagmi";
-import { StakeContractAddress } from "@/constants/contract";
+import { useReadContracts, useWriteContract } from "wagmi";
+import { stakeConfig, StakeContractAddress } from "@/constants/contract";
+import { useAppKitNetwork } from "@reown/appkit/react";
 
 export default function StakingPage() {
   const earningsData = [
@@ -49,6 +50,7 @@ export default function StakingPage() {
       btn: true,
     },
   ];
+  const { chainId } = useAppKitNetwork();
   const [open, setOpen] = useState(false);
   const [selectedData, setSelectedData] = useState("");
   const { writeContractAsync, isPending, isSuccess, isError } =
@@ -59,27 +61,22 @@ export default function StakingPage() {
   };
   const handleClose = () => setOpen(false);
 
-  const handleSubmit = async (amount: string) => {
-    try {
-      const formattedAmount = parseEther(amount);
 
-      const res = await writeContractAsync({
-        address: StakeContractAddress,
-        abi: StakeABI,
-        functionName: "stake",
-        args: [BigInt(0), formattedAmount],
-      });
+   const result = useReadContracts({
+      contracts: [
+        {
+          ...stakeConfig,
+          functionName: "getTierList",
+          args: [BigInt(0),BigInt(2)],
+          chainId: Number(chainId) ?? 97,
+        },
+       
+      
+      ],
+    });
 
-      if (res) {
-        setOpen(false);
-        toast.success("Stake completed");
-      }
-    } catch (error: any) {
-      console.log(">>>>>>>>>>>>.error", error);
-
-      toast.error(extractDetailsFromError(error.message as string) as string);
-    }
-  };
+    console.log(">>>>>>>>>>>result",result);
+    
 
   return (
     <>
@@ -134,7 +131,7 @@ export default function StakingPage() {
           selectedData={selectedData}
           open={open}
           onClose={handleClose}
-          onSubmit={handleSubmit}
+          
         />
       </div>
     </>
