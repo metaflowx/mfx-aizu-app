@@ -359,16 +359,20 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
 
                 <h1
                   data-aos="fade-right"
-                  className="text-3xl font-bold text-center text-white mb-2"
+                  className="text-[14px] md:text-[18px] font-bold text-center text-white mb-2"
                 >
-                  BUY AIZU
+Next phase will start in 
                 </h1>
 
                 {/* Countdown Timer */}
                 {Math.floor(Date.now() / 1000) <=
                 Number(result?.data?.[1]?.result?.startAt) ? (
                   <TimerCounter
-                    label="Sale Starts In"
+                  phaseData={ result &&
+                    result.data &&
+                    result.data &&
+                    result.data[1]?.result &&
+                    result.data[1]?.result}
                     targetTime={
                       result &&
                       result.data &&
@@ -380,7 +384,12 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
                   />
                 ) : (
                   <TimerCounter
-                    label="Sale Ends In"
+                   
+                    phaseData={ result &&
+                      result.data &&
+                      result.data &&
+                      result.data[1]?.result &&
+                      result.data[1]?.result}
                     targetTime={
                       result &&
                       result.data &&
@@ -437,7 +446,7 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
                 data-aos="fade-right"
                 className="text-white text-sm sm:mt-0 mt-[15px]"
               >
-                Final phase is LIVE. Listing price $0.06
+                 Listing price $0.06
               </div>
             </div>
 

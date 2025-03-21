@@ -41,7 +41,7 @@ const PhaseDisplay = ({  phaseData,tokenPrice }: {  phaseData: any,tokenPrice:an
           {/* Next Phase Timer */}
           <div>
             <h1 data-aos="fade-right" className="text-[14px] md:text-[18px] font-bold text-center text-white">
-              Next phase will start in {nextPhaseInDays} days
+            BUY AIZU  
             </h1>
           </div>
 
