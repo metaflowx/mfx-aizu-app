@@ -6,8 +6,13 @@ import { NAV_LINKS } from "@/constants";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import CommonButton from "../ui/CommonButton";
+import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
+import { useRouter } from "next/navigation";
 
 const MobileMenu = () => {
+      const router = useRouter()
+     const { open, close } = useAppKit();
+      const { address, isConnected } = useAppKitAccount();
     return (
         <Sheet>
             <SheetTrigger asChild className="xl:hidden">
@@ -28,9 +33,19 @@ const MobileMenu = () => {
                         </Link>
                     ))}
                     <div className="pt-4 mt-4 border-t border-border">
-                        <Link href="#" >
-                           <CommonButton title="Connect Wallet" width="214px"  />
-                        </Link>
+                        {!address ? (
+
+                        
+                           <CommonButton  onClick={async () => open()} title="Connect Wallet" width="214px"  />
+                        
+                        ):(
+<CommonButton
+                                            onClick={()=>router.push("/dashboard")}
+                                            title="Dashboard"
+                                            width="150px"
+                                          />
+                        )}
+                         
                     </div>
                 </nav>
             </SheetContent>
