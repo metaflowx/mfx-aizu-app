@@ -51,7 +51,7 @@ const PhaseDisplay = ({  phaseData,tokenPrice }: {  phaseData: any,tokenPrice:an
               <h1 data-aos="fade-right" className="text-[14px] md:text-[18px] font-bold text-center text-white">
                 Next Phase {currentPhase + 1}
               </h1>
-              <p className="text-[12px] md:text-[14px] text-white">{Number(tokenPrice)+0.01} USDT</p>
+              <p className="text-[12px] md:text-[14px] text-white">{Number(tokenPrice)+0.001} USDT</p>
             </div>
           )}
         </div>
