@@ -23,7 +23,7 @@ export const wagmiAdapter = new WagmiAdapter({
   projectId,
   networks,
   transports: {
-    [bsc.id]: http('https://bsc.drpc.org')
+    [bsc.id]: http('https://bnb-mainnet.g.alchemy.com/v2/VYRg3oeRAB9MJ_tK2DfSR6bjc6Qg2f5I')
   },
 })
 
