@@ -10,18 +10,18 @@ import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import { useRouter } from "next/navigation";
 
 const MobileMenu = () => {
-      const router = useRouter()
-     const { open, close } = useAppKit();
-      const { address, isConnected } = useAppKitAccount();
+    const router = useRouter()
+    const { open, close } = useAppKit();
+    const { address, isConnected } = useAppKitAccount();
     return (
         <Sheet>
-            <SheetTrigger asChild className="xl:hidden">
-                <Button variant="ghost" size="icon" className="xl:hidden">
-                    <Menu className="h-6 w-6" />
-                </Button>
+            <SheetTrigger asChild className="xl:hidden ">
+                 
+                    <Menu className="w-8 h-8" />
+                 
             </SheetTrigger>
             <SheetContent side="right" className="w-full sm:w-[300px] pt-12">
-               
+
                 <nav className="flex flex-col space-y-4">
                     {NAV_LINKS.map((link, index) => (
                         <Link
@@ -35,17 +35,17 @@ const MobileMenu = () => {
                     <div className="pt-4 mt-4 border-t border-border">
                         {!address ? (
 
-                        
-                           <CommonButton  onClick={async () => open()} title="Connect Wallet" width="214px"  />
-                        
-                        ):(
-<CommonButton
-                                            onClick={()=>router.push("/dashboard")}
-                                            title="Dashboard"
-                                            width="150px"
-                                          />
+
+                            <CommonButton onClick={async () => open()} title="Connect Wallet" width="214px" />
+
+                        ) : (
+                            <CommonButton
+                                onClick={() => router.push("/dashboard")}
+                                title="Dashboard"
+                                width="150px"
+                            />
                         )}
-                         
+
                     </div>
                 </nav>
             </SheetContent>

@@ -20,8 +20,9 @@ const StyledBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     gap: '10px',
-    justifyContent: 'inherit',
+    justifyContent: 'center',
     borderRadius: '8px',
+    
 }));
 
 const StyledLink = styled(Link)(({ theme }) => ({
@@ -55,9 +56,10 @@ const AddressCopy = ({ text,textColor, addresstext, hrefLink  }: props) => {
                 </StyledLink>
 
                 <Box onClick={handleCopy}>
-                    <Copy color="#fff" />
+                    <Copy color="#fff" size={16}/>
                 </Box>
                 <Snackbar
+                sx={{zIndex:11111}}
 
                     anchorOrigin={{
                         vertical: 'top',

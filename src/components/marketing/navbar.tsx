@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 w-full  bg-transparent backdrop-blur-[10px] z-50">
       <Wrapper className="h-full">
-        <div className="flex items-center justify-between h-full">
+        <div className="flex items-center justify-between h-full" >
           <div className="hidden xl:flex items-center gap-3">
             <ul className="flex items-center gap-12 2xl:gap-16">
               {NAV_LINKS.slice(0, 5).map((link, index) => (
@@ -74,7 +74,9 @@ const Navbar = () => {
               )}
             </ul>
           </div>
-          <MobileMenu />
+        
+         <MobileMenu />
+        
         </div>
       </Wrapper>
     </header>

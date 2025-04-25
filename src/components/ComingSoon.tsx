@@ -29,7 +29,7 @@ const ComingSoon = () => {
   return (
     <div className="flex items-center justify-center min-h-screen  text-white text-center px-4">
       <div>
-        <h1 className="text-4xl sm:text-6xl font-bold">Coming Soon</h1>
+        <h1 className="text-4xl sm:text-6xl font-bold">Giveaway 10 Million AIZU</h1>
         <p className="text-lg sm:text-xl mt-4">We're launching something amazing. Stay tuned!</p>
         
       </div>
