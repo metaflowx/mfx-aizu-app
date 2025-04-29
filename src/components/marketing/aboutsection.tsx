@@ -52,7 +52,7 @@ export default function AboutSection({ id }: { id: string }) {
 
           {/* CTA Buttons */}
           <div data-aos="fade-right" className="flex justify-center gap-4 ">
-            <Link href={"/whitepaper.pdf"} target="_blank">
+            <Link href={"https://aizutech.gitbook.io/aizu-coin"} target="_blank">
               <CommonButton title="White Paper" width="176px" />
             </Link>
 

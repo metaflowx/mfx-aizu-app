@@ -17,9 +17,9 @@ export default function TradingPage() {
   const [tabType,setTabType]=useState("live")
   return (
     <>
-      <ComingSoon /> 
+      {/* <ComingSoon />  */}
     
-{/* <div className="pb-2">
+<div className="pb-2">
 <CommonButton title="Connect with Binance" width="280px" />
 </div>
       <MainDashboard />
@@ -47,7 +47,7 @@ export default function TradingPage() {
         <MarketValueTable tabType={tabType} setTabType={setTabType} data={liveOrders} isLoading={isLoadingLive} />
       ):(
         <MarketValueTable tabType={tabType} setTabType={setTabType} data={orders} isLoading={isLoadingOrders} />
-      )} */}
+      )}
         
     </>
   )

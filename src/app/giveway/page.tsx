@@ -20,10 +20,10 @@ export default function page() {
 
          <div className="relative overflow-x-hidden w-full pb-15 md:pb-10 px-4">
 
-          <ComingSoon />
+          {/* <ComingSoon /> */}
 
-        {/* <Giveway />
-        <MillinareGiveway /> */}
+         <Giveway />
+        <MillinareGiveway /> 
          </div>
       </Wrapper>
 

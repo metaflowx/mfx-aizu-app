@@ -1,39 +1,51 @@
+import { Target } from "lucide-react";
+
 export const NAV_LINKS = [
     {
         name: "Home",
-        href: "/#home"
+        href: "/#home",
+         target:'_self'
+
     },
     {
         name: "About Us",
-        href: "#about"
+        href: "#about",
+         target:'_self'
     },
     {
         name: "HOWTOBUY",
-        href: "/#howtobuy"
+        href: "/#howtobuy",
+         target:'_self'
     },
     {
-        name: "FEATURES",
-        href: "/#features"
+        name: "DOCS",
+        href: "https://aizutech.gitbook.io/aizu-coin",
+        target:'_blank'
     },
     {
         name: "TOKENOMICS",
-        href: "/#tokenomics"
+        href: "/#tokenomics",
+         target:'_self'
     },
     {
         name: "ROADMAP",
-        href: "/#roadmap"
+        href: "/#roadmap",
+         target:'_self'
     },
     {
         name: "Algo Trading",
-        href: "/algo-trading"
+        href: "/algo-trading",
+         target:'_self'
     },
     {
         name: "FAQS",
-        href: "#faqs"
+        href: "#faqs",
+         target:'_self'
     },
     {
         name: "GIVEWAY",
-        href: "/giveway"
+        href: "/giveway",
+         target:'_self'
     },
 ];
 export const NAV_LINKS1 = [

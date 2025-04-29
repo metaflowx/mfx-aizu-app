@@ -61,21 +61,21 @@ export default function MillinareGiveway() {
 
   return (
     <div className="py-5 md:py-20 text-left sm:text-center">
-      <h2 data-aos="fade-right" className="text-[20px] md:text-[60px] font-[700]">
+      <h2 data-aos="fade-right" className="text-[#fff] text-[20px] md:text-[60px] font-[700]">
         Millionaire Giveaway
       </h2>
 
-      <h2 data-aos="fade-right" className="text-[16px] md:text-[24px] font-[700] pb-1 pt-1">
+      <h2 data-aos="fade-right" className="text-[#fff] text-[16px] md:text-[24px] font-[700] pb-1 pt-1">
         Aizu Coin $1,000,000 Giveaway
       </h2>
-      <p  data-aos="fade-right" className="text-[16px] md:text-[20px] font-[400] max-w-[1200px] mx-auto">
+      <p  data-aos="fade-right" className="text-[#fff] text-[16px] md:text-[20px] font-[400] max-w-[1200px] mx-auto">
         We're excited to announce the launch of Aizu Coin with an amazing chance
         for 20 lucky winners to win $50,000 USDT each! 
       </p>
-      <h2 data-aos="fade-right" className="text-[16px] md:text-[24px] font-[700] pb-1 pt-2">
+      <h2 data-aos="fade-right" className="text-[#fff] text-[16px] md:text-[24px] font-[700] pb-1 pt-2">
         Join now and share with your friends for a chance to win!
       </h2>
-      <h3 data-aos="fade-right" className="text-[16px] md:text-[24px] font-[400] pb-10 pt-2">
+      <h3 data-aos="fade-right" className=" text-[#fff] text-[16px] md:text-[24px] font-[400] pb-10 pt-2">
         Note: A minimum $100 participation in the Aizu Coin Presale is required
         to be eligible.
       </h3>
@@ -104,7 +104,7 @@ export default function MillinareGiveway() {
               className="h-[100%] rounded-tl-[70px] rounded-tr-[70px] rounded-bl-[8px] rounded-br-[8px] p-[1px] "
             >
               <div className="h-[100%] px-4 flex flex-col justify-end items-end border border-[#2D67FE] rounded-tl-[70px] rounded-tr-[70px] rounded-bl-[8px] rounded-br-[8px]">
-                <h3 data-aos="fade-right" className="text-20px sm:text-[37px] font-[700] pt-5 text-center">
+                <h3 data-aos="fade-right" className="text-[#fff] text-20px sm:text-[37px] font-[700] pt-5 text-center">
                   Follow these steps for your shot at winning $50,000. Good
                   luck!
                 </h3>
@@ -117,7 +117,7 @@ export default function MillinareGiveway() {
       transition-all duration-300 ease-in-out transform  
       hover:shadow-[0px_0px_16px_4px_#2D67FE80] mt-10  mb-5"
                 >
-                  <h6 data-aos="fade-right" className="text-[16px] md:text-[24px] font-[500] py-3">
+                  <h6 data-aos="fade-right" className=" text-[#fff] text-[16px] md:text-[24px] font-[500] py-3">
                     Website:{" "}
                     <span className="underline"> https://aizucoin.com</span>
                   </h6>

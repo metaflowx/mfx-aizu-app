@@ -25,7 +25,7 @@ const Navbar = () => {
                   key={index}
                   className="text-[14px] 2xl:text-[16px] object-contain uppercase  -1 link text-white"
                 >
-                  <Link href={link.href}>{link.name}</Link>
+                  <Link href={link.href} target={link.target}>{link.name}</Link>
                 </li>
               ))}
             </ul>
