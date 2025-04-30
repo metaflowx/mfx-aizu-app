@@ -44,7 +44,7 @@ import { useSearchParams } from "next/navigation";
 import { extractDetailsFromError } from "@/utils/extractDetailsFromError";
 import PhaseDisplay from "./PhaseDisplay";
 import shortenString from "@/lib/shortenString";
-import AddressCopy from "../ui/addressCopy";
+ 
 export default function Hero({ id, type }: { id?: string; type?: string }) {
   const { address } = useAccount();
   const queryClient = useQueryClient();
@@ -320,6 +320,7 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
  
 
   return (
+    <>
     <main
       id={id}
       className={`${
@@ -639,24 +640,22 @@ Next phase will start in
               )}
             </AnimatedBorderTrail>
 
-            {!address ?
+            {!address &&
             <p
             data-aos="fade-up"
             className="text-center text-gray-400 text-sm hover:text-gray-300 cursor-pointer pt-5"
           >
             Don't have a wallet?
-          </p> :
-          <p
-          data-aos="fade-up"
-          className="text-center text-gray-400 text-sm hover:text-gray-300 cursor-pointer pt-5"
-        >
-         
-           <AddressCopy text={shortenString(address)} addresstext={shortenString(address)} hrefLink={""}/>
-           
-        </p>}
+          </p> 
+          }
           </div>
         </div>
       </MagicCard>
     </main>
+
+    
+    </>
+
+    
   );
 }

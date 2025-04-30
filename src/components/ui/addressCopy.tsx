@@ -51,7 +51,7 @@ const AddressCopy = ({ text,textColor, addresstext, hrefLink  }: props) => {
     return (
         <>
             <StyledBox>
-                <StyledLink sx={{color: textColor}} href={hrefLink} target="_black">
+                <StyledLink sx={{color: textColor}} href={hrefLink}>
                     {addresstext}
                 </StyledLink>
 
@@ -59,12 +59,9 @@ const AddressCopy = ({ text,textColor, addresstext, hrefLink  }: props) => {
                     <Copy color="#fff" size={16}/>
                 </Box>
                 <Snackbar
-                sx={{zIndex:11111}}
+                 
 
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'center',
-                    }}
+                 
                     open={openSnackbar}
                     autoHideDuration={3000}
                     onClose={handleCloseSnackbar}

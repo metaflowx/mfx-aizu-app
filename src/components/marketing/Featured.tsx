@@ -40,7 +40,7 @@ const FeaturedIn = ({id}:{id:string}) => {
 
         </div>
       <h2 data-aos="fade-right"  className="text-center text-[39px] md:text-[50px] font-bold mb-6 mt-[90px]">
-        Featured In
+        Our Partners
       </h2>
       <div className="px-6">
         <SlickSlider {...settings}>

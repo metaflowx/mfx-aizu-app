@@ -7,6 +7,6 @@ export default function shortenString(string: string | null) {
       return string;
     }
   
-    return string.slice(0, 4) + '...' + string.slice(-4);
+    return string.slice(0, 10) + '...' + string.slice(-10);
   }
   
