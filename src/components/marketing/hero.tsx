@@ -339,7 +339,8 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
           <div className="w-full bg-[#0D0D0D] p-6 rounded-[20px] ">
             {type !== "dashboard" && (
               <>
-                <AnimatedBorderTrail
+                <div className="hidden md:block">
+                  <AnimatedBorderTrail
                   trailSize="lg"
                   className="w-full rounded-[12px] mb-10"
                   contentClassName="rounded-[12px]"
@@ -348,6 +349,13 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
                 >
                   <HeaderStats calciulatedToken={calciulatedToken} />
                 </AnimatedBorderTrail>
+                </div>
+
+                <div className="block md:hidden mb-4">
+                  
+                  <HeaderStats calciulatedToken={calciulatedToken} />
+               
+                </div>
 
                 {/* Title */}
                 <PhaseDisplay

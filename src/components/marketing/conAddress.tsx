@@ -12,7 +12,7 @@ const ConAddress = () => {
                     flexWrap:'wrap'
                 }}>
                     {/* <Link className="text-[#2865ff] underline underline-offset-1" href={""} target="_blank">https://bscscan.com/address/0x141A753ebE663B653C7675D54D54c2e795162dee</Link> */}
-                    <AddressCopy text={"https://bscscan.com/address/0x141A753ebE663B653C7675D54D54c2e795162dee"} addresstext={shortenString('0x141A753ebE663B653C7675D54D54c2e795162dee')} hrefLink={"javascript:void(0)"} />
+                    <AddressCopy text={"0x141A753ebE663B653C7675D54D54c2e795162dee"} addresstext={shortenString('0x141A753ebE663B653C7675D54D54c2e795162dee')} hrefLink={"javascript:void(0)"} />
 
                     <div className="">
                         <Link

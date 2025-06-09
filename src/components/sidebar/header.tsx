@@ -26,9 +26,9 @@ const TopBar = () => {
           <Link href={"/"}>
             <div className="flex items-center">
               <img src="/images/dashboard/back.png" />
-              <p className="text-[18px] font-[400] text-white pl-3">
-                back to home
-              </p>
+              <p className="text-[18px] font-[400] text-white pl-3 hidden sm:block">
+  back to home
+</p>
             </div>
           </Link>
           <div className="flex items-center gap-3">
