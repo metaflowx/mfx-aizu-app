@@ -20,52 +20,69 @@ export default function EarningPage() {
     args: [address as Address],
     chainId: Number(chainId) ?? 56,
   });
-    const totalStakeLenth = useReadContract({
-      ...stakeConfig,
-      functionName: "totalStakedLengthForUser",
-      args: [address as Address],
-      chainId: Number(chainId) ?? 56,
-    });
+  const totalStakeLenth = useReadContract({
+    ...stakeConfig,
+    functionName: "totalStakedLengthForUser",
+    args: [address as Address],
+    chainId: Number(chainId) ?? 56,
+  });
   const tokenPrice = useReadContract({
     ...iocConfig,
     functionName: "getSaleTokenPrice",
     args: [1],
     chainId: Number(chainId) ?? 56,
   });
-  
 
   const result = useReadContract({
     ...stakeConfig,
     functionName: "user2StakerList",
-    args: [address as Address, BigInt(0), BigInt(totalStakeLenth?.data || 0)],
+    args: [
+      address as Address,
+      BigInt(0),
+      BigInt(totalStakeLenth?.data || 0),
+    ],
     chainId: Number(chainId) ?? 56,
+  });
+
+  const getRef = useReadContract({
+    ...iocConfig,
+    functionName: "user2SaleType2Contributor",
+    args: [address as Address, 1],
+    chainId: Number(chainId) ?? 56,
+    query: {
+      select(data) {
+        const value = parseFloat(formatEther(data.volume));
+        return value.toFixed(2);
+      },
+    },
   });
 
   const totalPrice = useMemo(() => {
     const data = result?.data ?? [];
-    const totalVol = data.map((amt:any)=>{
-      const tierType = amt?.tierId===0 ? 10 : amt?.tierId===1 ? 20 :30
-      const totalAmt = parseFloat(formatEther(amt?.amount)) * tierType
-      return totalAmt
-    })
-    const totalSumAmt = totalVol?.length>0 && totalVol.reduce((a,b)=>Number(a)+Number(b))
+    const spot = Number(getRef?.data?.toString());
+    const totalVol = data.map((amt: any) => {
+      const tierType =
+        Number(amt?.tierId) === 0 ? 10 : Number(amt?.tierId) === 1 ? 20 : 30;
 
-    return totalSumAmt ||0
+      const totalAmt = parseFloat(formatEther(amt?.amount)) * tierType;
+      return totalAmt;
+    });
+    const totalSumAmt =
+      totalVol?.length > 0
+        ? totalVol.reduce((a, b) => Number(a) + Number(b))
+        : 0;
 
-    
-  }, [result])
-
+    return totalSumAmt + spot || 0;
+  }, [result, getRef]);
 
   const earningsData = [
     {
       id: 1,
-      title: "Total Earnings",
-      amount: totalPrice
-        ? Number(totalPrice).toFixed(2)
-        : "0",
-      sunvalue:
-        Number(formatEther(BigInt(dailyReward?.data?.claimedRewards ?? 0))) *
-        Number(formatEther(BigInt(tokenPrice?.data ?? 0))),
+      title: "Total Earnings(Spot + Stake)",
+      amount: totalPrice ? Number(totalPrice).toFixed(2) : "0",
+      sunvalue: (
+        Number(totalPrice) * Number(formatEther(BigInt(tokenPrice?.data ?? 0)))
+      ).toFixed(2),
     },
     {
       id: 2,
@@ -78,7 +95,6 @@ export default function EarningPage() {
           Number(formatEther(BigInt(tokenPrice?.data ?? 0)))
       ).toFixed(2),
     },
-   
   ];
   return (
     <>
