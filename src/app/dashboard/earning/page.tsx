@@ -62,7 +62,7 @@ export default function EarningPage() {
     const spot = Number(getRef?.data?.toString());
     const totalVol = data.map((amt: any) => {
       const tierType =
-        Number(amt?.tierId) === 0 ? 10 : Number(amt?.tierId) === 1 ? 20 : 30;
+        Number(amt?.tierId) === 0 ? 10 : Number(amt?.tierId) === 1 ? 15 : 20;
 
       const totalAmt = parseFloat(formatEther(amt?.amount)) * tierType;
       return totalAmt;
