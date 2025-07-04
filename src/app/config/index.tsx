@@ -23,7 +23,7 @@ export const wagmiAdapter = new WagmiAdapter({
   networks,
   transports: {
     [bsc.id]: http(
-      "https://bnb-mainnet.g.alchemy.com/v2/VYRg3oeRAB9MJ_tK2DfSR6bjc6Qg2f5I"
+      "https://bsc.blockrazor.xyz"
     ),
   },
 });

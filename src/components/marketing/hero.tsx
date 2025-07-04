@@ -358,7 +358,7 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
                 </div>
 
                 {/* Title */}
-                <PhaseDisplay
+                {/* <PhaseDisplay
                 tokenPrice={calciulatedToken?.tokenPriceData}
                 phaseData={ result &&
                   result.data &&
@@ -366,17 +366,22 @@ export default function Hero({ id, type }: { id?: string; type?: string }) {
                   result.data[1]?.result &&
                   result.data[1]?.result}
                  
-                />
+                /> */}
 
-                <h1
+                {/* <h1
                   data-aos="fade-right"
                   className="text-[14px] md:text-[18px] font-bold text-center text-white mb-2"
                 >
 Next phase will start in 
+                </h1> */}
+                                <h1
+                  data-aos="fade-right"
+                  className="text-[14px] md:text-[18px] font-bold text-center text-white mb-2"
+                >
+Sale has ended
                 </h1>
 
-                {/* Countdown Timer */}
-                {Math.floor(Date.now() / 1000) <=
+                {/* {Math.floor(Date.now() / 1000) <=
                 Number(result?.data?.[1]?.result?.startAt) ? (
                   <TimerCounter
                   phaseData={ result &&
@@ -410,7 +415,7 @@ Next phase will start in
                       result.data[1]?.result?.endAt
                     }
                   />
-                )}
+                )} */}
               </>
             )}
 
